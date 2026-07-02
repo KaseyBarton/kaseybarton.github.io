@@ -11,23 +11,23 @@ Date: April 21, 2015
 
 <head>
 <title>Argemone Project Map</title>
-<link rel="shortcut icon" href="/~kbarton/favicon.ico" >
+<link rel="icon" href="../favicon.ico" >
 
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-<script type="text/javascript" src="/~kbarton/js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="/~kbarton/js/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="/~kbarton/js/jquery-ui-1.11.1/jquery-ui.min.js"></script>
-<link type="text/css" rel="stylesheet" href="/~kbarton/js/jquery-ui-1.11.1/jquery-ui.min.css"></script>
-<link type="text/css" rel="stylesheet" href="/~kbarton/js/font-awesome-4.2.0/css/font-awesome.min.css" />
-<link type="text/css" rel="stylesheet" href="/~kbarton/css/subpages.css?v=2" />
+<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.11.1/jquery-ui.min.js"></script>
+<link type="text/css" rel="stylesheet" href="../js/jquery-ui-1.11.1/jquery-ui.min.css"></script>
+<link type="text/css" rel="stylesheet" href="../js/font-awesome-4.2.0/css/font-awesome.min.css" />
+<link type="text/css" rel="stylesheet" href="../css/subpages.css?v=2" />
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAlwWZ8Fk0vhhyiNydkjrgU1HhbuEWPv3k"></script>
-<script type="text/javascript" src="/~kbarton/js/keyDragZoom.js"></script>
-<script type="text/javascript" src="/~kbarton/js/customMapStyles.js"></script>
-<script src="/~kbarton/js/proj4/lib/proj4js-combined.js"></script>
-<script src="/~kbarton/js/proj4/lib/defs/UTM5.js"></script>
-<script src="/~kbarton/js/google_sheets_utils.js?v=2"></script>
-<link type="text/css" rel="stylesheet" href="/~kbarton/css/map_utils.css?v=2" />
-<script src="/~kbarton/js/map_utils.js?v=6"></script>
+<script type="text/javascript" src="../js/keyDragZoom.js"></script>
+<script type="text/javascript" src="../js/customMapStyles.js"></script>
+<script src="../js/proj4/lib/proj4js-combined.js"></script>
+<script src="../js/proj4/lib/defs/UTM5.js"></script>
+<script src="../js/google_sheets_utils.js?v=2"></script>
+<link type="text/css" rel="stylesheet" href="../css/map_utils.css?v=2" />
+<script src="../js/map_utils.js?v=6"></script>
 
 <script>
 
@@ -577,7 +577,7 @@ function jumpTo ( location ) {
 
 <div id="header">
 
-<!--#include virtual="/~kbarton/ssi/map_about_icons.ssi" -->{% include map_about_icons.ssi %}
+<!--#include virtual="../ssi/map_about_icons.ssi" -->{% include map_about_icons.ssi %}
 
 <select id="sites" onChange="addSitesAndJump(); this.blur();">
   <option value="" selected>Which herbaria?</option>
@@ -819,7 +819,7 @@ function jumpTo ( location ) {
   <option value="Wyoming">&nbsp;&nbsp;&nbsp;Wyoming</option>
 </select>
 
-<!--#include virtual="/~kbarton/ssi/jumpto_home_icon.ssi" -->{% include jumpto_home_icon.ssi %}
+<!--#include virtual="../ssi/jumpto_home_icon.ssi" -->{% include jumpto_home_icon.ssi %}
 
 &nbsp;Highlight state boundaries: <input type="checkbox" id="highlight_states" onClick="customMapStyleControl.switchStyle( prevStyle );" />
 
@@ -827,7 +827,7 @@ function jumpTo ( location ) {
 
 <div id="map"></div>
 
-<!--#include virtual="/~kbarton/ssi/map_cursor_location.ssi" -->{% include map_cursor_location.ssi %}
+<!--#include virtual="../ssi/map_cursor_location.ssi" -->{% include map_cursor_location.ssi %}
  
 </body>
 </html>
