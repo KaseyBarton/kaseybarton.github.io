@@ -1,7 +1,7 @@
 /*
  * Drought Tolerance Index
  * March 2019 - November, 2023
- * http://www2.hawaii.edu/~kbarton/drought/
+ * https://kaseybarton.github.io/drought/
  * Author: Kasey E. Barton, Ph.D. <kbarton@hawaii.edu>
  * Web Programmer: John Maurer <jmaurer@hawaii.edu>
  */
@@ -2073,7 +2073,7 @@ function toggleOverlay ( show_overlay ) {
   if ( show_overlay ) { 
     var preserve_viewport = true; // do not zoom to KML extent
     addOverlayKML(
-      'http://www2.hawaii.edu/~kbarton/kml/rainfall_atlas_of_hawaii_statewide_nolegend.kmz',
+      'https://kaseybarton.github.io/kml/rainfall_atlas_of_hawaii_statewide_nolegend.kmz',
       preserve_viewport
     );
   }
@@ -2124,8 +2124,8 @@ Updates the units of the annual mean rainfall legend between mm and inches.
 
 function updateRainUnit ( use_mm ) {
 
-  var legend_in = '/~kbarton/kml/legends/MeanRFAnn_State_in_legend_noborder.png';
-  var legend_mm = '/~kbarton/kml/legends/MeanRFAnn_State_mm_legend_noborder.png'; 
+  var legend_in = '/kml/legends/MeanRFAnn_State_in_legend_noborder.png';
+  var legend_mm = '/kml/legends/MeanRFAnn_State_mm_legend_noborder.png';
 
   var legend_src;
 

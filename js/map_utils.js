@@ -899,7 +899,7 @@ function addBotanyLogo () {
   // Create the logo image:
 
   var logo_img = document.createElement( 'img' );
-  logo_img.src = '/~kbarton/images/logos/logo_botany_small_transparent.png';
+  logo_img.src = '/images/logos/logo_botany_small_transparent.png';
   logo_img.style.cursor = 'pointer';
 
   // Make a link for the image:
