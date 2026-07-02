@@ -574,7 +574,7 @@ function jumpTo ( location ) {
 
 <div id="header">
 
-<!--#include virtual="/~kbarton/ssi/map_about_icons.ssi" -->
+<!--#include virtual="/~kbarton/ssi/map_about_icons.ssi" -->{% include map_about_icons.ssi %}
 
 <select id="sites" onChange="addSitesAndJump(); this.blur();">
   <option value="" selected>Which herbaria?</option>
@@ -816,7 +816,7 @@ function jumpTo ( location ) {
   <option value="Wyoming">&nbsp;&nbsp;&nbsp;Wyoming</option>
 </select>
 
-<!--#include virtual="/~kbarton/ssi/jumpto_home_icon.ssi" -->
+<!--#include virtual="/~kbarton/ssi/jumpto_home_icon.ssi" -->{% include jumpto_home_icon.ssi %}
 
 &nbsp;Highlight state boundaries: <input type="checkbox" id="highlight_states" onClick="customMapStyleControl.switchStyle( prevStyle );" />
 
@@ -824,7 +824,7 @@ function jumpTo ( location ) {
 
 <div id="map"></div>
 
-<!--#include virtual="/~kbarton/ssi/map_cursor_location.ssi" -->
+<!--#include virtual="/~kbarton/ssi/map_cursor_location.ssi" -->{% include map_cursor_location.ssi %}
  
 </body>
 </html>

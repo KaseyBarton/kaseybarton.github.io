@@ -50,7 +50,7 @@ jQuery( document ).ready(
 
 <div id="header">
 
-<!--#include virtual="/~kbarton/ssi/map_about_icons.ssi" -->
+<!--#include virtual="/~kbarton/ssi/map_about_icons.ssi" -->{% include map_about_icons.ssi %}
 
 <select id="overlay" onChange="addOverlayKML( 'http://www2.hawaii.edu/~kbarton/kml/' + this.value + '?v=1' ); this.blur();">
   <option value="">Which overlay?</option>
@@ -98,17 +98,17 @@ jQuery( document ).ready(
 
 <input type="button" id="enterCoordinatesButton" value="enter coordinates" onClick="document.getElementById( 'enterCoordinates' ).style.display = 'block'" style="margin-left: 2px;" />
 
-<!--#include virtual="/~kbarton/ssi/jumpto_list_hawaii.ssi" -->
+<!--#include virtual="/~kbarton/ssi/jumpto_list_hawaii.ssi" -->{% include jumpto_list_hawaii.ssi %}
 
-<!--#include virtual="/~kbarton/ssi/jumpto_home_icon.ssi" -->
+<!--#include virtual="/~kbarton/ssi/jumpto_home_icon.ssi" -->{% include jumpto_home_icons.ssi %}
 
 </div> <!-- #header -->
 
 <div id="map"></div>
 
-<!--#include virtual="/~kbarton/ssi/map_cursor_location.ssi" -->
+<!--#include virtual="/~kbarton/ssi/map_cursor_location.ssi" -->{% include map_cursor_location.ssi %}
 
-<!--#include virtual="/~kbarton/ssi/enter_map_coordinates.ssi" -->
+<!--#include virtual="/~kbarton/ssi/enter_map_coordinates.ssi" -->{% include enter_map_coordinates.ssi %}
 
 </body>
 </html>

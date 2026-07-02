@@ -43,7 +43,7 @@ $( document ).ready(
 
 <div id="content">
 
-<!--#include virtual="/~kbarton/ssi/links.ssi" -->
+<!--#include virtual="/~kbarton/ssi/links.ssi" -->{% include links.ssi %}
 
 <p><a href="/~kbarton">Home</a> <i class="fa fa-caret-right" aria-hidden="true"></i> <a href="/~kbarton/research.html">Research</a> <i class="fa fa-caret-right" aria-hidden="true"></i> Argemone Project</p>
 
@@ -86,9 +86,9 @@ $( document ).ready(
 
 <hr/>
 
-<!--#include virtual="/~kbarton/ssi/links.ssi" -->
-<!--#include virtual="/~kbarton/ssi/footer.ssi" -->
-<!--#include virtual="/~kbarton/ssi/google_analytics.ssi" -->
+<!--#include virtual="/~kbarton/ssi/links.ssi" -->{% include links.ssi %}
+<!--#include virtual="/~kbarton/ssi/footer.ssi" -->{% include footer.ssi %}
+<!--#include virtual="/~kbarton/ssi/google_analytics.ssi" -->{% include google_analytics.ssi %}
 
 <!--
 <p>Last Updated: <script>document.write( new Date( document.lastModified ) );</script></p>
