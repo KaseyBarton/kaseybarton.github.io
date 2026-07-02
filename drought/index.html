@@ -1,0 +1,407 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Drought Tolerance Index</title>
+<link rel="shortcut icon" href="/~kbarton/favicon.ico" >
+
+<script type="text/javascript" src="/~kbarton/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/~kbarton/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/~kbarton/js/jquery-ui-1.11.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/~kbarton/js/cluetip/jquery.cluetip.min.js"></script>
+<link type="text/css" rel="stylesheet" href="/~kbarton/js/cluetip/jquery.cluetip.css" />
+<link type="text/css" rel="stylesheet" href="/~kbarton/js/jquery-ui-1.11.1/jquery-ui.min.css"></script>
+<link type="text/css" rel="stylesheet" href="/~kbarton/js/font-awesome-4.2.0/css/font-awesome.min.css" />
+<link type="text/css" rel="stylesheet" href="/~kbarton/css/subpages.css?v=2" />
+<link type="text/css" rel="stylesheet" href="/~kbarton/css/onoffswitch/onoffswitch_simple_narrow.css" />
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAlwWZ8Fk0vhhyiNydkjrgU1HhbuEWPv3k"></script>
+<script src="/~kbarton/js/proj4/lib/proj4js-combined.js"></script>
+<script src="/~kbarton/js/proj4/lib/defs/UTM5.js"></script>
+<script src="/~kbarton/js/keyDragZoom.js"></script>
+<script src="/~kbarton/js/map_utils.js?v=5"></script>
+<script src="/~kbarton/js/google_sheets_utils.js?v=2"></script>
+<script src="/~kbarton/js/drought_tolerance_index.js?v=2"></script>
+
+<style>
+.ui-tooltip {
+  font-size: 14px;
+  color: #7f7f7f;
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+</style>
+
+<script>
+$( document ).ready(
+  function () {
+
+    // ClueTip jQuery inline info pop-ups:
+
+    $( 'a.clue' ).cluetip(
+      {
+        activation: 'click',
+        arrows: false,
+        attribute: 'href',
+        closePosition: 'top',
+        closeText: '<i class="fa fa-close" style="float: right;"></i>',
+        local: false,
+        showTitle: false,
+        sticky: true,
+        titleAttribute: '',
+        waitImage: true,
+        width: 520
+      }
+    );
+  }
+); // ready()
+</script>
+
+</head>
+
+<body>
+
+<div id="content">
+
+<!--#include virtual="/~kbarton/ssi/links.ssi" -->
+
+<!-- These breadcrumbs no longer relevant; research page not used: 
+<p><a href="/~kbarton">Home</a> <i class="fa fa-caret-right" aria-hidden="true"></i> <a href="/~kbarton/research.html">Research</a> <i class="fa fa-caret-right" aria-hidden="true"></i> Drought Tolerance Index</p>
+-->
+
+<h1 class="header1"><i class="fa fa-pagelines" aria-hidden="true" style="margin-right: 4px;"></i>Drought Tolerance Index</h1>
+
+<!--
+<h3 class="header3">View Data</h3>
+-->
+
+<p>Based on our lab's extensive observations, the following tool indicates how well various plant spieces can withstand drought conditions in Hawai&#699;i. Species with a <b>high</b> drought tolerance index have a better chance of survival and growth under drought conditions than those with a <b>low</b> drought tolerance index. See <a href="#summary">project summary</a> below for more details...</p>
+ 
+<div id="dti_panel" style="margin-top: 12px; margin-bottom: 18px; font-family: Geneva, Arial, Helvetica, sans-serif;">
+
+  <table>
+    <tr>
+      <td>
+        <div style="margin-top: 0px;"><b>Plant Species:</b> <span id="loading"><img src="/~kbarton/images/loading.gif" align="absmiddle" title="Loading species data. Try wait..." /></span></div>
+        <select id="species" autocomplete="off" style="margin-top: 8px;" onChange="document.getElementById( 'site' ).selectedIndex = 0; showSpecies( this.value ); this.blur();" disabled>
+          <option value="" selected><i>Select a species...</i></option> 
+          <option value="all">ALL SPECIES</option>
+          <option value="native">ALL NATIVE</option>
+          <option value="non-native">ALL NON-NATIVE</option>
+          <option value="Acacia confusa"><i>Acacia confusa</i></option>
+          <option value="Acacia koa"><i>Acacia koa</i></option>
+          <option value="Alyxia stellata"><i>Alyxia stellata</i></option>
+          <option value="Ardisia elliptica"><i>Ardisia elliptica</i></option>
+          <option value="Argemone glauca"><i>Argemone glauca</i></option>
+          <option value="Bidens torta"><i>Bidens torta</i></option>
+          <option value="Citharexylum fruticosum"><i>Citharexylum fruticosum</i></option>
+          <option value="Clermontia kakeana"><i>Clermontia kakeana</i></option>
+          <option value="Clidemia hirta"><i>Clidemia hirta</i></option>
+          <option value="Coprosma foliosa"><i>Coprosma foliosa</i></option>
+          <option value="Dodonaea viscosa"><i>Dodonaea viscosa</i></option>
+          <option value="Eragrostis grandis"><i>Eragrostis grandis</i></option>
+          <option value="Erythrina sandwicensis"><i>Erythrina sandwicensis</i></option>
+          <option value="Eucalyptus robusta"><i>Eucalyptus robusta</i></option>
+          <option value="Hibiscus furcellatus"><i>Hibiscus furcellatus</i></option>
+          <option value="Jacquemontia sandwicensis"><i>Jacquemontia sandwicensis</i></option>
+          <option value="Kadua affinis"><i>Kadua affinis</i></option>
+          <option value="Melaleuca quinquenervia"><i>Melaleuca quinquenervia</i></option>
+          <option value="Metrosideros polymorpha"><i>Metrosideros polymorpha</i></option>
+          <option value="Myrsine lessertiana"><i>Myrsine lessertiana</i></option>
+          <option value="Nestegis sandwicensis"><i>Nestegis sandwicensis</i></option>
+          <option value="Osteomeles anthyllidifolia"><i>Osteomeles anthyllidifolia</i></option>
+          <option value="Pisonia wagneriana"><i>Pisonia wagneriana</i></option>
+          <option value="Pittosporum hosmeri"><i>Pittosporum hosmeri</i></option>
+          <option value="Psidium cattleianum"><i>Psidium cattleianum</i></option>
+          <option value="Psidium guajava"><i>Psidium guajava</i></option>
+          <option value="Schefflera actinophylla"><i>Schefflera actinophylla</i></option>
+          <option value="Schinus terebinthifolius"><i>Schinus terebinthifolius</i></option>
+          <option value="Sida fallax"><i>Sida fallax</i></option>
+          <option value="Sophora chrysophylla"><i>Sophora chrysophylla</i></option>
+          <option value="Syzygium cumini"><i>Syzygium cumini</i></option>
+        </select>
+        <!-- Not intuitive enough? Commenting out...
+        <span style="font-weight: bold;"><a href="javascript:void(0)" onClick="incrementSpecies(); this.blur();" title="Show next species..."><i class="fa fa-plus fa-lg" style="margin-left: 8px;" aria-hidden="true"></i></a>&nbsp;<a href="javascript:void(0)" onClick="incrementSpecies( -1 ); this.blur();" title="Show previous species..."><i class="fa fa-minus fa-lg" style="margin-left: 2px;" aria-hidden="true"></i></a></span>
+        -->
+        <!-- Icons placed horizontally rather than stacked vertically:
+        <span style="font-weight: bold;"><a href="javascript:void(0)" onClick="incrementSpecies(); this.blur();" title="Show next species..."><i class="fa fa-chevron-down fa-lg" style="margin-left: 4px;" aria-hidden="true"></i></a>&nbsp;<a href="javascript:void(0)" onClick="incrementSpecies( -1 ); this.blur();" title="Show previous species..."><i class="fa fa-chevron-up fa-lg" style="margin-left: -8px;" aria-hidden="true"></i></a></span> 
+        -->
+      </td>
+      <td valign="top" style="padding-top: 18px; padding-left: 4px;">
+        <table>
+          <tr><td><a href="javascript:void(0)" onClick="incrementSpecies( -1 ); this.blur();" title="Show previous species..."><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i></a></td></tr>
+          <tr><td><a href="javascript:void(0)" onClick="incrementSpecies(); this.blur();" title="Show next species..."><i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i></a></td></tr>
+        </table>
+      </td>
+      <td style="padding-left: 16px;">
+        <div style="margin-top: 0px;"><b>Sampling Location:</b></div>
+        <select id="site" autocomplete="off" style="margin-top: 8px;" onChange="document.getElementById( 'species' ).selectedIndex = 0; showSite( this.value ); this.blur();">
+          <option value="" selected><i>Select a site...</i></option>
+          <option value="all">ALL SITES</option>
+          <option value="Hawaiʻi">-- ALL HAWAI&#699;I ISLAND --</option>
+          <option value="N">Mauna Kea</option>
+          <option value="M">PTA</option>
+          <option value="P">Pu&#699;u Hulu Hulu</option>
+          <option value="O">PWW</option>
+          <option value="L">Saddle Road</option>
+          <option value="?1">unknown</option>
+          <option value="Kauaʻi">-- ALL KAUA&#699;I --</option>
+          <option value="S">K&#333;ke&#699;e</option>
+          <option value="R">Limahuli</option>
+          <option value="Q">McBride</option>
+          <!--<option value="?3">unknown</option>-->
+          <option value="Maui">-- All MAUI--</option>
+          <option value="T">Auwahi</option>
+          <option value="?5">unknown</option>
+          <option value="Molokaʻi">-- ALL MOLOKA&#699;I --</option>
+          <option value="?6">unknown</option>
+          <option value="Oʻahu">-- ALL O&#699;AHU --</option>
+          <option value="E">&#699;Aiea</option>
+          <option value="A">Hawai&#699;i Loa Ridge</option>
+          <option value="U">Ka&#699;ena Pt.</option>
+          <option value="I">Kal&#257;wahine</option>
+          <option value="V">Ke&#257;lia</option>
+          <option value="B">Koko</option>
+          <option value="W">Kauokal&#257;</option>
+          <option value="J">Kuli&#699;ou&#699;ou</option>
+          <option value="K">Kunia</option>
+          <option value="F">M&#257;nana</option>
+          <option value="G">Mau&#699;umae</option>
+          <option value="Y">Mokul&#275;&#699;ia</option>
+          <option value="D">Pauoa</option>
+          <option value="X">Poamoho</option>
+          <option value="C">Wa&#699;ahila</option>
+          <option value="Z">Wai&#699;anae Mts.</option>
+          <option value="H">Wiliwilinui</option>
+          <option value="?8">unknown</option>
+          <option value="??">-- UNKNOWN ISLAND --</option>
+        </select>
+        <!-- Icons placed horizontally rather than stacked vertically:
+        <span style="font-weight: bold;"><a href="javascript:void(0)" onClick="incrementSite(); this.blur();" title="Show next site..."><i class="fa fa-chevron-down fa-lg" style="margin-left: 4px;" aria-hidden="true"></i></a>&nbsp;<a href="javascript:void(0)" onClick="incrementSite( -1 ); this.blur();" title="Show previous site..."><i class="fa fa-chevron-up fa-lg" style="margin-left: -8px;" aria-hidden="true"></i></a></span>
+        -->
+      <td valign="top" style="padding-top: 18px; padding-left: 4px;">
+        <table>
+          <tr><td><a href="javascript:void(0)" onClick="incrementSite( -1 ); this.blur();" title="Show previous site..."><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i></a></td></tr>
+          <tr><td><a href="javascript:void(0)" onClick="incrementSite(); this.blur();" title="Show next site..."><i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i></a></td></tr>
+        </table>
+      </td>
+      </td>
+    </tr>
+  </table>
+
+  <!--<div id="slider" style="max-width: 400px; margin-top: 24px; margin-bottom: 24px;"></div>-->
+
+  <div style="display: table; margin-top: 32px; margin-bottom: 48px;">
+  <div style="display: table-caption; text-align: center; padding-bottom: 8px; font-family: Geneva, Arial, Helvetica, sans-serif; font-weight: bold; color: #333333; font-size: 24px; text-shadow: 1px 1px 1px grey;">DROUGHT TOLERANCE INDEX
+    <div id="species_label" style="color: #666666; font-size: 16px; font-weight: normal; font-style: italic; text-shadow: none;">&nbsp;</div>
+  </div>
+  <div style="display: table-row;">
+  <div style="display: table-cell; padding-right: 10px; vertical-align: middle; font-family: Geneva, Arial, Helvetica, sans-serif; font-weight: bold; color: #7C3F00; font-size: 24px; text-shadow: 1px 1px 1px grey;">LOW</div>
+
+  <!-- RED TO GREEN:
+  <div id="gauge" style="display: table-cell; vertical-align: middle; position: relative; width: 600px; height: 30px; border: 2px solid lightgray; box-shadow: 2px 2px 5px #cccccc; -moz-border-radius: 10px; -webkit-border-radius: 10px; background: #ff0000; /* Old browsers */ background: -moz-linear-gradient(left, #ff0000 10%, #ff3300 20%, #ff6600 30%, #ff9900 40%, #ffcc00 50%, #ffff00 60%, #ccff00 70%, #99ff00 80%, #66ff00 90%, #01ff00 100%); /* FF3.6-15 */ background: -webkit-linear-gradient(left, #ff0000 10%,#ff3300 20%,#ff6600 30%,#ff9900 40%,#ffcc00 50%,#ffff00 60%,#ccff00 70%,#99ff00 80%,#66ff00 90%,#01ff00 100%); /* Chrome10-25,Safari5.1-6 */ background: linear-gradient(to right, #ff0000 10%,#ff3300 20%,#ff6600 30%,#ff9900 40%,#ffcc00 50%,#ffff00 60%,#ccff00 70%,#99ff00 80%,#66ff00 90%,#01ff00 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#01ff00',GradientType=1 ); /* IE6-9 */">
+  -->
+  <div id="gauge" style="display: table-cell; vertical-align: middle; position: relative; width: 600px; height: 40px; border: 2px solid lightgray; box-shadow: 2px 2px 5px #cccccc; -moz-border-radius: 10px; -webkit-border-radius: 10px; background: #7c3f00; /* Old browsers */ background: -moz-linear-gradient(left, #7c3f00 0%, #a84c00 10%, #d35900 20%, #ff6600 30%, #ff9900 40%, #ffcc00 50%, #ffff00 60%, #ccff00 70%, #99ff00 80%, #66ff00 90%, #01ff00 100%); /* FF3.6-15 */ background: -webkit-linear-gradient(left, #7c3f00 0%,#a84c00 10%,#d35900 20%,#ff6600 30%,#ff9900 40%,#ffcc00 50%,#ffff00 60%,#ccff00 70%,#99ff00 80%,#66ff00 90%,#01ff00 100%); /* Chrome10-25,Safari5.1-6 */ background: linear-gradient(to right, #7c3f00 0%,#a84c00 10%,#d35900 20%,#ff6600 30%,#ff9900 40%,#ffcc00 50%,#ffff00 60%,#ccff00 70%,#99ff00 80%,#66ff00 90%,#01ff00 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7c3f00', endColorstr='#01ff00',GradientType=1 ); /* IE6-9 */">
+
+    <!--
+    <div class="ruler-bg" style="background-color: #01FF00; opacity: 1.0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; -moz-border-radius: 10px 0px 0px 10px; -webkit-border-radius: 10px 0px 0px 10px;"></div>
+    <div class="ruler-bg" style="background-color: #66FF00; opacity: 1.0; position: absolute; top: 0px; left: 0px; width: 90%; height: 100%; -moz-border-radius: 10px 0px 0px 10px; -webkit-border-radius: 10px 0px 0px 10px;"></div>
+    <div class="ruler-bg" style="background-color: #99FF00; opacity: 1.0; position: absolute; top: 0px; left: 0px; width: 80%; height: 100%; -moz-border-radius: 10px 0px 0px 10px; -webkit-border-radius: 10px 0px 0px 10px;"></div>
+    <div class="ruler-bg" style="background-color: #CCFF00; opacity: 1.0; position: absolute; top: 0px; left: 0px; width: 70%; height: 100%; -moz-border-radius: 10px 0px 0px 10px; -webkit-border-radius: 10px 0px 0px 10px;"></div> 
+    <div class="ruler-bg" style="background-color: #FFFF00; opacity: 1.0; position: absolute; top: 0px; left: 0px; width: 60%; height: 100%; -moz-border-radius: 10px 0px 0px 10px; -webkit-border-radius: 10px 0px 0px 10px;"></div> 
+    <div class="ruler-bg" style="background-color: #FFCC00; opacity: 1.0; position: absolute; top: 0px; left: 0px; width: 50%; height: 100%; -moz-border-radius: 10px 0px 0px 10px; -webkit-border-radius: 10px 0px 0px 10px;"></div> 
+    <div class="ruler-bg" style="background-color: #FF9900; opacity: 1.0; position: absolute; top: 0px; left: 0px; width: 40%; height: 100%; -moz-border-radius: 10px 0px 0px 10px; -webkit-border-radius: 10px 0px 0px 10px;"></div> 
+    <div class="ruler-bg" style="background-color: #FF6600; opacity: 1.0; position: absolute; top: 0px; left: 0px; width: 30%; height: 100%; -moz-border-radius: 10px 0px 0px 10px; -webkit-border-radius: 10px 0px 0px 10px;"></div>
+    <div class="ruler-bg" style="background-color: #FF3300; opacity: 1.0; position: absolute; top: 0px; left: 0px; width: 20%; height: 100%; -moz-border-radius: 10px 0px 0px 10px; -webkit-border-radius: 10px 0px 0px 10px;"></div>
+    <div class="ruler-bg" style="background-color: #FF0000; opacity: 1.0; position: absolute; top: 0px; left: 0px; width: 10%; height: 100%; -moz-border-radius: 10px 0px 0px 10px; -webkit-border-radius: 10px 0px 0px 10px;"></div>
+    -->
+
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 98%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 96%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 94%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 92%; height: 25%;"></div>
+    <div class="ruler-tick-major" style="border-right: 2px solid darkgray; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 90%; height: 40%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 88%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 86%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 84%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 82%; height: 25%;"></div>
+    <div class="ruler-tick-major" style="border-right: 2px solid darkgray; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 80%; height: 40%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 78%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 76%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 74%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 72%; height: 25%;"></div>
+    <div class="ruler-tick-major" style="border-right: 2px solid darkgray; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 70%; height: 40%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 68%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 66%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 64%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 62%; height: 25%;"></div>
+    <div class="ruler-tick-major" style="border-right: 2px solid darkgray; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 60%; height: 40%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 58%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 56%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 54%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 52%; height: 25%;"></div>
+    <div class="ruler-tick-major" style="border-right: 2px solid darkgray; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 50%; height: 40%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 48%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 46%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 44%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 42%; height: 25%;"></div>
+    <div class="ruler-tick-major" style="border-right: 2px solid darkgray; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 40%; height: 40%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 38%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 36%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 34%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 32%; height: 25%;"></div>
+    <div class="ruler-tick-major" style="border-right: 2px solid darkgray; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 30%; height: 40%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 28%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 26%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 24%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 22%; height: 25%;"></div>
+    <div class="ruler-tick-major" style="border-right: 2px solid darkgray; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 20%; height: 40%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 18%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 16%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 14%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 12%; height: 25%;"></div>
+    <div class="ruler-tick-major" style="border-right: 2px solid darkgray; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 10%; height: 40%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 8%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 6%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 4%; height: 25%;"></div>
+    <div class="ruler-tick-minor" style="border-right: 2px solid #bfbfbf; opacity: 1.0; position: absolute; bottom: 0px; left: 0px; width: 2%; height: 25%;"></div>
+
+    <div class="ruler-label" style="position: absolute; bottom: -20px; right: -16px; text-align: right; font-family: Geneva, Arial, Helvetica, sans-serif; color: gray; font-size: 12px;">100%</div>
+    <div class="ruler-label" style="position: absolute; bottom: -20px; left: 80%; right: 0px; text-align: center; padding-left: 6px; font-family: Geneva, Arial, Helvetica, sans-serif; color: gray; font-size: 12px;">90%</div>
+    <div class="ruler-label" style="position: absolute; bottom: -20px; left: 70%; right: 10%; text-align: center; padding-left: 6px; font-family: Geneva, Arial, Helvetica, sans-serif; color: gray; font-size: 12px;">80%</div>
+    <div class="ruler-label" style="position: absolute; bottom: -20px; left: 60%; right: 20%; text-align: center; padding-left: 6px; font-family: Geneva, Arial, Helvetica, sans-serif; color: gray; font-size: 12px;">70%</div>
+    <div class="ruler-label" style="position: absolute; bottom: -20px; left: 50%; right: 30%; text-align: center; padding-left: 6px; font-family: Geneva, Arial, Helvetica, sans-serif; color: gray; font-size: 12px;">60%</div>
+    <div class="ruler-label" style="position: absolute; bottom: -20px; left: 40%; right: 40%; text-align: center; padding-left: 6px; font-family: Geneva, Arial, Helvetica, sans-serif; color: gray; font-size: 12px;">50%</div>
+    <div class="ruler-label" style="position: absolute; bottom: -20px; left: 30%; right: 50%; text-align: center; padding-left: 6px; font-family: Geneva, Arial, Helvetica, sans-serif; color: gray; font-size: 12px;">40%</div>
+    <div class="ruler-label" style="position: absolute; bottom: -20px; left: 20%; right: 60%; text-align: center; padding-left: 6px; font-family: Geneva, Arial, Helvetica, sans-serif; color: gray; font-size: 12px;">30%</div>
+    <div class="ruler-label" style="position: absolute; bottom: -20px; left: 10%; right: 70%; text-align: center; padding-left: 6px; font-family: Geneva, Arial, Helvetica, sans-serif; color: gray; font-size: 12px;">20%</div>
+    <div class="ruler-label" style="position: absolute; bottom: -20px; left: 0px; right: 80%; text-align: center; padding-left: 6px; font-family: Geneva, Arial, Helvetica, sans-serif; color: gray; font-size: 12px;">10%</div>
+    <div class="ruler-label" style="position: absolute; bottom: -20px; left: -2px; text-align: left; font-family: Geneva, Arial, Helvetica, sans-serif; color: gray; font-size: 12px;">0%</div>
+
+  </div>
+
+  <div style="display: table-cell; padding-left: 10px; vertical-align: middle; font-family: Geneva, Arial, Helvetica, sans-serif; font-weight: bold; color: #01FF00; font-size: 24px; text-shadow: 1px 1px 1px grey;">HIGH</div>
+  </div> <!-- table-row -->
+  </div> <!-- table -->
+
+  <!--<div id="species_label" style="width: 737px; text-align: center; padding-bottom: 8px; font-family: Geneva, Arial, Helvetica, sans-serif; color: #666666; font-size: 14px;">Just testing</div>-->
+
+  <div id="legend" style="display: table; border-spacing: 6px; background-color: #DBE6C4; padding: 8px; border: 1px solid #666666; box-shadow: 2px 2px 5px #cccccc; -moz-border-radius: 10px; -webkit-border-radius: 10px;">
+    <div style="display: table-row;">
+      <div class="legend_large" style="display: none; vertical-align: middle; color: #595959; font-weight: 900; font-size: 1.06em;"><i class="fa fa-leaf fa-lg" aria-hidden="true"></i></div>
+      <div class="legend_small" style="display: table-cell; vertical-align: middle;"><div style="height: 8px; width: 8px; background-color: #595959; border-radius: 50%; display: inline-block; border: 2px solid #333333;"></div></div>
+      <div style="display: table-cell; vertical-align: middle; color: #666666;">= native</div>
+    </div>
+    <div style="display: table-row;">
+      <div class="legend_large" style="display: none; vertical-align: middle; color: #FFFFFF; font-weight: 900; -webkit-text-stroke: 2px #595959; text-stroke: 2px #595959;"><i class="fa fa-leaf fa-lg" aria-hidden="true"></i></div>
+      <div class="legend_small" style="display: table-cell; vertical-align: middle;"><div style="height: 8px; width: 8px; background-color: #FFFFFF; border-radius: 50%; display: inline-block; border: 2px solid #595959;"></div></div>
+      <div style="display: table-cell; vertical-align: middle; color: #666666;">= non-native</div>
+    </div>
+    <div style="display: table-row;">
+      <div class="legend_large" style="display: none; vertical-align: middle; color: #000000; font-weight: 900; -webkit-text-stroke: 2px #FFFFFF; text-stroke: 2px #FFFFFF;"><i class="fa fa-leaf fa-lg" aria-hidden="true"></i></div>
+      <div class="legend_small" style="display: table-cell; vertical-align: middle;"><div style="height: 8px; width: 8px; background-color: #000000; border-radius: 50%; display: inline-block; border: 2px solid #FFFFFF;"></div></div>
+      <div style="display: table-cell; vertical-align: middle; color: #666666;">= both</div>
+    </div>
+  </div>
+
+</div> <!-- #dti_panel -->
+
+<div id="map" style="width: 400px; height: 300px; margin-top: -100px; margin-left: 170px; margin-bottom: 20px; border: 1px solid lightgray; box-shadow: 2px 2px 5px #cccccc; -moz-border-radius: 10px; -webkit-border-radius: 10px;"></div>
+
+<select id="zoom" style="position: relative; bottom: 312px; left: 180px;" onChange="jumpTo( this.value ); if ( this.value.match( 'Big Island' ) ) map.setZoom( map.getZoom() + 1 ); this.blur();">
+  <option value="" selected disabled>Zoom to...</option>
+  <option value="home">State of Hawai&#699;i</option>
+  <option value="Hawai'i (Big Island)">Hawai&#699;i Island</option>
+  <option value="Kaua'i">Kaua&#699;i</option>
+  <option value="Maui">Maui</option>
+  <option value="Moloka'i">Moloka&#699;i</option>
+  <option value="O'ahu">O&#699;ahu</option>
+</select>
+
+<div id="site_unknown" style="font-family: Geneva, Arial, Helvetica, sans-serif; color: crimson; font-weight: bold; font-size: 14px; position: absolute; display: none;"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Location unknown.</div>
+
+<div class="table2" id="overlay_options" style="margin-top: -26px; margin-left: 260px;">
+  <div class="row2"> 
+    <div class="cell2" style="vertical-align: middle;">
+      <div class="onoffswitch">
+        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="show_rainfall" autocomplete="off" checked onClick="toggleOverlay( this.checked ); this.blur();" />
+        <label class="onoffswitch-label" for="show_rainfall"><span class="onoffswitch-inner"></span><span class="onoffswitch-switch"></span></label>
+      </div>
+    </div> <!-- .cell2 -->
+    <div class="cell2" style="color: #666666; font-family: Geneva, Arial, Helvetica, sans-serif;">mean annual rainfall<br/><font style="font-size: 10px; color: #999999;">Giambelluca et al., 2013</font></div>
+  </div> <!-- .row2 -->
+  <div class="row2">
+    <div class="cell2" style="vertical-align: middle;">
+      <div class="onoffswitch">
+        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="rain_unit" autocomplete="off" checked onClick="updateRainUnit( this.checked ); this.blur();" />
+        <label class="onoffswitch-label" for="rain_unit"><span class="onoffswitch-inner"></span><span class="onoffswitch-switch"></span></label>
+      </div>
+    </div> <!-- .cell2 -->
+    <div class="cell2" style="color: #666666; font-family: Geneva, Arial, Helvetica, sans-serif;">metric</div>
+  </div> <!-- .row2 -->
+  <!-- We decided against using the large markers; I un-checked this and am turning off display: -->
+  <div class="row2" style="display: none;"> 
+    <div class="cell2" style="vertical-align: middle;">
+      <div class="onoffswitch">
+        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="large_markers" autocomplete="off" onClick="if ( document.getElementById( 'species' ).value ) { showSpecies( document.getElementById( 'species' ).value, 'skip_zoom' ); } else if ( document.getElementById( 'site' ).value ) { showSite( document.getElementById( 'site' ).value, 'skip_zoom' ); }; this.blur();" />
+        <label class="onoffswitch-label" for="large_markers"><span class="onoffswitch-inner"></span><span class="onoffswitch-switch"></span></label>
+      </div>
+    </div> <!-- .cell2 -->
+    <div class="cell2" style="color: #666666; font-family: Geneva, Arial, Helvetica, sans-serif;">large markers</div>
+  </div> <!-- .row2 --> 
+</div> <!-- .table2 -->
+
+<div id="overlay_legend_div" style="margin-top: -438px; margin-left: 608px; margin-bottom: 175px;">
+  <img width="132" height="264" id="overlay_legend" src="/~kbarton/kml/legends/MeanRFAnn_State_mm_legend_noborder.png" style="border: 1px solid #666666; box-shadow: 2px 2px 5px #cccccc; -moz-border-radius: 10px; -webkit-border-radius: 10px;" />
+  <!--
+  <div id="rainUnitSwitch" style="font-family: Geneva, Arial, Helvetica, sans-serif; font-size: 12px; margin-top: 14px; margin-left: 20px;">
+    <input type="radio" name="rain_unit" id="rainUnitMm" value="mm" checked onClick="updateRainUnit( this.value );" /><label for="rainUnitMm">mm</label>
+    <input type="radio" name="rain_unit" id="rainUnitIn" value="in" onClick="updateRainUnit( this.value );" /><label for="rainUnitIn">in</label>
+  </div>
+  -->
+</div>
+
+<a name="summary"><h3 class="header3">Project Summary</h3></a>
+
+<p>Seedling drought tolerance has been examined using an experimental approach under controlled greenhouse conditions on the University of Hawai&#699;i at M&#257;noa campus for a diversity of native and non-native Hawaiian plants. Seedlings are grown from seeds collected in the field across the islands, and source populations are highlighted in the map above. For some species, multiple populations have been assessed, shedding light on intraspecific variation in seedling drought tolerance.</p>
+
+<p>Tolerance is measured as growth (above- and below-ground biomass) and survival of drought-treated seedlings relative to seedlings in control conditions with ample water. Drought treatments include "press droughts" in which soil water availability is reduced by 20-50% and "pulse droughts" in which plants receive no water for a period of 2-5 weeks.</p>
+
+<p><b>Drought tolerance index</b> is calculated as the log response ratio (LRR) using biomass means, standard deviations, and sample sizes for the control and simulated drought groups within each species/population as: ln(M<sub>D</sub>/M<sub>C</sub>) where M<sub>D</sub> is the mean biomass of drought groups, and M<sub>C</sub> is the mean biomass of control groups, which is then back-transformed as:  100e<sup>(LRR)</sup> to produce the index as % total biomass of drought-stressed compared to control seedlings. A drought tolerance index of 100% indicates complete tolerance, resulting in similar biomass of drought-stressed and control seedlings. Indices less than 100% indicate incomplete tolerance, with increasingly low drought tolerance as the index approaches 0%. Drought tolerance indices based on mortality are calculated as % survival of drought-treated compared to control seedlings. Similarly, 100% indicates full drought tolerance via survival, and indices less than 100% indicate incomplete tolerance via mortality in drought conditions. <!--<a href="/~kbarton/research.html#drought">More...</a>--></p>
+
+<p>To obtain drought tolerance index information, select a species from the pull-down menu. For species with multiple populations tested, the results from all populations will be shown. You can also view all native and all non-native species to view the range of drought tolerance across species. Alternatively, you can select a site, from which seeds have been sourced for the experiments, to view the drought tolerance indices for species sampled at the various sites.</p>
+
+<!--
+<h3 class="header3">External Data Sources</h3>
+
+<h3>annual rainfall:</h3>
+
+<p>Rainfall Atlas of Hawai&#699;i: <a href="http://rainfall.geography.hawaii.edu">http://rainfall.geography.hawaii.edu</a></p>
+
+<p><i>citation:</i></p>
+<p>Giambelluca, T.W., Q. Chen, A.G. Frazier, J.P. Price, Y.-L. Chen, P.-S. Chu, J.K. Eischeid, and D.M. Delparte, 2013: Online Rainfall Atlas of Hawaii. <i>Bull. Amer. Meteor. Soc.</i> 94, 313-316, doi: 10.1175/BAMS-D-11-00228.1.</p>
+
+<p><a href="/~kbarton/kml/rainfall_atlas_of_hawaii.kmz" title="Google Earth Keyhole Markup Language (KML)"><i class="fa fa-globe" aria-hidden="true"></i> KML file</a></p>
+-->
+
+<h3 class="header3">References</h3>
+
+<p>Barton, K. E., C. Jones, K. F. Edwards, A. B. Shiels, and T. Knight. 2020. Local adaptation constrains drought tolerance in a tropical foundation tree. <u>Journal of Ecology</u> 108: 1540-1552. <a href="../pubs/Barton_etal_2020.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></p>
+
+<p>Barton, K. E. and A. B. Shiels. 2020. Additive and non-additive responses of seedlings to simulated herbivory and drought. <u>Biotropica</u> 52: 1217-1228. <a href="../pubs/Barton_and_Shiels_2020.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></p>
+
+<p>Giambelluca, T. W., Q. Chen, A. G. Frazier, J. P. Price, Y.-L. Chen, P.-S. Chu, J. K. Eischeid, and D. M. Delparte. 2013. Online rainfall atlas of Hawaii. <u>Bulletin of the American Meteorological Society</u> 94: 313-316. <a href="https://doi.org/10.1175/BAMS-D-11-00228.1" target="_blank">https://doi.org/10.1175/BAMS-D-11-00228.1</a>.</p>
+
+<p>Westerband, A. C., L. Bialic-Murphy, L. A. Weisenberger, and K. E. Barton. 2020. Intraspecific variation in seedling drought tolerance and associated traits in a critically endangered, endemic Hawaiian shrub. <u>Plant Ecology and Diversity</u> 13: 159-174. <a href="../pubs/Westerband_etal_2020.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></p>
+
+<p>Westerband, A. C., A. K. Kagawa-Viviani, K. K. Bogner, D. W. Beilman, T. M. Knight, and K. E. Barton. 2019. Seedling drought tolerance and functional traits vary in response to the timing of water availability in a keystone Hawaiian tree species. <u>Plant Ecology</u> 220: 321-344. <a href="../pubs/Westerband_etal_2019.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></p>
+
+<hr/>
+
+<!--#include virtual="/~kbarton/ssi/links.ssi" -->
+<!--#include virtual="/~kbarton/ssi/footer.ssi" -->
+<!--#include virtual="/~kbarton/ssi/google_analytics.ssi" -->
+
+<!--
+<p>Last Updated: <script>document.write( new Date( document.lastModified ) );</script></p>
+-->
+
+</div> <!-- #content -->
+</body>

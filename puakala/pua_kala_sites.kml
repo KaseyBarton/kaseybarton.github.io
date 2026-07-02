@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+    <name>pua_kala_sites.kml</name>
+    <StyleMap id="m_ylw-pushpin">
+        <Pair>
+            <key>normal</key>
+            <styleUrl>#s_ylw-pushpin0</styleUrl>
+        </Pair>
+        <Pair>
+            <key>highlight</key>
+            <styleUrl>#s_ylw-pushpin_hl</styleUrl>
+        </Pair>
+    </StyleMap>
+    <Style id="s_ylw-pushpin0">
+        <IconStyle>
+            <color>ff00ff00</color>
+            <Icon>
+                <href>placemark_circle.png</href>
+            </Icon>
+      <hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+        </IconStyle>
+        <LabelStyle>
+            <scale>0</scale>
+        </LabelStyle>
+        <ListStyle>
+        </ListStyle>
+    </Style>
+    <Style id="s_ylw-pushpin_hl">
+        <IconStyle>
+            <color>ff00ff00</color>
+            <scale>1.18182</scale>
+            <Icon>
+                <href>placemark_circle_highlight.png</href>
+            </Icon>
+      <hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+        </IconStyle>
+        <LabelStyle>
+            <scale>0</scale>
+        </LabelStyle>
+        <ListStyle>
+        </ListStyle>
+    </Style>
+    <Folder>
+        <name>Pua Kala Sites</name>
+        <visibility>0</visibility>
+        <open>1</open>
+        <Folder>
+            <name>Big Island</name>
+            <visibility>0</visibility>
+            <!--
+            <Placemark>
+                <name>unknown</name>
+                <visibility>0</visibility>
+                <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> unknown, unknown</p>
+<p style="margin: 4px;"><b>elevation (m):</b> </p>
+<p style="margin: 4px;"><b>elevation (ft):</b> </p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> </p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> </p>
+<p style="margin: 4px;"><b>collector:</b> Morden</p>
+<p style="margin: 4px;"><b># plants:</b> 3</p>
+<p style="margin: 4px;"><b>seeds:</b> no</p>
+<p style="margin: 4px;"><b>mean prickle density (1 stderr) (cm-2):</b> 50.0 (9.3)</p>
+<p style="margin: 4px;"><b>IDs:</b> M43-M45</p></div>]]></description>
+                <styleUrl>#m_ylw-pushpin</styleUrl>
+                <Point>
+                    <coordinates>unknown,unknown,0</coordinates>
+                </Point>
+            </Placemark>
+            -->
+            <Placemark>
+                <name>Amy Greenwell Botanical Garden</name>
+                <visibility>0</visibility>
+                <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.489650, -155.910983</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 443</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 1455</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 49.676</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 5-10 ka</p>
+<p style="margin: 4px;"><b>collector:</b> Barton</p>
+<p style="margin: 4px;"><b># plants:</b> 8</p>
+<p style="margin: 4px;"><b>seeds:</b> yes</p>
+<p style="margin: 4px;"><b>mean prickle density (1 stderr) (cm-2):</b> 2.0 (0.6)</p>
+<p style="margin: 4px;"><b>IDs:</b> B101-B108</p></div>]]></description>
+                <styleUrl>#m_ylw-pushpin</styleUrl>
+                <Point>
+                    <coordinates>-155.910983,19.489650,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Kona side</name>
+                <visibility>0</visibility>
+                <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 20.025417, -155.822180</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 12</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 38</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 10.645</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 50-140 ka</p>
+<p style="margin: 4px;"><b>collector:</b> Gibson</p>
+<p style="margin: 4px;"><b># plants:</b> 5</p>
+<p style="margin: 4px;"><b>seeds:</b> no</p>
+<p style="margin: 4px;"><b>mean prickle density (1 stderr) (cm-2):</b> 4.8 (1.8)</p>
+<p style="margin: 4px;"><b>IDs:</b> B46-B50</p></div>]]></description>
+                <styleUrl>#m_ylw-pushpin</styleUrl>
+                <Point>
+                    <coordinates>-155.822180,20.025417,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Mauna Kea</name>
+                <visibility>0</visibility>
+                <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.775000, -155.425000</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 3076</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 10090</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 30.253</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 10-30 ka</p>
+<p style="margin: 4px;"><b>collector:</b> Morden</p>
+<p style="margin: 4px;"><b># plants:</b> 16</p>
+<p style="margin: 4px;"><b>seeds:</b> no</p>
+<p style="margin: 4px;"><b>mean prickle density (1 stderr) (cm-2):</b> 18.0 (2.0)</p>
+<p style="margin: 4px;"><b>IDs:</b> BI6-BI16</p></div>]]></description>
+                <styleUrl>#m_ylw-pushpin</styleUrl>
+                <Point>
+                    <coordinates>-155.425000,19.775000,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Pu'ukohala Heiau National Historic Site</name>
+                <visibility>0</visibility>
+                <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 20.025317, -155.821433</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 20</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 66</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 10.719</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 50-140 ka</p>
+<p style="margin: 4px;"><b>collector:</b> Barton</p>
+<p style="margin: 4px;"><b># plants:</b> 10</p>
+<p style="margin: 4px;"><b>seeds:</b> yes</p>
+<p style="margin: 4px;"><b>mean prickle density (1 stderr) (cm-2):</b> 8.8 (3.5)</p>
+<p style="margin: 4px;"><b>IDs:</b> B82-B91</p></div>]]></description>
+                <styleUrl>#m_ylw-pushpin</styleUrl>
+                <Point>
+                    <coordinates>-155.821433,20.025317,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Saddle Rd: site 1</name>
+                <visibility>0</visibility>
+                <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.792783, -155.642383</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 1569</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 5149</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 22.327</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 10-30 ka</p>
+<p style="margin: 4px;"><b>collector:</b> Barton</p>
+<p style="margin: 4px;"><b># plants:</b> 1</p>
+<p style="margin: 4px;"><b>seeds:</b> no</p>
+<p style="margin: 4px;"><b>mean prickle density (1 stderr) (cm-2):</b> 34.2</p>
+<p style="margin: 4px;"><b>IDs:</b> B80</p></div>]]></description>
+                <styleUrl>#m_ylw-pushpin</styleUrl>
+                <Point>
+                    <coordinates>-155.642383,19.792783,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Saddle Rd: site 2</name>
+                <visibility>0</visibility>
+                <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.792550, -155.664067</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 1438</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 4719</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 23.069</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 10-30 ka</p>
+<p style="margin: 4px;"><b>collector:</b> Barton</p>
+<p style="margin: 4px;"><b># plants:</b> 7</p>
+<p style="margin: 4px;"><b>seeds:</b> yes</p>
+<p style="margin: 4px;"><b>mean prickle density (1 stderr) (cm-2):</b> 58.5 (11.7)</p>
+<p style="margin: 4px;"><b>IDs:</b> B94-B100</p></div>]]></description>
+                <styleUrl>#m_ylw-pushpin</styleUrl>
+                <Point>
+                    <coordinates>-155.664067,19.792550,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Saddle Rd: site 3</name>
+                <visibility>0</visibility>
+                <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.825050, -155.728883</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 936</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 3071</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 28.349</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 10-30 ka</p>
+<p style="margin: 4px;"><b>collector:</b> Barton</p>
+<p style="margin: 4px;"><b># plants:</b> 1</p>
+<p style="margin: 4px;"><b>seeds:</b> yes</p>
+<p style="margin: 4px;"><b>mean prickle density (1 stderr) (cm-2):</b> 91.8</p>
+<p style="margin: 4px;"><b>IDs:</b> B109</p></div>]]></description>
+                <styleUrl>#m_ylw-pushpin</styleUrl>
+                <Point>
+                    <coordinates>-155.728883,19.825050,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Saddle Rd: site 4</name>
+                <visibility>0</visibility>
+                <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.939617, -155.686217</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 785</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 2576</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 22.942</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 10-30 ka</p>
+<p style="margin: 4px;"><b>collector:</b> Barton</p>
+<p style="margin: 4px;"><b># plants:</b> 1</p>
+<p style="margin: 4px;"><b>seeds:</b> no</p>
+<p style="margin: 4px;"><b>mean prickle density (1 stderr) (cm-2):</b> 126</p>
+<p style="margin: 4px;"><b>IDs:</b> B110</p></div>]]></description>
+                <styleUrl>#m_ylw-pushpin</styleUrl>
+                <Point>
+                    <coordinates>-155.686217,19.939617,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Waimea</name>
+                <visibility>0</visibility>
+                <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.959783, -155.680800</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 761</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 2497</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 19.243</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 50-140 ka</p>
+<p style="margin: 4px;"><b>collector:</b> Barton</p>
+<p style="margin: 4px;"><b># plants:</b> 3</p>
+<p style="margin: 4px;"><b>seeds:</b> yes</p>
+<p style="margin: 4px;"><b>mean prickle density (1 stderr) (cm-2):</b> 31.7 (13.8)</p>
+<p style="margin: 4px;"><b>IDs:</b> B81 B92-B93</p></div>]]></description>
+                <styleUrl>#m_ylw-pushpin</styleUrl>
+                <Point>
+                    <coordinates>-155.680800,19.959783,0</coordinates>
+                </Point>
+            </Placemark>
+        </Folder>
+        <Folder>
+            <name>Lanai</name>
+            <visibility>0</visibility>
+            <Placemark>
+                <name>Lanai roadside</name>
+                <visibility>0</visibility>
+                <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 20.804689, -156.903875</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 395</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 1296</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 29.708</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 1-2 Ma</p>
+<p style="margin: 4px;"><b>collector:</b> Barton</p>
+<p style="margin: 4px;"><b># plants:</b> 1</p>
+<p style="margin: 4px;"><b>seeds:</b> no</p>
+<p style="margin: 4px;"><b>mean prickle density (1 stderr) (cm-2):</b> 7.6</p>
+<p style="margin: 4px;"><b>IDs:</b> L79</p></div>]]></description>
+                <styleUrl>#m_ylw-pushpin</styleUrl>
+                <Point>
+                    <coordinates>-156.903875,20.804689,0</coordinates>
+                </Point>
+            </Placemark>
+        </Folder>
+        <Folder>
+            <name>Maui</name>
+            <visibility>0</visibility>
+            <Placemark>
+                <name>Maui Nui Botanical Garden</name>
+                <visibility>0</visibility>
+                <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 20.892736, -156.485797</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 19</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 62</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 19.472</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> mixed</p>
+<p style="margin: 4px;"><b>collector:</b> Coleman</p>
+<p style="margin: 4px;"><b># plants:</b> 14</p>
+<p style="margin: 4px;"><b>seeds:</b> yes</p>
+<p style="margin: 4px;"><b>mean prickle density (1 stderr) (cm-2):</b> 7.2 (1.6)</p>
+<p style="margin: 4px;"><b>IDs:</b> M29-M42</p></div>]]></description>
+                <styleUrl>#m_ylw-pushpin</styleUrl>
+                <Point>
+                    <coordinates>-156.485797,20.892736,0</coordinates>
+                </Point>
+            </Placemark>
+        </Folder>
+        <Folder>
+            <name>Molokai</name>
+            <visibility>0</visibility>
+            <!--
+            <Placemark>
+                <name>Mopuka/Mokio Pt.</name>
+                <visibility>0</visibility>
+                <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> unknown, unknown</p>
+<p style="margin: 4px;"><b>elevation (m):</b> </p>
+<p style="margin: 4px;"><b>elevation (ft):</b> </p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> </p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> </p>
+<p style="margin: 4px;"><b>collector:</b> Bakutis</p>
+<p style="margin: 4px;"><b># plants:</b> 9</p>
+<p style="margin: 4px;"><b>seeds:</b> no</p>
+<p style="margin: 4px;"><b>mean prickle density (1 stderr) (cm-2):</b> 0 (0)</p>
+<p style="margin: 4px;"><b>IDs:</b> Mo111-Mo119</p></div>]]></description>
+                <styleUrl>#m_ylw-pushpin</styleUrl>
+                <Point>
+                    <coordinates>unknown,unknown,0</coordinates>
+                </Point>
+            </Placemark>
+            -->
+            <Placemark>
+                <name>Molokai roadside</name>
+                <visibility>0</visibility>
+                <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 21.145717, -157.136617</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 173</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 567</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 23.681</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 1-2 Ma</p>
+<p style="margin: 4px;"><b>collector:</b> Barton</p>
+<p style="margin: 4px;"><b># plants:</b> 12</p>
+<p style="margin: 4px;"><b>seeds:</b> yes</p>
+<p style="margin: 4px;"><b>mean prickle density (1 stderr) (cm-2):</b> 2.1 (0.1)</p>
+<p style="margin: 4px;"><b>IDs:</b> MO17-MO28</p></div>]]></description>
+                <styleUrl>#m_ylw-pushpin</styleUrl>
+                <Point>
+                    <coordinates>-157.136617,21.145717,0</coordinates>
+                </Point>
+            </Placemark>
+        </Folder>
+        <Folder>
+            <name>Oahu</name>
+            <visibility>0</visibility>
+            <Placemark>
+                <name>Ka'ena Pt</name>
+                <visibility>0</visibility>
+                <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 21.520667, -158.226167</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 134</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 440</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 32.920</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 2-4 Ma</p>
+<p style="margin: 4px;"><b>collector:</b> Morden Lab</p>
+<p style="margin: 4px;"><b># plants:</b> 9</p>
+<p style="margin: 4px;"><b>seeds:</b> no</p>
+<p style="margin: 4px;"><b>mean prickle density (1 stderr) (cm-2):</b> 11.9 (2.0)</p>
+<p style="margin: 4px;"><b>IDs:</b> O70-O78</p></div>]]></description>
+                <styleUrl>#m_ylw-pushpin</styleUrl>
+                <Point>
+                    <coordinates>-158.226167,21.520667,0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Koko Crater Botanical Garden</name>
+                <visibility>0</visibility>
+                <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 21.288811, -157.680906</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 81</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 266</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 29.757</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> mixed</p>
+<p style="margin: 4px;"><b>collector:</b> Barton</p>
+<p style="margin: 4px;"><b># plants:</b> 5</p>
+<p style="margin: 4px;"><b>seeds:</b> no</p>
+<p style="margin: 4px;"><b>mean prickle density (1 stderr) (cm-2):</b> N/A</p>
+<p style="margin: 4px;"><b>IDs:</b> O1-O5</p></div>]]></description>
+                <styleUrl>#m_ylw-pushpin</styleUrl>
+                <Point>
+                    <coordinates>-157.680906,21.288811,0</coordinates>
+                </Point>
+            </Placemark>
+        </Folder>
+    </Folder>
+</Document>
+</kml>

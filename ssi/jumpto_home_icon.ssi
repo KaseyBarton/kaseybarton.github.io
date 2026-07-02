@@ -1,0 +1,1 @@
+&nbsp;<a href="javascript:void(0)" title="Return to map home location..." onClick="jumpTo( 'home' ); this.blur();"><font size="+1"><i class="fa fa-home" aria-hidden="true"></i></font></a>

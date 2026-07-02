@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Pua Kala Project Page</title>
+<link rel="shortcut icon" href="/~kbarton/favicon.ico" >
+
+<script type="text/javascript" src="/~kbarton/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/~kbarton/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/~kbarton/js/cluetip/jquery.cluetip.min.js"></script>
+<link type="text/css" rel="stylesheet" href="/~kbarton/js/cluetip/jquery.cluetip.css" />
+<link type="text/css" rel="stylesheet" href="/~kbarton/js/jquery-ui-1.11.1/jquery-ui.min.css"></script>
+<link type="text/css" rel="stylesheet" href="/~kbarton/js/font-awesome-4.2.0/css/font-awesome.min.css" />
+<link type="text/css" rel="stylesheet" href="/~kbarton/css/subpages.css?v=2" />
+
+<script>
+$( document ).ready(
+  function () {
+
+    // ClueTip jQuery inline info pop-ups:
+
+    $( 'a.clue' ).cluetip(
+      {
+        activation: 'click',
+        arrows: false,
+        attribute: 'href',
+        closePosition: 'top',
+        closeText: '<i class="fa fa-close" style="float: right;"></i>',
+        local: false,
+        showTitle: false,
+        sticky: true,
+        titleAttribute: '',
+        waitImage: true,
+        width: 520
+      }
+    );
+  }
+); // ready()
+</script>
+
+</head>
+
+<body>
+
+<div id="content">
+
+<!--#include virtual="/~kbarton/ssi/links.ssi" -->
+
+<p><a href="/~kbarton">Home</a> <i class="fa fa-caret-right" aria-hidden="true"></i> <a href="/~kbarton/research.html">Research</a> <i class="fa fa-caret-right" aria-hidden="true"></i> Pua Kala Project</p>
+
+<h1 class="header1"><i class="fa fa-pagelines" aria-hidden="true"></i> Pua Kala Project Page</h1>
+
+<h3 class="header3">Project Summary</h3>
+
+<p>Examination of the functional ecology of the endemic Hawaiian prickly poppy <a href="/~kbarton/tooltips/pua_kala.html" class="clue" onClick="return false">pua kala</a> (<i>Argemone glauca</i>), which expresses several putative defense traits, including prickles, latex, and epicuticular waxes. Read more <a href="/~kbarton/research.html#defense">here</a> and <a href="/~kbarton/research.html#poppy">here</a>...</p>
+
+<h3 class="header3">View Data</h3>
+
+<!--
+<p><a href="map.html">interactive map</a></p>
+
+<p><a href="pua_kala_sites.xlsx">sampling sites spreadsheet</a></p>
+-->
+
+<table cellpadding="2" style="margin-top: 12px;">
+  <tr>
+    <td style="text-align: center;"><font color="lightgray"><i class="fa fa-globe fa-2x" aria-hidden="true"></i></font></td>
+    <td><a href="map.html">interactive map</a></td>
+  </tr>
+  <tr>
+    <td style="text-align: center;"><font color="lightgray"><i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i></font></td>
+    <td><a href="plot.html">interactive plots</a></td>
+  </tr>
+  <tr>
+    <td style="text-align: center;"><font color="lightgray"><i class="fa fa-table fa-2x" aria-hidden="true"></i></font></td>
+    <!--
+    Google Fusion Tables discontinued December 2019:
+    <td><a href="https://www.google.com/fusiontables/DataSource?docid=1KnNvGj-YD1K2rr7QzJ6YltfytoFGuD0JG133EZGD">sampling sites spreadsheet</a></td>
+    -->
+    <td><a href="https://docs.google.com/spreadsheets/d/1rnHJuFUQKyMhHnk2VDZ1NRQ0BvoNj6w1gisLpjb_6oE/edit?usp=sharing">sampling sites spreadsheet</a></td>
+  </tr>
+</table>
+
+<!--
+<h3 class="header3">KML Files:</h3>
+
+<ul>
+-->
+  <!--<li><a href="pua_kala_sites.kmz">sampling sites</a></li>-->
+<!--
+  <li><a href="/~kbarton/kml/rainfall_atlas_of_hawaii.kmz">annual rainfall</a></li>
+  <li><a href="/~kbarton/kml/usgs_geologic_age_hawaii.kmz">geologic age</a></li>
+  <li><a href="/~kbarton/kml/usgs_elevation_hawaii.kmz">elevation</a></li>
+  <li><a href="/~kbarton/kml/hawaii_reserves.kmz">reserves</a></li>
+</ul>
+-->
+
+<!--
+<h2>Big Island:</h2>
+
+<ul>
+  <li>annual rainfall: <a href="bigisland_rainfall_map.jpg?v=1">map</a>, <a href="bigisland_rainfall_plot.jpg?v=1">plot</a></li>
+  <li>geologic age: <a href="bigisland_age_map.jpg?v=1">map</a>, <a href="bigisland_age_plot.jpg?v=1">plot</a></li>
+  <li>elevation: <a href="bigisland_elevation_map.jpg?v=1">map</a>, <a href="bigisland_elevation_plot.jpg?v=1">plot</a></li>
+  <li>prickle density: <a href="bigisland_prickles_plot.jpg?v=1">plot</a></li>
+</ul>
+
+<h2>Maui County:</h2>
+
+<ul>
+  <li>annual rainfall: <a href="mauinui_rainfall_map.jpg?v=1">map</a>, <a href="mauinui_rainfall_plot.jpg?v=1">plot</a></li>
+  <li>geologic age: <a href="mauinui_age_map.jpg?v=1">map</a>, <a href="mauinui_age_plot.jpg?v=1">plot</a></li>
+  <li>elevation: <a href="mauinui_elevation_plot.jpg?v=1">plot</a>
+    <ul> 
+      <li>L&#257;na&#699;i: <a href="lanai_elevation_map.jpg?v=1">map</a></li>
+      <li>Maui: <a href="maui_elevation_map.jpg?v=1">map</a></li>
+      <li>Moloka&#699;i: <a href="molokai_elevation_map.jpg?v=1">map</a></li>
+    </ul>
+  </li>
+  <li>prickle density: <a href="mauinui_prickles_plot.jpg?v=1">plot</a></li>
+</ul>
+
+<h2>O&#699;ahu:</h2>
+
+<ul>
+  <li>annual rainfall: <a href="oahu_rainfall_map.jpg?v=1">map</a>, <a href="oahu_rainfall_plot.jpg?v=1">plot</a></li>
+  <li>geologic age: <a href="oahu_age_map.jpg?v=1">map</a>, <a href="oahu_age_plot.jpg?v=1">plot</a></li>
+  <li>elevation: <a href="oahu_elevation_map.jpg?v=1">map</a>, <a href="oahu_elevation_plot.jpg?v=1">plot</a></li>
+  <li>prickle density: <a href="oahu_prickles_plot.jpg?v=1">plot</a></li>
+</ul>
+
+<h2>Statewide:</h2>
+
+<ul>
+  <li>annual rainfall: <a href="statewide_rainfall_map.jpg?v=1">map</a>, <a href="statewide_rainfall_plot.jpg?v=1">plot</a></li>
+  <li>geologic age: <a href="statewide_age_map.jpg?v=1">map</a>, <a href="statewide_age_plot.jpg?v=1">plot</a></li>
+  <li>elevation: <a href="statewide_elevation_map.jpg?v=1">map</a>, <a href="statewide_elevation_plot.jpg?v=1">plot</a></li>
+  <li>prickle density: <a href="statewide_prickles_plot.jpg?v=1">plot</a></li>
+</ul>
+-->
+
+<h3 class="header3">External Data Sources</h3>
+
+<h3>annual rainfall:</h3>
+
+<p>Rainfall Atlas of Hawai&#699;i: <a href="http://rainfall.geography.hawaii.edu">http://rainfall.geography.hawaii.edu</a></p>
+
+<p><i>citation:</i></p>
+<p>Giambelluca, T.W., Q. Chen, A.G. Frazier, J.P. Price, Y.-L. Chen, P.-S. Chu, J.K. Eischeid, and D.M. Delparte, 2013: Online Rainfall Atlas of Hawaii. <i>Bull. Amer. Meteor. Soc.</i> 94, 313-316, doi: 10.1175/BAMS-D-11-00228.1.</p>
+
+<p><a href="/~kbarton/kml/rainfall_atlas_of_hawaii.kmz" title="Google Earth Keyhole Markup Language (KML)"><i class="fa fa-globe" aria-hidden="true"></i> KML file</a></p>
+
+<h3>geologic age:</h3>
+
+<p>Geologic Map of the State of Hawai&#699;i: <a href="http://pubs.usgs.gov/of/2007/1089/">http://pubs.usgs.gov/of/2007/1089/</a></p>
+
+<p><i>citation:</i></p>
+<p>Sherrod, David R., Sinton, John M., Watkins, Sarah E., and Brunt, Kelly M., 2007, Geologic map of the State of Hawaii:  U.S. Geological Survey Open-File Report 2007-1089 [<a href="http://pubs.usgs.gov/of/2007/1089/">http://pubs.usgs.gov/of/2007/1089/</a>].</p>
+
+<p><a href="/~kbarton/kml/usgs_geologic_age_hawaii.kmz" title="Google Earth Keyhole Markup Language (KML)"><i class="fa fa-globe" aria-hidden="true"></i> KML file</a></p>
+
+<h3>elevation:</h3>
+
+<p>1983 U.S. Geological Survey (USGS) Digital Elevation Models (DEMs)</p>
+
+<p>Shapefile obtained from Hawai&#699;i Statewide GIS Program: <a href="http://planning.hawaii.gov/gis/download-gis-data/">http://planning.hawaii.gov/gis/download-gis-data/</a>. <i>See:</i> "006 - Elevation And Derived Products" &gt; "USGS Elevation Ranges".
+
+<p><a href="/~kbarton/kml/usgs_elevation_hawaii.kmz" title="Google Earth Keyhole Markup Language (KML)"><i class="fa fa-globe" aria-hidden="true"></i> KML file</a></p>
+
+<h3>rain gauges:</h3>
+
+<p>"Rain summary locations" KML file obtained for Hawai&#699;i from the National Weather Service (NWS): <a href="http://www.prh.noaa.gov/hnl/pages/rain_summary.php">http://www.prh.noaa.gov/hnl/pages/rain_summary.php</a>. <i>See:</i> "Download in KML", which points to: <a href="http://www.prh.noaa.gov/hnl/kml/openkml.php?kmlfile=RainSummary.kml">http://www.prh.noaa.gov/hnl/kml/openkml.php?kmlfile=RainSummary.kml</a>.
+
+<p><a href="/~kbarton/kml/rain_gauges.kmz" title="Google Earth Keyhole Markup Language (KML)"><i class="fa fa-globe" aria-hidden="true"></i> KML file</a></p>
+
+<h3>reserves:</h3>
+
+<p>Various reserves, preserves, parks, etc. Shapefile obtained from Hawai&#699;i Statewide GIS Program: <a href="http://planning.hawaii.gov/gis/download-gis-data/">http://planning.hawaii.gov/gis/download-gis-data/</a>. <i>See:</i> "003 - Administrative And Political Boundaries" &gt; "Reserves".</p>
+
+<p><a href="/~kbarton/kml/hawaii_reserves.kmz" title="Google Earth Keyhole Markup Language (KML)"><i class="fa fa-globe" aria-hidden="true"></i> KML file</a></p>
+
+<hr/>
+
+<!--#include virtual="/~kbarton/ssi/links.ssi" -->
+<!--#include virtual="/~kbarton/ssi/footer.ssi" -->
+<!--#include virtual="/~kbarton/ssi/google_analytics.ssi" -->
+
+<!--
+<p>Last Updated: <script>document.write( new Date( document.lastModified ) );</script></p>
+-->
+
+</div> <!-- #content -->
+</body>

@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>ohia_sites.kml</name>
+	<StyleMap id="m_ylw-pushpin">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin0</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin0">
+		<IconStyle>
+			<color>ff00ff00</color>
+			<Icon>
+				<href>placemark_circle.png</href>
+			</Icon>
+      <hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+		<ListStyle>
+		</ListStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl">
+		<IconStyle>
+			<color>ff00ff00</color>
+			<scale>1.18182</scale>
+			<Icon>
+				<href>placemark_circle_highlight.png</href>
+			</Icon>
+      <hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+		<ListStyle>
+		</ListStyle>
+	</Style>
+	<Folder>
+		<name>Ohia Sites</name>
+		<visibility>0</visibility>
+		<open>1</open>
+		<Folder>
+			<name>Big Island</name>
+			<visibility>0</visibility>
+			<Placemark>
+				<name>Chain Of Craters Managed</name>
+				<visibility>0</visibility>
+				<description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.327124, -155.184747</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 303776.197, 2150282.015</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 738</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 2421</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 87.581</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 200-750</p></div>]]></description>
+				<styleUrl>#m_ylw-pushpin</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-155.184747,19.327124,0</coordinates>
+				</Point>
+			</Placemark>
+      <Placemark>
+        <name>Chain Of Craters Unmanaged</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.326618, -155.183294</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 270616.932, 2138414.561</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 732</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 2401</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 87.674</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 200-750</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-155.183294,19.326618,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Faya NPS</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.403232, -155.252263</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 263478.563, 2146990.124</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 1117</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 3665</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 87.587</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 200-750</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-155.252263,19.403232,0</coordinates>
+        </Point>
+      </Placemark>
+			<Placemark>
+				<name>Kau</name>
+				<visibility>0</visibility>
+				<description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.332256, -155.456834</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 270219.071, 2202504.825</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 1081</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 3545</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 84.283</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 750-1500</p></div>]]></description>
+				<styleUrl>#m_ylw-pushpin</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-155.456834,19.332256,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Kohala</name>
+				<visibility>0</visibility>
+				<description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 20.056842, -155.704006</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 199640.452, 2138317.342</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 1236</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 4054</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 88.940</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 140-780 ka</p></div>]]></description>
+				<styleUrl>#m_ylw-pushpin</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-155.704006,20.056842,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Kona</name>
+				<visibility>0</visibility>
+				<description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.316406, -155.85829</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 270464.931, 2138472.498</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 600</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 1968</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 46.874</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 1500-3000</p></div>]]></description>
+				<styleUrl>#m_ylw-pushpin</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-155.85829,19.316406,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Lava Tree</name>
+				<visibility>0</visibility>
+				<description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.482657, -154.901906</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 300380.134, 2155339.028</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 204</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 668</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 123.695</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 0-200</p></div>]]></description>
+				<styleUrl>#m_ylw-pushpin</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-154.901906,19.482657,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Malamaki</name>
+				<visibility>0</visibility>
+				<description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.437316, -154.869039</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 303776.197, 2150282.015</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 16</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 52</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 97.273</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 0-200</p></div>]]></description>
+				<styleUrl>#m_ylw-pushpin</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-154.869039,19.437316,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Mauna Loa</name>
+				<visibility>0</visibility>
+				<description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.494317, -155.385557</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 241873.869, 2139424.424</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 2049</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 6723</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 64.885</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 1500-3000</p></div>]]></description>
+				<styleUrl>#m_ylw-pushpin</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-155.385557,19.494317,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Orchidland</name>
+				<visibility>0</visibility>
+				<description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.545670, -154.997740</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 290399.777, 2162429.268</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 158</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 518</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 143.008</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 200-750</p></div>]]></description>
+				<styleUrl>#m_ylw-pushpin</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-154.997740,19.545670,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Piha</name>
+				<visibility>0</visibility>
+				<description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.905336, -155.194924</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 265073.151, 2148178.481</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 537</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 1763</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 210.062</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 50-140 ka</p></div>]]></description>
+				<styleUrl>#m_ylw-pushpin</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-155.194924,19.905336,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Saddle 13</name>
+				<visibility>0</visibility>
+				<description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.694877, -155.257481</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 265039.616, 2148082.248</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 1041</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 3416</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 241.846</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 0-200</p></div>]]></description>
+				<styleUrl>#m_ylw-pushpin</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-155.257481,19.694877,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Saddle 19</name>
+				<visibility>0</visibility>
+				<description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.677957, -155.329258</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 217167.611, 2220061.544</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 1491</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 4891</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 110.433</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 0-200</p></div>]]></description>
+				<styleUrl>#m_ylw-pushpin</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-155.329258,19.677957,0</coordinates>
+				</Point>
+			</Placemark>
+      <Placemark>
+        <name>Saddle Kipuka</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.687161, -155.465774</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 241499.34, 2178737.861</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 2036</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 6679</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 40.632</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 10-30 ka</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-155.465774,19.687161,0</coordinates>
+        </Point>
+      </Placemark>
+			<Placemark>
+				<name>Thurston NPS</name>
+				<visibility>0</visibility>
+				<description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.414151, -155.237235</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 255803.423, 2177516.803</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 1200</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 3938</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 108.630</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 200-750</p></div>]]></description>
+				<styleUrl>#m_ylw-pushpin</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-155.237235,19.414151,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Thurston State</name>
+				<visibility>0</visibility>
+				<description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 19.413278, -155.237542</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 249614.511, 2157264.163</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 1207</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 3959</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 107.613</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 200-750</p></div>]]></description>
+				<styleUrl>#m_ylw-pushpin</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>-155.237542,19.413278,0</coordinates>
+				</Point>
+			</Placemark>
+		</Folder>
+    <Folder>
+      <name>Kauai</name>
+      <visibility>0</visibility>
+      <Placemark>
+        <name>Kokee Lodge</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 22.130645, -159.660227</p>
+<p style="margin: 4px;"><b>easting, northing:</b> -187959.781, 2462397.759</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 1127</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 3699</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 59.858</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 4-6 Ma</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-159.660227,22.130645,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Kuilau</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 22.091171, -159.412501</p>
+<p style="margin: 4px;"><b>easting, northing:</b> -162478.268, 2456900.686</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 329</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 1081</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 116.841</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 1-2 Ma</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-159.412501,22.091171,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Limahuli</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 22.217716, -159.574239</p>
+<p style="margin: 4px;"><b>easting, northing:</b> -178628.167, 2471691.772</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 145</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 477</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 101.530</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 4-6 Ma</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-159.574239,22.217716,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Okolehao</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 22.186576, -159.479912</p>
+<p style="margin: 4px;"><b>easting, northing:</b> -169009.844, 2467806.477</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 358</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 1175</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 96.762</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 4-6 Ma</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-159.479912,22.186576,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Pihea Trail</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 22.148130, -159.626792</p>
+<p style="margin: 4px;"><b>easting, northing:</b> -184409.894, 2464190.392</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 1226</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 4022</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 85.949</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 4-6 Ma</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-159.626792,22.14813,0</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Maui</name>
+      <visibility>0</visibility>
+      <Placemark>
+        <name>Camp Site Transect 3</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 20.779832, -156.228992</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 163790.938, 2301144.940</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 1867</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 6126</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 90.034</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 140-780 ka</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-156.228992,20.779832,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Kahakapao</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 20.827244, -156.277379</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 158855.578, 2306500.185</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 881</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 2890</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 118.990</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 140-780 ka</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-156.277379,20.827244,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Kula</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 20.727622, -156.290347</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 157279.427, 2295488.901</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 1896</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 6220</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 35.982</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 140-780 ka</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-156.290347,20.727622,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maile Trail</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 20.800458, -156.253849</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 161246.854, 2303482.385</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 1415</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 4644</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 99.662</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 140-780 ka</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-156.253849,20.800458,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Waihee</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 20.947536, -156.546013</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 131162.003, 2320425.466</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 641</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 2104</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 82.399</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 1-2 Ma</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-156.546013,20.947536,0</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Oahu</name>
+      <visibility>0</visibility>
+      <Placemark>
+        <name>Aiea</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 21.406344, -157.880206</p>
+<p style="margin: 4px;"><b>easting, northing:</b> -6260.717, 2375002.332</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 466</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 1528</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 117.05</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 2-4 Ma</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-157.880206,21.406344,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Hawaii Loa Ridge</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 21.316545, -157.743028</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 7693.042, 2364600.360</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 465</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 1525</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 76.251</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 2-4 Ma</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-157.743028,21.316545,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Kahanahaiki</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 21.536533, -158.193950</p>
+<p style="margin: 4px;"><b>easting, northing:</b> -38390.789, 2390504.303</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 685</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 2246</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 54.904</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 2-4 Ma</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-158.193950,21.536533,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Mauanawili</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 21.349632, -157.779529</p>
+<p style="margin: 4px;"><b>easting, northing:</b> 4009.596, 2368386.753</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 241</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 790</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 101.68</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 2-4 Ma</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-157.779529,21.349632,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Palikea</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 21.413189, -158.100992</p>
+<p style="margin: 4px;"><b>easting, northing:</b> -29183.549, 2376493.485</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 915</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 3002</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 45.65</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 2-4 Ma</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-158.100992,21.413189,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Poamoho</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 21.533393, -157.929437</p>
+<p style="margin: 4px;"><b>easting, northing:</b> -10932.009, 2389262.657</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 661</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 2168</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 216.23</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 2-4 Ma</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-157.929437,21.533393,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Waimea Catchpin</name>
+        <visibility>0</visibility>
+        <description><![CDATA[<div style="width: 275px; height: 300px;">
+<p style="margin: 4px;"><b>lat, lon:</b> 21.623398, -158.016838</p>
+<p style="margin: 4px;"><b>easting, northing:</b> -19685.357, 2399542.390</p>
+<p style="margin: 4px;"><b>elevation (m):</b> 255</p>
+<p style="margin: 4px;"><b>elevation (ft):</b> 835</p>
+<p style="margin: 4px;"><b>annual rainfall (in):</b> 77.623</p>
+<p style="margin: 4px;"><b>geologic age (yr):</b> 2-4 Ma</p></div>]]></description>
+        <styleUrl>#m_ylw-pushpin</styleUrl>
+        <Point>
+          <gx:drawOrder>1</gx:drawOrder>
+          <coordinates>-158.016838,21.623398,0</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+	</Folder>
+</Document>
+</kml>

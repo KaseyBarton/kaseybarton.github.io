@@ -1,0 +1,217 @@
+/* Need two a:link entries to handle mailto in ssi's: */
+
+a:link {
+  color: #006600;
+  text-decoration: none;
+}
+
+a:link {
+  color: #006600;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #006600;
+  text-decoration: none;
+}
+
+a:hover {
+  color: goldenrod;
+  text-decoration: none;
+}
+
+a.clue:active {
+  color: goldenrod;
+  border-bottom: 1px dashed goldenrod;
+  text-decoration: none;
+}
+
+a.clue:link {
+  color: #006600;
+  border-bottom: 1px dashed #006600;
+  text-decoration: none;
+}
+
+a.clue:link {
+  color: #006600;
+  border-bottom: 1px dashed #006600;
+  text-decoration: none;
+}
+
+a.clue:visited {
+  color: #006600;
+  border-bottom: 1px dashed #006600;
+  text-decoration: none;
+}
+
+a.clue:hover {
+  color: goldenrod;
+  border-bottom: 1px dashed goldenrod;
+  text-decoration: none;
+  cursor: help;
+}
+
+a.clue:active {
+  color: goldenrod;
+  border-bottom: 1px dashed goldenrod;
+  text-decoration: none;
+}
+
+body {
+  margin-left: 40px;
+  margin-top: 30px; 
+  margin-right: 50px;
+  background-color: #006600;
+  /*
+  Nice seamless tropical background image if we ever want it...
+  Royalty-free (purchased) from (and subsequently modified):
+  http://www.dreamstime.com/royalty-free-stock-image-blue-tropical-seamless-pattern-image38261456 
+  background-image: url( "/images/dreamstime_xs_38261456_green_transparent2.jpg" );
+  */
+}
+
+h3 {
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+
+hr {
+  border-bottom: 0px;
+  border-top: 2px solid grey; 
+}
+
+img {
+  border: 0px;
+}
+
+tr {
+  vertical-align: top;
+}
+
+.header1, .header2, .header3, .header4 {
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+  color: #008403;
+  font-weight: normal;
+  margin: 0px;
+}
+
+.header1 {
+  font-size: 55px;
+  text-shadow: 2px 2px 2px grey;
+}
+
+.header2 {
+  font-size: 40px;
+  text-shadow: 1px 2px 2px grey;
+  margin-top: 8px;
+}
+
+.header3 {
+  font-size: 30px;
+  text-shadow: 1px 1px 2px grey;
+  margin-top: 12px;
+}
+
+.header4 {
+  font-size: 22px;
+  text-shadow: 1px 1px 2px grey;
+  margin-top: 12px;
+}
+
+.middivider {
+  border-bottom: 0px;
+  border-top: 2px solid gold;
+}
+
+.subdivider {
+  border-bottom: 0px;
+  border-top: 2px dashed gold;
+}
+
+#content {
+  background-color: white;
+  background-image: url('/~kbarton/images/logos/uh-header-bg.jpg');
+  background-repeat: no-repeat;
+  width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  padding: 10px 40px;
+  border: 1px solid lightgrey;
+  box-shadow: 5px 5px 10px #a7c77c;
+}
+
+/*
+Create CSS3 paper curl effect:
+Source: http://www.sitepoint.com/pure-css3-paper-curls/
+*/
+
+.paper-curl {
+  position: relative;
+  /*width: 500px;*/
+  padding: 25px;
+  margin: 0 auto;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+}
+
+.paper-curl:before, .paper-curl:after {
+  position: absolute;
+  width: 40%;
+  height: 10px;
+  content: ' ';
+  left: 12px;
+  bottom: 12px;
+  background: transparent;
+  -webkit-transform: skew(-5deg) rotate(-5deg);
+  -moz-transform: skew(-5deg) rotate(-5deg);
+  -ms-transform: skew(-5deg) rotate(-5deg);
+  -o-transform: skew(-5deg) rotate(-5deg);
+  transform: skew(-5deg) rotate(-5deg);
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  z-index: -1;
+} 
+
+.paper-curl:after {
+  left: auto;
+  right: 12px;
+  -webkit-transform: skew(5deg) rotate(5deg);
+  -moz-transform: skew(5deg) rotate(5deg);
+  -ms-transform: skew(5deg) rotate(5deg);
+  -o-transform: skew(5deg) rotate(5deg);
+  transform: skew(5deg) rotate(5deg);
+}
+
+/* TABLE-LIKE DIV ELEMENTS
+ * -----------------------------------------------------------------------------*/
+
+.table {
+  display: table;
+  padding: 4px 0 6px 0;
+}
+
+.row {
+  display: table-row;
+}
+
+.cell {
+  display: table-cell;
+}
+
+.table2 {
+  display: table;
+  padding: 4px 0 6px 0;
+  border-spacing: 8px;
+}
+
+.row2 {
+  display: table-row;
+}
+
+.cell2 {
+  display: table-cell;
+  vertical-align: middle;
+}

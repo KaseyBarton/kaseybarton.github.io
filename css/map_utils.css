@@ -1,0 +1,48 @@
+body {
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-size: 85%;
+  background-color: #FFFFFF;
+} 
+
+#cursorMapCoordinates {
+  position: absolute;
+  z-index: 10;
+  top: 6px;
+  right: 10px;
+}
+
+#cursorElevation {
+  position: absolute;
+  z-index: 10;
+  top: 22px;
+  right: 10px;
+}
+
+#header {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  height: 26px;
+  padding: 3px 5px 5px 5px;
+}
+
+#map {
+  position: absolute;
+  top: 42px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  border: 1px solid #979797;
+}
+
+.highlightedOption {
+  color: black;
+  background-color: #F9F99F;
+  font-style: italic;
+  font-weight: bold;
+}
+
+input.ui-button {
+  padding: 0px 7px 2px 7px;
+}

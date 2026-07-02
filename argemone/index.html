@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Argemone Project Page</title>
+<link rel="shortcut icon" href="/~kbarton/favicon.ico" >
+
+<script type="text/javascript" src="/~kbarton/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/~kbarton/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/~kbarton/js/cluetip/jquery.cluetip.min.js"></script>
+<link type="text/css" rel="stylesheet" href="/~kbarton/js/cluetip/jquery.cluetip.css" />
+<link type="text/css" rel="stylesheet" href="/~kbarton/js/jquery-ui-1.11.1/jquery-ui.min.css"></script>
+<link type="text/css" rel="stylesheet" href="/~kbarton/js/font-awesome-4.2.0/css/font-awesome.min.css" />
+<link type="text/css" rel="stylesheet" href="/~kbarton/css/subpages.css?v=2" />
+
+<script>
+$( document ).ready(
+  function () {
+
+    // ClueTip jQuery inline info pop-ups:
+
+    $( 'a.clue' ).cluetip(
+      {
+        activation: 'click',
+        arrows: false,
+        attribute: 'href',
+        closePosition: 'top',
+        closeText: '<i class="fa fa-close" style="float: right;"></i>',
+        local: false,
+        showTitle: false,
+        sticky: true,
+        titleAttribute: '',
+        waitImage: true,
+        width: 520
+      }
+    );
+  }
+); // ready()
+</script>
+
+</head>
+
+<body>
+
+<div id="content">
+
+<!--#include virtual="/~kbarton/ssi/links.ssi" -->
+
+<p><a href="/~kbarton">Home</a> <i class="fa fa-caret-right" aria-hidden="true"></i> <a href="/~kbarton/research.html">Research</a> <i class="fa fa-caret-right" aria-hidden="true"></i> Argemone Project</p>
+
+<h1 class="header1"><i class="fa fa-pagelines" aria-hidden="true"></i> Argemone Project Page</h1>
+
+<h3 class="header3">Project Summary</h3>
+
+<p>This project examines defense in an apparently well-defended (but understudied) group of plants, the prickly poppies (genus <i>Argemone</i>). There are approximately 32 <i>Argemone</i> species, all of which are native to the Americas (center of diversity in Mexico) with a single endemic species in Hawai&#699;i. <a href="/~kbarton/research.html#poppy">More...</a></p>
+
+<h3 class="header3">View Data</h3>
+
+<table cellpadding="2" style="margin-top: 12px;">
+  <tr>
+    <td style="text-align: center;"><font color="lightgray"><i class="fa fa-globe fa-2x" aria-hidden="true"></i></font></td>
+    <td><a href="map.html">interactive map</a></td>
+  </tr>
+  <!--
+  <tr>
+    <td style="text-align: center;"><font color="lightgray"><i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i></font></td>
+    <td><a href="plot.html">interactive plots</a></td>
+  </tr>
+  -->
+  <tr>
+    <td style="text-align: center;"><font color="lightgray"><i class="fa fa-table fa-2x" aria-hidden="true"></i></font></td>
+    <!--
+    Google Fusion Tables discontinued December 2019:
+    <td><a href="https://www.google.com/fusiontables/DataSource?docid=10X336ZFZH4__0LqGz0TiBWSsDmffXDH0x43BG1ta">Mexico spreadsheet</a></td>
+    -->
+    <td><a href="https://docs.google.com/spreadsheets/d/1Dp8swlS1hdyugjDAO2WMNbmxo6Ze-e2v1y0SHZts0-E/edit?usp=sharing">Mexico spreadsheet</a></td>
+  </tr>
+  <tr>
+    <td style="text-align: center;"><font color="lightgray"><i class="fa fa-table fa-2x" aria-hidden="true"></i></font></td>
+    <!--
+    Google Fusion Tables discontinued December 2019:
+    <td><a href="https://www.google.com/fusiontables/DataSource?docid=1f8QBN6OSUktvUKNrYr18CXgqxbik-o5A3PvPfKEZ">USA spreadsheet</a></td>
+    -->
+    <td><a href="https://docs.google.com/spreadsheets/d/1a8Rlm4E_yGrSAp14G8EhwixK3mRKLQSeJIXU174Urww/edit?usp=sharing">USA spreadsheet</a></td>
+  </tr>
+</table>
+
+<hr/>
+
+<!--#include virtual="/~kbarton/ssi/links.ssi" -->
+<!--#include virtual="/~kbarton/ssi/footer.ssi" -->
+<!--#include virtual="/~kbarton/ssi/google_analytics.ssi" -->
+
+<!--
+<p>Last Updated: <script>document.write( new Date( document.lastModified ) );</script></p>
+-->
+
+</div> <!-- #content -->
+</body>

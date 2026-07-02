@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+
+<head>
+<link rel="shortcut icon" href="favicon.ico" >
+<title>Kasey E. Barton</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.11.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/galleryview/js/jquery.timers-1.2.js"></script>
+<script type="text/javascript" src="js/galleryview/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="js/galleryview/js/jquery.galleryview-3.0-dev.js"></script>
+<link type="text/css" rel="stylesheet" href="js/jquery-ui-1.11.1/jquery-ui.min.css"></script>
+<link type="text/css" rel="stylesheet" href="js/galleryview/css/jquery.galleryview-3.0-dev.css" />
+<link type="text/css" rel="stylesheet" href="js/font-awesome-4.2.0/css/font-awesome.min.css" /> 
+
+<style type="text/css">
+
+a:link {
+  color: gold;
+  text-decoration: none;
+}
+
+a:active {
+  color: #FFFF80;
+  text-decoration: none;
+}
+
+a:visited {
+  color: gold;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #FFFF80;
+  text-decoration: none;
+}
+
+h3 {
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+</style>
+
+<script>
+$( document ).ready(
+  function () {
+
+    $( '#myGallery' ).galleryView(
+      { 
+        autoplay: true,
+        panel_animation: 'crossfade',
+        panel_width: 600,
+        panel_height: 450,
+        enable_overlays: true,
+        show_filmstrip: false,
+        show_infobar: false,
+        show_panel_nav: false
+        //frame_height: 25,
+        //frame_width: 40,
+        //frame_gap: 4 
+      }
+    );
+
+    $( '#botany_logo' ).show();
+
+    $( '#botany_logo' ).position(
+      {
+        my: 'left top',
+        at: 'left top',
+        of: '.gv_gallery'
+      }
+    );
+
+    $( window ).resize(
+      function () {
+        $( '#botany_logo' ).position(
+          {
+            my: 'left top',
+            at: 'left top',
+            of: '.gv_gallery'
+          }
+        );
+      }
+    );
+
+  }
+);
+</script>
+
+<script>
+
+/*
+Pre-load certain images so they don't show up blank while the page loads...
+*/
+
+var botanyLogo = new Image( 407, 83 );
+    botanyLogo.src = "images/logos/logo-botany-transparent.png";
+
+var slideshow01 = new Image( 600, 450 );
+    slideshow01.src = "images/slideshow/kbarton_slideshow_01.jpg";
+/*
+var slideshow02 = new Image( 600, 450 );
+    slideshow02.src = "images/slideshow/kbarton_slideshow_02.jpg";
+var slideshow03 = new Image( 600, 450 );
+    slideshow03.src = "images/slideshow/kbarton_slideshow_03.jpg";
+var slideshow04 = new Image( 600, 450 );
+    slideshow04.src = "images/slideshow/kbarton_slideshow_04.jpg";
+var slideshow05 = new Image( 600, 450 );
+    slideshow05.src = "images/slideshow/kbarton_slideshow_05.jpg";
+var slideshow06 = new Image( 600, 450 );
+    slideshow06.src = "images/slideshow/kbarton_slideshow_06.jpg";
+var slideshow07 = new Image( 600, 800 );
+    slideshow07.src = "images/slideshow/kbarton_slideshow_07.jpg";
+var slideshow08 = new Image( 480, 640 );
+    slideshow08.src = "images/slideshow/kbarton_slideshow_08.jpg";
+var slideshow09 = new Image( 600, 450 );
+    slideshow09.src = "images/slideshow/kbarton_slideshow_09.jpg";
+var slideshow10 = new Image( 600, 450 );
+    slideshow10.src = "images/slideshow/kbarton_slideshow_10.jpg";
+var slideshow11 = new Image( 600, 450 );
+    slideshow11.src = "images/slideshow/kbarton_slideshow_11.jpg";
+var slideshow12 = new Image( 600, 450 );
+    slideshow12.src = "images/slideshow/kbarton_slideshow_12.jpg";
+var slideshow13 = new Image( 600, 450 );
+    slideshow13.src = "images/slideshow/kbarton_slideshow_13.jpg";
+*/
+
+/*
+pickQuote()
+Pick a quote at random to place on the homepage.
+*/
+
+function pickQuote () {
+
+  var quotes = new Array();
+
+  quotes[ 0 ] = '&#147The future belongs to those who prepare for it today.&#148; &#151;';
+  quotes[ 1 ] = '&#147;You must be the change you wish to see in the world.&#148; &#151;';
+  quotes[ 2 ] = '&#147;We must learn to live together as brothers or perish together as fools.&#148; &#151;';
+
+  var quoter = new Array();
+
+  quoter[ 0 ] = 'Malcolm X';
+  quoter[ 1 ] = 'M. K. Gandhi';
+  quoter[ 2 ] = 'Martin Luther King, Jr.';
+
+  var links = new Array()
+
+  links[ 0 ] = 'http://en.wikipedia.org/wiki/Malcolm_X';
+  links[ 1 ] = 'http://en.wikipedia.org/wiki/Ghandi';
+  links[ 2 ] = 'http://en.wikipedia.org/wiki/Martin_Luther_King';
+
+  //var myNumber = Math.round( 2 * Math.random() );
+  var myNumber = 1;
+
+  var TheLink = links[ myNumber ];
+  var TheQuote = quotes[ myNumber ];
+  var TheQuoter = quoter[ myNumber ];
+
+  var html = '<center><i>' + TheQuote + '</i><a href="' + TheLink + '">' + TheQuoter + '</a></center>';
+
+  document.getElementById( 'quote' ).innerHTML = html;
+
+} // pickQuote()
+</script>
+
+</head>
+
+<body text="#ffffff" bgcolor="#006600">
+
+<table align="center" cellpadding="10">
+  <tr valign="top"> 
+
+    <!-- Slideshow: Left Panel: -->
+
+    <td>
+      <div align="center">
+        <ul id="myGallery">
+          <li><img src="images/slideshow/kbarton_slideshow_01.jpg" alt="" data-description="Plumeria are common latex-containing ornamental plants." /></li>
+          <li><img src="images/slideshow/kbarton_slideshow_02.jpg" alt="" data-description="Transects at Waikamoi Preserve, Maui, to characterize species composition in canopy and understory ohia forests." /></li>
+          <li><img src="images/slideshow/kbarton_slideshow_03.jpg" alt="" data-description="" /></li>
+          <li><img src="images/slideshow/kbarton_slideshow_13.jpg" alt="" data-description="9,740 feet high on Haleakala, Maui" /></li>
+          <li><img src="images/slideshow/kbarton_slideshow_04.jpg" alt="" data-description="Ohia lehua flowers" /></li>
+          <!--<li><img src="images/slideshow/kbarton_slideshow_05.jpg" alt="" data-description="This is a test comment for the photo whose title is kbarton_slideshow_05.jpg." />-->
+          <!--<li><img src="images/slideshow/kbarton_slideshow_06.jpg" alt="" data-description="This is a test comment for the photo whose title is kbarton_slideshow_06.jpg." />-->
+          <!--<li><img src="images/slideshow/kbarton_slideshow_07.jpg" alt="" data-description="This is a test comment for the photo whose title is kbarton_slideshow_07.jpg." />-->
+          <li><img src="images/slideshow/kbarton_slideshow_08.jpg" alt="" data-description="Pua kala, the endemic Hawaiian prickly poppy (Argemone glauca)" /></li>
+          <li><img src="images/slideshow/kbarton_slideshow_11.jpg" alt="" data-description="Koa (and Kasey) overlooking Waimea Canyon, Kauai" /></li>
+          <li><img src="images/slideshow/kbarton_slideshow_09.jpg" alt="" data-description="Greenhouse experiment on University of Hawaii, Manoa campus" /></li>
+          <li><img src="images/slideshow/kbarton_slideshow_10.jpg" alt="" data-description="Ohia lehua seedlings in Hilo Watershed Forest Reserve, Hawaii Island" /></li>
+          <!--<li><img src="images/slideshow/kbarton_slideshow_12.jpg" alt="" data-description="This is a test comment for the photo whose title is kbarton_slideshow_12.jpg." />-->
+          <li><img src="images/slideshow/kbarton_slideshow_14.jpg" alt="" data-description="Leading Pacific Internship Programs for Exploring Science (PIPES) interns on Aiea ridge hike, Summer 2017. Photo credit: Linnea Heu" /></li>
+        </ul>
+      </div>
+    </td>
+
+    <!-- Text And Publications: Right Panel: -->
+
+    <td width="620">
+
+      <h1><font face="Georgia, Times New Roman, Times, serif">Kasey E. Barton</font></h1>
+      <p><font size="+1">Professor<br/>
+        <a href="https://manoa.hawaii.edu/lifesciences/">School of Life Sciences</a><br/>
+        <a href="https://manoa.hawaii.edu">University of Hawai&#699;i at M&#257;noa</a><br/>
+        3190 Maile Way, Room 101<br/>
+        Honolulu, HI 96822</font></p>
+      <p><font size="+1">Email: <!--#include virtual="/~kbarton/ssi/email.ssi" --></font></p>
+
+      <hr/>
+
+      <h3 style="font-size: 17px;"><!--<i class="fa fa-user"></i> <a href="people.html">People</a> &nbsp; --><i class="fa fa-file-pdf-o"></i> <a href="publications.html">Publications</a> <!--<i class="fa fa-line-chart"></i> <a href="research.html">Research</a> &nbsp; --><!--<i class="fa fa-university"></i> <a href="teaching.html">Teaching</a> &nbsp; --><i class="fa fa-pagelines" style="margin-left: 6px;"></i> <a href="drought/">Drought Tolerance Index</a> <i class="fa fa-image" style="margin-left: 8px;"></i> <a href="gallery.html">Gallery</a></h3>
+
+      <h3 style="font-size: 17px;">Research Interests:</h3>
+
+      <!-- Replaced 2020-02-26:
+      <p>In the Barton Lab, we investigate plant functional ecology, with particular emphasis on plant-herbivore interactions and seedling ecology. We use the rich endemic flora of the Hawaiian Islands to test ideas about the evolution of plant defense in island vs. continental communities and to investigate climate change and invasive species effects on island plants. Much of our work examines how these interactions change over the course of plant ontogeny, comparing seedlings, juveniles, and mature plants.</p>
+      -->
+      <p>In the Barton Lab, we investigate plant functional ecology, focusing on two main questions. First, how do plant traits shift in expression across ontogeny, and how does this influence tolerance to abiotic and biotic stress. Second, are island plants fundamentally different from continental plants, and if so, how does this influence their species interactions and trait syndromes? We primarily work in the Hawaiian Islands, exploring the amazing diversity in the native flora, and our research investigates these questions using experimental, natural, and synthetic approaches. Reflecting diversity in student interests and the range of global threats plants experience, we have examined many different factors, including herbivory, competition, drought, salinity, fire, and heat, aiming to understand how plants tolerate these stressors across ontogeny for insights into plant evolutionary ecology and conservation of island biodiversity.</p>
+
+      <!-- OLD:
+      <p>The Barton Lab investigates plant functional ecology, with particular emphasis on plant-herbivore interactions and seedling ecology. We use the rich endemic flora of the Hawaiian Islands to test ideas about the evolution of plant defense in island vs. continental communities, to examine how climate change and invasive species affect native seedling recruitment, and to use a temporally explicit framework for plant ecology through experiments addressing ontogenetic trajectories in defense and stress tolerance.</p>
+      -->
+
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <!--<hr style="width: 610px;"/>-->
+      <!--<div align="center" id="quote"><center><i>&#147;You must be the change you wish to see in the world.&#148; &#151;</i><a href="http://en.wikipedia.org/wiki/Ghandi">M. K. Gandhi</a></center></div>-->
+      <div align="center" id="quote"><center><i>&#147;Curiouser and curiouser.&#148; &#151;</li>Lewis Carroll</center></div>
+      <div align="center">
+        <h3 style="font-size: 17px;"><i class="fa fa-graduation-cap"></i> <a href="join.html">Join The Lab</a></h3>
+      </div>
+      <!-- No longer using Twitter...
+      <div align="center">
+        <a class="twitter-timeline"  href="https://twitter.com/KaseyEBarton" data-widget-id="561656895472013312">Tweets by @KaseyEBarton</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      </div>
+      -->
+    </td>
+  </tr>
+</table>
+
+<!-- Botany logo: gets placed above slideshow... -->
+
+<a href="https://manoa.hawaii.edu/lifesciences/"><img id="botany_logo" src="images/logos/logo-botany-transparent.png" style="position: absolute; top: 26px; left: 26px; z-index: 99999; border-width: 0px; background: rgba(255,255,255,0.5); display: none;" /></a>
+
+<!--#include virtual="/~kbarton/ssi/google_analytics.ssi" -->
+
+</body>
+
+</html>

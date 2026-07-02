@@ -1,0 +1,830 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+Kasey E. Barton: Argemone Project Map
+Author: John Maurer <jmaurer@hawaii.edu>
+Date: April 21, 2015
+-->
+<html>
+
+<head>
+<title>Argemone Project Map</title>
+<link rel="shortcut icon" href="/~kbarton/favicon.ico" >
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+<script type="text/javascript" src="/~kbarton/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/~kbarton/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/~kbarton/js/jquery-ui-1.11.1/jquery-ui.min.js"></script>
+<link type="text/css" rel="stylesheet" href="/~kbarton/js/jquery-ui-1.11.1/jquery-ui.min.css"></script>
+<link type="text/css" rel="stylesheet" href="/~kbarton/js/font-awesome-4.2.0/css/font-awesome.min.css" />
+<link type="text/css" rel="stylesheet" href="/~kbarton/css/subpages.css?v=2" />
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAlwWZ8Fk0vhhyiNydkjrgU1HhbuEWPv3k"></script>
+<script type="text/javascript" src="/~kbarton/js/keyDragZoom.js"></script>
+<script type="text/javascript" src="/~kbarton/js/customMapStyles.js"></script>
+<script src="/~kbarton/js/proj4/lib/proj4js-combined.js"></script>
+<script src="/~kbarton/js/proj4/lib/defs/UTM5.js"></script>
+<script src="/~kbarton/js/google_sheets_utils.js?v=2"></script>
+<link type="text/css" rel="stylesheet" href="/~kbarton/css/map_utils.css?v=2" />
+<script src="/~kbarton/js/map_utils.js?v=6"></script>
+
+<script>
+
+jQuery( document ).ready(
+  function () {
+
+    // Set all default selections to avoid cached responses:
+
+    document.getElementById( 'species_Mexico' ).selectedIndex = 0;
+    document.getElementById( 'species_USA' ).selectedIndex = 0;
+    document.getElementById( 'highlight_states' ).checked = false;
+
+    // Initiate map centered on Mexico: 
+
+    var sw = new google.maps.LatLng( 12.162879, -125.3320 );
+    var ne = new google.maps.LatLng( 49.2104, -66.6650 );
+    var bounds = new google.maps.LatLngBounds( sw, ne );
+    var zoom = 8;
+
+    loadMap( bounds, zoom );
+  }
+); // ready()
+
+
+/*
+addSitesAndJump()
+Adds placemarks at sites from Google Sheets and jumps to relevant bounds.
+*/
+  
+function addSitesAndJump ( skip_jump ) {
+
+  // Which Google Sheets spreadsheet?:
+
+  var spreadsheet_id = document.getElementById( 'sites' ).value;
+
+  // Icon size?:
+
+  var style_id = document.getElementById( 'icon' ).value;
+
+  var dataset = document.getElementById( 'sites' )[ document.getElementById( 'sites' ).selectedIndex ].innerHTML;
+
+  // Swap pull-down list of available species and zoom locations for the region:
+
+  swapSpeciesList( dataset );
+  swapZoomList( dataset );
+
+  // Is a particular species selected?:
+
+  var query_column = '';
+  var query_value = '';
+
+  if ( spreadsheet_id ) {
+    var species = document.getElementById( 'species_' + dataset ).value;
+
+    if ( species ) {
+
+      if ( species == 'undefined' ) {
+        species = '';
+      }
+
+      query_column = 'Species'; 
+      query_value = species;
+    }
+  }
+
+  // Add sites to map:
+
+  addSites( spreadsheet_id, style_id, query_column, query_value ); 
+
+  // Zoom to this dataset?:
+
+  if ( !skip_jump ) {
+    jumpTo( dataset );
+  }
+
+} // addSitesAndJump()
+
+
+/*
+swapSpeciesList()
+After the user selects a different Google Sheets table (e.g. USA or Mexico),
+show the appropriate pull-down list of available species names.
+*/
+
+function swapSpeciesList ( dataset ) {
+
+  // Hide all species select lists except for selected dataset:
+
+  var species_lists = document.getElementsByName( 'species_list' );
+
+  for ( var i = 0; i < species_lists.length; i++ ) {
+    if ( species_lists[ i ].id == 'species_' + dataset ) {
+      species_lists[ i ].style.display = '';
+    }
+    else {
+      species_lists[ i ].style.display = 'none';
+    }
+  }
+
+} // swapSpeciesList()
+
+
+/*
+swapZoomList()
+After the user selects a different Google Sheets table (e.g. USA or Mexico),
+show the appropriate pull-down list of available zoom-to locations (states).
+*/
+
+function swapZoomList ( dataset ) {
+
+  // Hide all zoom select lists except for selected dataset:
+
+  var zoom_lists = document.getElementsByName( 'zoom_list' );
+
+  for ( var i = 0; i < zoom_lists.length; i++ ) {
+    if ( zoom_lists[ i ].id == 'zoom_' + dataset ) {
+      zoom_lists[ i ].selectedIndex = 0;
+      zoom_lists[ i ].style.display = '';
+    }
+    else {
+      zoom_lists[ i ].style.display = 'none';
+    }
+  }
+
+  // If there is no selected dataset, show the default (combined) list instead:
+
+  if ( dataset != 'Mexico'
+    && dataset != 'USA' ) {
+    document.getElementById( 'zoom' ).selectedIndex = 0;
+    document.getElementById( 'zoom' ).style.display = '';
+  }
+
+} // swapZoomList()
+
+ 
+/*
+jumpTo()
+Zooms to the appropriate map bounds, center, and zoom based on the specified
+location name.
+*/
+
+function jumpTo ( location ) {
+
+  var center;
+  var zoomLevel;
+  var sw;
+  var ne;
+  var bounds;
+
+  // Re-set "zoom" select list to default afterwards:
+
+  setTimeout(
+    function () {
+      document.getElementById( 'zoom' ).selectedIndex = 0;
+    },
+    750
+  ); 
+
+  // Set home location:
+
+  var home_sw = new google.maps.LatLng( 12.162879, -125.3320 );
+  var home_ne = new google.maps.LatLng( 49.2104, -66.6650 );
+   
+  var sw;
+  var ne;
+
+  if ( location == "home" ) {
+    sw = home_sw;
+    ne = home_ne;
+  }
+
+  /* Countries: */
+
+  else if ( location == "Mexico" ) {
+    sw = new google.maps.LatLng( 12.162879, -118.929723 );
+    ne = new google.maps.LatLng( 33.463545, -85.48734 ); 
+  }
+  else if ( location == "USA" ) {
+    sw = new google.maps.LatLng( 24.2870, -125.3320 );
+    ne = new google.maps.LatLng( 49.2104, -66.6650 );
+  }
+
+  /* Mexican states: */
+
+  else if ( location == "Aguascalientes" ) {
+    sw = new google.maps.LatLng( 21.6537475586, -102.860977173 );
+    ne = new google.maps.LatLng( 22.4624977114, -101.846206665 );
+  }
+  else if ( location == "Baja California" ) {
+    sw = new google.maps.LatLng( 27.9988861086, -118.404167175 );
+    ne = new google.maps.LatLng( 32.7184562687, -112.72328186 );
+  }
+  else if ( location == "Baja California Sur" ) {
+    sw = new google.maps.LatLng( 18.7161102299, -115.043899536 );
+    ne = new google.maps.LatLng( 28.0019416812, -109.400848389 );
+  }
+  else if ( location == "Campeche" ) {
+    sw = new google.maps.LatLng( 17.819721222, -92.4811172483 );
+    ne = new google.maps.LatLng( 20.8632316585, -89.4177856441 );
+  }
+  else if ( location == "Chiapas" ) {
+    sw = new google.maps.LatLng( 14.5505466464, -94.1231307984 );
+    ne = new google.maps.LatLng( 17.9901371001, -90.3844451901 );
+  }
+  else if ( location == "Chihuahua" ) {
+    sw = new google.maps.LatLng( 25.6060867305, -109.146392822 );
+    ne = new google.maps.LatLng( 31.7838859561, -103.290870667 );
+  }
+  else if ( location == "Coahuila" ) {
+    sw = new google.maps.LatLng( 24.5632019042, -103.950286866 );
+    ne = new google.maps.LatLng( 29.8879833224, -99.8067016599 );
+  }
+  else if ( location == "Colima" ) {
+    sw = new google.maps.LatLng( 18.68806839, -104.592422486 );
+    ne = new google.maps.LatLng( 19.5169410706, -103.479553223 );
+  }
+  else if ( location == "Distrito Federal" ) {
+    sw = new google.maps.LatLng( 19.0769424436, -99.3452835083 );
+    ne = new google.maps.LatLng( 19.4841651914, -98.9400100708 );
+  }
+  else if ( location == "Durango" ) {
+    sw = new google.maps.LatLng( 22.3192100527, -107.124732971 );
+    ne = new google.maps.LatLng( 26.838607788, -102.504997253 );
+  }
+  else if ( location == "Guanajuato" ) {
+    sw = new google.maps.LatLng( 19.9072208401, -102.108901978 );
+    ne = new google.maps.LatLng( 21.8593711853, -99.7233352661 );
+  }
+  else if ( location == "Guerrero" ) {
+    sw = new google.maps.LatLng( 16.3193435673, -102.18195343 );
+    ne = new google.maps.LatLng( 18.8597221374, -98.0045852664 );
+  }
+  else if ( location == "Hidalgo" ) {
+    sw = new google.maps.LatLng( 19.5854034425, -99.8291015624 );
+    ne = new google.maps.LatLng( 21.3988876345, -98.0295867916 );
+  }
+  else if ( location == "Jalisco" ) {
+    sw = new google.maps.LatLng( 18.9589557646, -105.678337097 );
+    ne = new google.maps.LatLng( 22.7647209167, -101.524856567 );
+  }
+  else if ( location == "Mexico" ) {
+    sw = new google.maps.LatLng( 18.3902759556, -100.586402893 );
+    ne = new google.maps.LatLng( 20.2708320615, -98.5811157225 );
+  }
+  else if ( location == "Michoacan" ) {
+    sw = new google.maps.LatLng( 17.9208297729, -103.745483398 );
+    ne = new google.maps.LatLng( 20.3941650392, -100.062362671 );
+  }
+  else if ( location == "Morelos" ) {
+    sw = new google.maps.LatLng( 18.370792389, -99.4965362546 );
+    ne = new google.maps.LatLng( 19.1449985504, -98.6482009887 );
+  }
+  else if ( location == "Nayarit" ) {
+    sw = new google.maps.LatLng( 20.6990432743, -106.645843506 );
+    ne = new google.maps.LatLng( 23.0674552913, -103.955841064 );
+  }
+  else if ( location == "Nuevo Leon" ) {
+    sw = new google.maps.LatLng( 23.1952056886, -101.218612671 );
+    ne = new google.maps.LatLng( 27.7941665649, -98.4438934325 );
+  }
+  else if ( location == "Oaxaca" ) {
+    sw = new google.maps.LatLng( 15.6436100006, -98.5546875002 );
+    ne = new google.maps.LatLng( 18.6811103821, -93.8672332761 );
+  }
+  else if ( location == "Puebla" ) {
+    sw = new google.maps.LatLng( 17.8922195435, -99.0504913327 );
+    ne = new google.maps.LatLng( 20.790275574, -96.7263946533 );
+  }
+  else if ( location == "Queretaro" ) {
+    sw = new google.maps.LatLng( 19.9380416867, -100.598205567 );
+    ne = new google.maps.LatLng( 21.6441650394, -99.0408477783 );
+  }
+  else if ( location == "Quintana Roo" ) {
+    sw = new google.maps.LatLng( 17.818885803, -89.4304351806 );
+    ne = new google.maps.LatLng( 21.6061096191, -86.7386169437 );
+  }
+  else if ( location == "San Luis Potosi" ) {
+    sw = new google.maps.LatLng( 21.1859703063, -102.278541565 );
+    ne = new google.maps.LatLng( 24.5632019042, -98.3447341918 );
+  }
+  else if ( location == "Sinaloa" ) {
+    sw = new google.maps.LatLng( 22.4683609008, -109.442779541 );
+    ne = new google.maps.LatLng( 27.0606918339, -105.402076721 );
+  }
+  else if ( location == "Sonora" ) {
+    sw = new google.maps.LatLng( 26.263053894, -115.03742981 );
+    ne = new google.maps.LatLng( 32.5069885254, -108.467918396 );
+  }
+  else if ( location == "Tabasco" ) {
+    sw = new google.maps.LatLng( 17.25610733, -94.1376037599 );
+    ne = new google.maps.LatLng( 18.6569786075, -90.9824218753 );
+  }
+  else if ( location == "Tamaulipas" ) {
+    sw = new google.maps.LatLng( 22.2148590087, -100.08517456 );
+    ne = new google.maps.LatLng( 27.6689376832, -97.1375045776 );
+  }
+  else if ( location == "Tlaxcala" ) {
+    sw = new google.maps.LatLng( 19.0895824429, -98.698272705 );
+    ne = new google.maps.LatLng( 19.7123584749, -97.6134796144 );
+  }
+  else if ( location == "Veracruz" ) {
+    sw = new google.maps.LatLng( 17.1499977112, -98.6422271727 );
+    ne = new google.maps.LatLng( 22.4405536653, -93.589401245 );
+  }
+  else if ( location == "Yucatan" ) {
+    sw = new google.maps.LatLng( 19.6519432069, -90.4057159425 );
+    ne = new google.maps.LatLng( 21.6099967956, -87.5391845699 );
+  }
+  else if ( location == "Zacatecas" ) {
+    sw = new google.maps.LatLng( 21.054443359, -104.329643249 );
+    ne = new google.maps.LatLng( 25.15555191, -100.822563172 );
+  }
+
+  /* USA states: */
+
+  else if ( location == "Alabama" ) {
+    sw = new google.maps.LatLng( 30.2336043556, -88.4729522788 );
+    ne = new google.maps.LatLng( 35.0160333601, -84.8940162755 );
+  }
+  else if ( location == "Alaska" ) {
+    sw = new google.maps.LatLng( 51.5830323755, -178.217598362 );
+    ne = new google.maps.LatLng( 71.406235394, -129.992235317 );
+  }
+  else if ( location == "Arizona" ) {
+    sw = new google.maps.LatLng( 31.3356343566, -114.821761303 );
+    ne = new google.maps.LatLng( 37.0039263619, -109.045615298 );
+  }
+  else if ( location == "Arkansas" ) {
+    sw = new google.maps.LatLng( 33.0101513582, -94.6172572845 );
+    ne = new google.maps.LatLng( 36.4928113615, -89.6454792799 );
+  }
+  else if ( location == "California" ) {
+    sw = new google.maps.LatLng( 32.5357813578, -124.392638312 );
+    ne = new google.maps.LatLng( 42.0021913666, -114.125230303 );
+  }
+  else if ( location == "Colorado" ) {
+    sw = new google.maps.LatLng( 36.9889943619, -109.055861298 );
+    ne = new google.maps.LatLng( 41.0033753657, -102.037207291 );
+  }
+  else if ( location == "Connecticut" ) {
+    sw = new google.maps.LatLng( 40.9983923656, -73.725237265 );
+    ne = new google.maps.LatLng( 42.0474283666, -71.7882492632 );
+  }
+  else if ( location == "Delaware" ) {
+    sw = new google.maps.LatLng( 38.4496023633, -75.791094267 );
+    ne = new google.maps.LatLng( 39.8401193646, -75.0456232663 );
+  }
+  else if ( location == "District of Columbia" ) {
+    sw = new google.maps.LatLng( 38.7882343636, -77.1223282682 );
+    ne = new google.maps.LatLng( 38.9935413638, -76.910904268 );
+  }
+  else if ( location == "Florida" ) {
+    sw = new google.maps.LatLng( 24.9563763507, -87.625711278 );
+    ne = new google.maps.LatLng( 31.0031573563, -80.0509112709 );
+  }
+  else if ( location == "Georgia" ) {
+    sw = new google.maps.LatLng( 30.3612913557, -85.6089602761 );
+    ne = new google.maps.LatLng( 35.0003663601, -80.8947532717 );
+  }
+  else if ( location == "Hawaii" ) {
+    sw = new google.maps.LatLng( 18.9217863451, -160.242406346 );
+    ne = new google.maps.LatLng( 22.2291203482, -154.791096341 );
+  }
+  else if ( location == "Idaho" ) {
+    sw = new google.maps.LatLng( 41.9945993666, -117.236921306 );
+    ne = new google.maps.LatLng( 48.9999503731, -111.0467713 );
+  }
+  else if ( location == "Illinois" ) {
+    sw = new google.maps.LatLng( 36.9868223619, -91.5162842816 );
+    ne = new google.maps.LatLng( 42.5093633671, -87.5079092779 );
+  }
+  else if ( location == "Indiana" ) {
+    sw = new google.maps.LatLng( 37.7762243626, -88.1014902784 );
+    ne = new google.maps.LatLng( 41.7655403664, -84.7874462754 );
+  }
+  else if ( location == "Iowa" ) {
+    sw = new google.maps.LatLng( 40.3719463651, -96.6407092864 );
+    ne = new google.maps.LatLng( 43.501457368, -90.1427962803 );
+  }
+  else if ( location == "Kansas" ) {
+    sw = new google.maps.LatLng( 36.9888753619, -102.051535291 );
+    ne = new google.maps.LatLng( 40.0029873647, -94.6012242845 );
+  }
+  else if ( location == "Kentucky" ) {
+    sw = new google.maps.LatLng( 36.4965703615, -89.5682312798 );
+    ne = new google.maps.LatLng( 39.1420633639, -81.9595752727 );
+  }
+  else if ( location == "Louisiana" ) {
+    sw = new google.maps.LatLng( 28.9396553544, -94.041785284 );
+    ne = new google.maps.LatLng( 33.0234223582, -89.0218032793 );
+  }
+  else if ( location == "Maine" ) {
+    sw = new google.maps.LatLng( 43.0910503676, -71.0875092626 );
+    ne = new google.maps.LatLng( 47.4533343717, -66.9692712588 );
+  }
+  else if ( location == "Maryland" ) {
+    sw = new google.maps.LatLng( 37.9702553628, -79.4898652704 );
+    ne = new google.maps.LatLng( 39.7254613645, -75.0456232663 );
+  }
+  else if ( location == "Massachusetts" ) {
+    sw = new google.maps.LatLng( 41.2382793659, -73.4988402648 );
+    ne = new google.maps.LatLng( 42.8868773674, -69.9177802615 );
+  }
+  else if ( location == "Michigan" ) {
+    sw = new google.maps.LatLng( 41.6974943663, -90.4082002806 );
+    ne = new google.maps.LatLng( 48.1737953723, -82.4198362731 );
+  }
+  else if ( location == "Minnesota" ) {
+    sw = new google.maps.LatLng( 43.498102368, -97.2294362869 );
+    ne = new google.maps.LatLng( 49.3717303734, -89.5306732798 );
+  }
+  else if ( location == "Mississippi" ) {
+    sw = new google.maps.LatLng( 30.1949353556, -91.6436822817 );
+    ne = new google.maps.LatLng( 35.0050413601, -88.0904682784 );
+  }
+  else if ( location == "Missouri" ) {
+    sw = new google.maps.LatLng( 35.989656361, -95.7674792856 );
+    ne = new google.maps.LatLng( 40.6097843653, -89.1050342794 );
+  }
+  else if ( location == "Montana" ) {
+    sw = new google.maps.LatLng( 44.3536393688, -116.063531304 );
+    ne = new google.maps.LatLng( 49.0000263731, -104.043072293 );
+  }
+  else if ( location == "Nebraska" ) {
+    sw = new google.maps.LatLng( 39.9925953647, -104.056219293 );
+    ne = new google.maps.LatLng( 43.0030623675, -95.3086972852 );
+  }
+  else if ( location == "Nevada" ) {
+    sw = new google.maps.LatLng( 34.9989143601, -119.996324308 );
+    ne = new google.maps.LatLng( 41.9966373666, -114.037392303 );
+  }
+  else if ( location == "New Hampshire" ) {
+    sw = new google.maps.LatLng( 42.6986033672, -72.553428264 );
+    ne = new google.maps.LatLng( 45.3014693697, -70.7341392623 );
+  }
+  else if ( location == "New Jersey" ) {
+    sw = new google.maps.LatLng( 38.9566823637, -75.5702342668 );
+    ne = new google.maps.LatLng( 41.350573366, -73.8961482652 );
+  }
+  else if ( location == "New Mexico" ) {
+    sw = new google.maps.LatLng( 31.3434533567, -109.051346298 );
+    ne = new google.maps.LatLng( 36.9997603619, -102.997401292 );
+  }
+  else if ( location == "New York" ) {
+    sw = new google.maps.LatLng( 40.5060033652, -79.7632352707 );
+    ne = new google.maps.LatLng( 45.0061383694, -71.8699862633 );
+  }
+  else if ( location == "North Carolina" ) {
+    sw = new google.maps.LatLng( 33.882164359, -84.3237732749 );
+    ne = new google.maps.LatLng( 36.5897673615, -75.4565802667 );
+  }
+  else if ( location == "North Dakota" ) {
+    sw = new google.maps.LatLng( 45.9308223702, -104.062991293 );
+    ne = new google.maps.LatLng( 49.0000263731, -96.5519312863 );
+  }
+  else if ( location == "Ohio" ) {
+    sw = new google.maps.LatLng( 38.4005113632, -84.8120702754 );
+    ne = new google.maps.LatLng( 41.9868723666, -80.5199962714 );
+  }
+  else if ( location == "Oklahoma" ) {
+    sw = new google.maps.LatLng( 33.6211363588, -102.997709292 );
+    ne = new google.maps.LatLng( 37.0014783619, -94.4285522843 );
+  }
+  else if ( location == "Oregon" ) {
+    sw = new google.maps.LatLng( 41.9876723666, -124.559617312 );
+    ne = new google.maps.LatLng( 46.2360913705, -116.470418305 );
+  }
+  else if ( location == "Pennsylvania" ) {
+    sw = new google.maps.LatLng( 39.7193133645, -80.5260452714 );
+    ne = new google.maps.LatLng( 42.2673273668, -74.700062266 );
+  }
+  else if ( location == "Rhode Island" ) {
+    sw = new google.maps.LatLng( 41.3227693659, -71.8666782633 );
+    ne = new google.maps.LatLng( 42.0137133666, -71.1171322626 );
+  }
+  else if ( location == "South Carolina" ) {
+    sw = new google.maps.LatLng( 32.0681733573, -83.350685274 );
+    ne = new google.maps.LatLng( 35.2083563603, -78.5794532696 );
+  }
+  else if ( location == "South Dakota" ) {
+    sw = new google.maps.LatLng( 42.488459367, -104.061036293 );
+    ne = new google.maps.LatLng( 45.9435473703, -96.4393942862 );
+  }
+  else if ( location == "Tennessee" ) {
+    sw = new google.maps.LatLng( 34.9887593601, -90.3054482805 );
+    ne = new google.maps.LatLng( 36.6796833616, -81.6522722724 );
+  }
+  else if ( location == "Texas" ) {
+    sw = new google.maps.LatLng( 25.8455573515, -106.650062296 );
+    ne = new google.maps.LatLng( 36.4939123615, -93.5073892835 );
+  }
+  else if ( location == "Utah" ) {
+    sw = new google.maps.LatLng( 36.9917463619, -114.047273303 );
+    ne = new google.maps.LatLng( 42.0023003666, -109.043206298 );
+  }
+  else if ( location == "Vermont" ) {
+    sw = new google.maps.LatLng( 42.7258523673, -73.4360002648 );
+    ne = new google.maps.LatLng( 45.0133513694, -71.505372263 );
+  }
+  else if ( location == "Virginia" ) {
+    sw = new google.maps.LatLng( 36.5416233615, -83.6751772743 );
+    ne = new google.maps.LatLng( 39.4569983642, -75.2422192665 );
+  }
+  else if ( location == "Washington" ) {
+    sw = new google.maps.LatLng( 45.5430923699, -124.732769313 );
+    ne = new google.maps.LatLng( 48.9999313731, -116.919132305 );
+  }
+  else if ( location == "West Virginia" ) {
+    sw = new google.maps.LatLng( 37.2049103621, -82.6471582734 );
+    ne = new google.maps.LatLng( 40.6372033653, -77.7274672688 );
+  }
+  else if ( location == "Wisconsin" ) {
+    sw = new google.maps.LatLng( 42.489152367, -92.8853972829 );
+    ne = new google.maps.LatLng( 46.9524793712, -86.9677122774 );
+  }
+  else if ( location == "Wyoming" ) {
+    sw = new google.maps.LatLng( 40.9942893656, -111.0534283 );
+    ne = new google.maps.LatLng( 45.0027933694, -104.051705293 );
+  }
+
+  else {
+    return false;
+  }
+
+  // Compute latlng bounding box:
+
+  bounds = new google.maps.LatLngBounds( sw, ne );
+
+  // If not specified above, define center as center of above max bounding box:
+
+  if ( !center ) {
+    center = bounds.getCenter();
+  }
+
+  // Set map to specified center point and bounds:
+
+  map.fitBounds( bounds );
+  map.setCenter( center );
+
+} // jumpTo()
+
+</script>
+
+</head>
+
+<body>
+
+<div id="header">
+
+<!--#include virtual="/~kbarton/ssi/map_about_icons.ssi" -->
+
+<select id="sites" onChange="addSitesAndJump(); this.blur();">
+  <option value="" selected>Which herbaria?</option>
+  <option value="">none</option>
+  <option value="1Dp8swlS1hdyugjDAO2WMNbmxo6Ze-e2v1y0SHZts0-E">Mexico</option>
+  <option value="1a8Rlm4E_yGrSAp14G8EhwixK3mRKLQSeJIXU174Urww">USA</option>
+</select>
+
+<select name="species_list" id="species_Mexico" onChange="addSitesAndJump(); this.blur();" style="display: none;">
+  <option value="">All species</option>
+  <option value="aenea">aenea</option>
+  <option value="alba">alba</option>
+  <option value="chisosensis">chisosensis</option>
+  <option value="fruticosa">fruticosa</option>
+  <option value="gracilenta">gracilenta</option>
+  <option value="grandiflora">grandiflora</option>
+  <option value="intermedia">intermedia</option>
+  <option value="mexicana">mexicana</option>
+  <option value="mexicana ssp. ochroleuca">mexicana ssp. ochroleuca</option>
+  <option value="mexicana sub. Ochroleuca">mexicana sub. Ochroleuca</option>
+  <option value="mexicanum">mexicanum</option>
+  <option value="munita">munita</option>
+  <option value="ownbeyana">ownbeyana</option>
+  <option value="platyceras">platyceras</option>
+  <option value="pleiacantha">pleiacantha</option>
+  <option value="pleiacantha subsp. pleiacantha">pleiacantha subsp. pleiacantha</option>
+  <option value="sanguinea">sanguinea</option>
+  <option value="sp.">sp.</option>
+  <option value="subfusiformis">subfusiformis</option>
+  <option value="subintegrifolia">subintegrifolia</option>
+  <option value="turnerae">turnerae</option>
+</select>
+
+<select name="species_list" id="species_USA" onChange="addSitesAndJump(); this.blur();" style="display: none;">
+  <option value="">all species</option>
+  <option value="undefined">undefined</option>
+  <option value="alba">alba</option>
+  <option value="albiflora">albiflora</option>
+  <option value="corymbosa">corymbosa</option>
+  <option value="hispida">hispida</option>
+  <option value="intermedia">intermedia</option>
+  <option value="leiocarpa">leiocarpa</option>
+  <option value="mexicana">mexicana</option>
+  <option value="munita">munita</option>
+  <option value="ochroleuca">ochroleuca</option>
+  <option value="ownbeyana">ownbeyana</option>
+  <option value="platyceras">platyceras</option>
+  <option value="pleiacantha">pleiacantha</option>
+  <option value="polyanthemos">polyanthemos</option>
+  <option value="rotundata">rotundata</option>
+  <option value="squarrosa">squarrosa</option>
+</select>
+
+<select id="icon" onChange="addSitesAndJump( 'skip_jump' ); this.blur();" style="display: none;">
+  <option value="small" selected>Icon size?</option>
+  <option value="small">small</option>
+  <option value="large">large</option>
+</select>
+
+<select name="zoom_list" id="zoom" onChange="jumpTo( this.value ); this.blur();">
+  <option value="">Zoom to...</option>
+  <option value="Mexico" class="highlightedOption">Mexico</option>
+  <option value="Aguascalientes">&nbsp;&nbsp;&nbsp;Aguascalientes</option>
+  <option value="Baja California">&nbsp;&nbsp;&nbsp;Baja California</option>
+  <option value="Baja California Sur">&nbsp;&nbsp;&nbsp;Baja California Sur</option>
+  <option value="Campeche">&nbsp;&nbsp;&nbsp;Campeche</option>
+  <option value="Chiapas">&nbsp;&nbsp;&nbsp;Chiapas</option>
+  <option value="Chihuahua">&nbsp;&nbsp;&nbsp;Chihuahua</option>
+  <option value="Coahuila">&nbsp;&nbsp;&nbsp;Coahuila</option>
+  <option value="Colima">&nbsp;&nbsp;&nbsp;Colima</option>
+  <option value="Distrito Federal">&nbsp;&nbsp;&nbsp;Distrito Federal</option>
+  <option value="Durango">&nbsp;&nbsp;&nbsp;Durango</option>
+  <option value="Guanajuato">&nbsp;&nbsp;&nbsp;Guanajuato</option>
+  <option value="Guerrero">&nbsp;&nbsp;&nbsp;Guerrero</option>
+  <option value="Hidalgo">&nbsp;&nbsp;&nbsp;Hidalgo</option>
+  <option value="Jalisco">&nbsp;&nbsp;&nbsp;Jalisco</option>
+  <option value="Mexico">&nbsp;&nbsp;&nbsp;Mexico</option>
+  <option value="Michoacan">&nbsp;&nbsp;&nbsp;Michoacan</option>
+  <option value="Morelos">&nbsp;&nbsp;&nbsp;Morelos</option>
+  <option value="Nayarit">&nbsp;&nbsp;&nbsp;Nayarit</option>
+  <option value="Nuevo Leon">&nbsp;&nbsp;&nbsp;Nuevo Leon</option>
+  <option value="Oaxaca">&nbsp;&nbsp;&nbsp;Oaxaca</option>
+  <option value="Puebla">&nbsp;&nbsp;&nbsp;Puebla</option>
+  <option value="Queretaro">&nbsp;&nbsp;&nbsp;Queretaro</option>
+  <option value="Quintana Roo">&nbsp;&nbsp;&nbsp;Quintana Roo</option>
+  <option value="San Luis Potosi">&nbsp;&nbsp;&nbsp;San Luis Potosi</option>
+  <option value="Sinaloa">&nbsp;&nbsp;&nbsp;Sinaloa</option>
+  <option value="Sonora">&nbsp;&nbsp;&nbsp;Sonora</option>
+  <option value="Tabasco">&nbsp;&nbsp;&nbsp;Tabasco</option>
+  <option value="Tamaulipas">&nbsp;&nbsp;&nbsp;Tamaulipas</option>
+  <option value="Tlaxcala">&nbsp;&nbsp;&nbsp;Tlaxcala</option>
+  <option value="Veracruz">&nbsp;&nbsp;&nbsp;Veracruz</option>
+  <option value="Yucatan">&nbsp;&nbsp;&nbsp;Yucatan</option>
+  <option value="Zacatecas">&nbsp;&nbsp;&nbsp;Zacatecas</option>
+  <option value="USA" class="highlightedOption">USA</option>
+  <option value="Alabama">&nbsp;&nbsp;&nbsp;Alabama</option>
+  <option value="Alaska">&nbsp;&nbsp;&nbsp;Alaska</option>
+  <option value="Arizona">&nbsp;&nbsp;&nbsp;Arizona</option>
+  <option value="Arkansas">&nbsp;&nbsp;&nbsp;Arkansas</option>
+  <option value="California">&nbsp;&nbsp;&nbsp;California</option>
+  <option value="Colorado">&nbsp;&nbsp;&nbsp;Colorado</option>
+  <option value="Connecticut">&nbsp;&nbsp;&nbsp;Connecticut</option>
+  <option value="Delaware">&nbsp;&nbsp;&nbsp;Delaware</option>
+  <option value="District of Columbia">&nbsp;&nbsp;&nbsp;District of Columbia</option>
+  <option value="Florida">&nbsp;&nbsp;&nbsp;Florida</option>
+  <option value="Georgia">&nbsp;&nbsp;&nbsp;Georgia</option>
+  <option value="Hawaii">&nbsp;&nbsp;&nbsp;Hawaii</option>
+  <option value="Idaho">&nbsp;&nbsp;&nbsp;Idaho</option>
+  <option value="Illinois">&nbsp;&nbsp;&nbsp;Illinois</option>
+  <option value="Indiana">&nbsp;&nbsp;&nbsp;Indiana</option>
+  <option value="Iowa">&nbsp;&nbsp;&nbsp;Iowa</option>
+  <option value="Kansas">&nbsp;&nbsp;&nbsp;Kansas</option>
+  <option value="Kentucky">&nbsp;&nbsp;&nbsp;Kentucky</option>
+  <option value="Louisiana">&nbsp;&nbsp;&nbsp;Louisiana</option>
+  <option value="Maine">&nbsp;&nbsp;&nbsp;Maine</option>
+  <option value="Maryland">&nbsp;&nbsp;&nbsp;Maryland</option>
+  <option value="Massachusetts">&nbsp;&nbsp;&nbsp;Massachusetts</option>
+  <option value="Michigan">&nbsp;&nbsp;&nbsp;Michigan</option>
+  <option value="Minnesota">&nbsp;&nbsp;&nbsp;Minnesota</option>
+  <option value="Mississippi">&nbsp;&nbsp;&nbsp;Mississippi</option>
+  <option value="Missouri">&nbsp;&nbsp;&nbsp;Missouri</option>
+  <option value="Montana">&nbsp;&nbsp;&nbsp;Montana</option>
+  <option value="Nebraska">&nbsp;&nbsp;&nbsp;Nebraska</option>
+  <option value="Nevada">&nbsp;&nbsp;&nbsp;Nevada</option>
+  <option value="New Hampshire">&nbsp;&nbsp;&nbsp;New Hampshire</option>
+  <option value="New Jersey">&nbsp;&nbsp;&nbsp;New Jersey</option>
+  <option value="New Mexico">&nbsp;&nbsp;&nbsp;New Mexico</option>
+  <option value="New York">&nbsp;&nbsp;&nbsp;New York</option>
+  <option value="North Carolina">&nbsp;&nbsp;&nbsp;North Carolina</option>
+  <option value="North Dakota">&nbsp;&nbsp;&nbsp;North Dakota</option>
+  <option value="Ohio">&nbsp;&nbsp;&nbsp;Ohio</option>
+  <option value="Oklahoma">&nbsp;&nbsp;&nbsp;Oklahoma</option>
+  <option value="Oregon">&nbsp;&nbsp;&nbsp;Oregon</option>
+  <option value="Pennsylvania">&nbsp;&nbsp;&nbsp;Pennsylvania</option>
+  <option value="Rhode Island">&nbsp;&nbsp;&nbsp;Rhode Island</option>
+  <option value="South Carolina">&nbsp;&nbsp;&nbsp;South Carolina</option>
+  <option value="South Dakota">&nbsp;&nbsp;&nbsp;South Dakota</option>
+  <option value="Tennessee">&nbsp;&nbsp;&nbsp;Tennessee</option>
+  <option value="Texas">&nbsp;&nbsp;&nbsp;Texas</option>
+  <option value="Utah">&nbsp;&nbsp;&nbsp;Utah</option>
+  <option value="Vermont">&nbsp;&nbsp;&nbsp;Vermont</option>
+  <option value="Virginia">&nbsp;&nbsp;&nbsp;Virginia</option>
+  <option value="Washington">&nbsp;&nbsp;&nbsp;Washington</option>
+  <option value="West Virginia">&nbsp;&nbsp;&nbsp;West Virginia</option>
+  <option value="Wisconsin">&nbsp;&nbsp;&nbsp;Wisconsin</option>
+  <option value="Wyoming">&nbsp;&nbsp;&nbsp;Wyoming</option>
+</select>
+
+<select name="zoom_list" id="zoom_Mexico" onChange="jumpTo( this.value ); this.blur();" style="display: none;">
+  <option value="">Zoom to...</option>
+  <option value="Mexico" class="highlightedOption">Mexico</option>
+  <option value="Aguascalientes">&nbsp;&nbsp;&nbsp;Aguascalientes</option>
+  <option value="Baja California">&nbsp;&nbsp;&nbsp;Baja California</option>
+  <option value="Baja California Sur">&nbsp;&nbsp;&nbsp;Baja California Sur</option>
+  <option value="Campeche">&nbsp;&nbsp;&nbsp;Campeche</option>
+  <option value="Chiapas">&nbsp;&nbsp;&nbsp;Chiapas</option>
+  <option value="Chihuahua">&nbsp;&nbsp;&nbsp;Chihuahua</option>
+  <option value="Coahuila">&nbsp;&nbsp;&nbsp;Coahuila</option>
+  <option value="Colima">&nbsp;&nbsp;&nbsp;Colima</option>
+  <option value="Distrito Federal">&nbsp;&nbsp;&nbsp;Distrito Federal</option>
+  <option value="Durango">&nbsp;&nbsp;&nbsp;Durango</option>
+  <option value="Guanajuato">&nbsp;&nbsp;&nbsp;Guanajuato</option>
+  <option value="Guerrero">&nbsp;&nbsp;&nbsp;Guerrero</option>
+  <option value="Hidalgo">&nbsp;&nbsp;&nbsp;Hidalgo</option>
+  <option value="Jalisco">&nbsp;&nbsp;&nbsp;Jalisco</option>
+  <option value="Mexico">&nbsp;&nbsp;&nbsp;Mexico</option>
+  <option value="Michoacan">&nbsp;&nbsp;&nbsp;Michoacan</option>
+  <option value="Morelos">&nbsp;&nbsp;&nbsp;Morelos</option>
+  <option value="Nayarit">&nbsp;&nbsp;&nbsp;Nayarit</option>
+  <option value="Nuevo Leon">&nbsp;&nbsp;&nbsp;Nuevo Leon</option>
+  <option value="Oaxaca">&nbsp;&nbsp;&nbsp;Oaxaca</option>
+  <option value="Puebla">&nbsp;&nbsp;&nbsp;Puebla</option>
+  <option value="Queretaro">&nbsp;&nbsp;&nbsp;Queretaro</option>
+  <option value="Quintana Roo">&nbsp;&nbsp;&nbsp;Quintana Roo</option>
+  <option value="San Luis Potosi">&nbsp;&nbsp;&nbsp;San Luis Potosi</option>
+  <option value="Sinaloa">&nbsp;&nbsp;&nbsp;Sinaloa</option>
+  <option value="Sonora">&nbsp;&nbsp;&nbsp;Sonora</option>
+  <option value="Tabasco">&nbsp;&nbsp;&nbsp;Tabasco</option>
+  <option value="Tamaulipas">&nbsp;&nbsp;&nbsp;Tamaulipas</option>
+  <option value="Tlaxcala">&nbsp;&nbsp;&nbsp;Tlaxcala</option>
+  <option value="Veracruz">&nbsp;&nbsp;&nbsp;Veracruz</option>
+  <option value="Yucatan">&nbsp;&nbsp;&nbsp;Yucatan</option>
+  <option value="Zacatecas">&nbsp;&nbsp;&nbsp;Zacatecas</option>
+</select>
+
+<select name="zoom_list" id="zoom_USA" onChange="jumpTo( this.value ); this.blur();" style="display: none;">
+  <option value="">Zoom to...</option>
+  <option value="USA" class="highlightedOption">USA</option>
+  <option value="Alabama">&nbsp;&nbsp;&nbsp;Alabama</option>
+  <option value="Alaska">&nbsp;&nbsp;&nbsp;Alaska</option>
+  <option value="Arizona">&nbsp;&nbsp;&nbsp;Arizona</option>
+  <option value="Arkansas">&nbsp;&nbsp;&nbsp;Arkansas</option>
+  <option value="California">&nbsp;&nbsp;&nbsp;California</option>
+  <option value="Colorado">&nbsp;&nbsp;&nbsp;Colorado</option>
+  <option value="Connecticut">&nbsp;&nbsp;&nbsp;Connecticut</option>
+  <option value="Delaware">&nbsp;&nbsp;&nbsp;Delaware</option>
+  <option value="District of Columbia">&nbsp;&nbsp;&nbsp;District of Columbia</option>
+  <option value="Florida">&nbsp;&nbsp;&nbsp;Florida</option>
+  <option value="Georgia">&nbsp;&nbsp;&nbsp;Georgia</option>
+  <option value="Hawaii">&nbsp;&nbsp;&nbsp;Hawaii</option>
+  <option value="Idaho">&nbsp;&nbsp;&nbsp;Idaho</option>
+  <option value="Illinois">&nbsp;&nbsp;&nbsp;Illinois</option>
+  <option value="Indiana">&nbsp;&nbsp;&nbsp;Indiana</option>
+  <option value="Iowa">&nbsp;&nbsp;&nbsp;Iowa</option>
+  <option value="Kansas">&nbsp;&nbsp;&nbsp;Kansas</option>
+  <option value="Kentucky">&nbsp;&nbsp;&nbsp;Kentucky</option>
+  <option value="Louisiana">&nbsp;&nbsp;&nbsp;Louisiana</option>
+  <option value="Maine">&nbsp;&nbsp;&nbsp;Maine</option>
+  <option value="Maryland">&nbsp;&nbsp;&nbsp;Maryland</option>
+  <option value="Massachusetts">&nbsp;&nbsp;&nbsp;Massachusetts</option>
+  <option value="Michigan">&nbsp;&nbsp;&nbsp;Michigan</option>
+  <option value="Minnesota">&nbsp;&nbsp;&nbsp;Minnesota</option>
+  <option value="Mississippi">&nbsp;&nbsp;&nbsp;Mississippi</option>
+  <option value="Missouri">&nbsp;&nbsp;&nbsp;Missouri</option>
+  <option value="Montana">&nbsp;&nbsp;&nbsp;Montana</option>
+  <option value="Nebraska">&nbsp;&nbsp;&nbsp;Nebraska</option>
+  <option value="Nevada">&nbsp;&nbsp;&nbsp;Nevada</option>
+  <option value="New Hampshire">&nbsp;&nbsp;&nbsp;New Hampshire</option>
+  <option value="New Jersey">&nbsp;&nbsp;&nbsp;New Jersey</option>
+  <option value="New Mexico">&nbsp;&nbsp;&nbsp;New Mexico</option>
+  <option value="New York">&nbsp;&nbsp;&nbsp;New York</option>
+  <option value="North Carolina">&nbsp;&nbsp;&nbsp;North Carolina</option>
+  <option value="North Dakota">&nbsp;&nbsp;&nbsp;North Dakota</option>
+  <option value="Ohio">&nbsp;&nbsp;&nbsp;Ohio</option>
+  <option value="Oklahoma">&nbsp;&nbsp;&nbsp;Oklahoma</option>
+  <option value="Oregon">&nbsp;&nbsp;&nbsp;Oregon</option>
+  <option value="Pennsylvania">&nbsp;&nbsp;&nbsp;Pennsylvania</option>
+  <option value="Rhode Island">&nbsp;&nbsp;&nbsp;Rhode Island</option>
+  <option value="South Carolina">&nbsp;&nbsp;&nbsp;South Carolina</option>
+  <option value="South Dakota">&nbsp;&nbsp;&nbsp;South Dakota</option>
+  <option value="Tennessee">&nbsp;&nbsp;&nbsp;Tennessee</option>
+  <option value="Texas">&nbsp;&nbsp;&nbsp;Texas</option>
+  <option value="Utah">&nbsp;&nbsp;&nbsp;Utah</option>
+  <option value="Vermont">&nbsp;&nbsp;&nbsp;Vermont</option>
+  <option value="Virginia">&nbsp;&nbsp;&nbsp;Virginia</option>
+  <option value="Washington">&nbsp;&nbsp;&nbsp;Washington</option>
+  <option value="West Virginia">&nbsp;&nbsp;&nbsp;West Virginia</option>
+  <option value="Wisconsin">&nbsp;&nbsp;&nbsp;Wisconsin</option>
+  <option value="Wyoming">&nbsp;&nbsp;&nbsp;Wyoming</option>
+</select>
+
+<!--#include virtual="/~kbarton/ssi/jumpto_home_icon.ssi" -->
+
+&nbsp;Highlight state boundaries: <input type="checkbox" id="highlight_states" onClick="customMapStyleControl.switchStyle( prevStyle );" />
+
+</div> <!-- #header -->
+
+<div id="map"></div>
+
+<!--#include virtual="/~kbarton/ssi/map_cursor_location.ssi" -->
+ 
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+Author: John Maurer <jmaurer@hawaii.edu>
+Date: January 5, 2016
+-->
+<html>
+
+<head>
+
+<title>Pua Kala Project Plots</title>
+<link rel="shortcut icon" href="/~kbarton/favicon.ico" >
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="/~kbarton/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/~kbarton/js/jquery-migrate-1.2.1.min.js"></script>
+<link type="text/css" rel="stylesheet" href="/~kbarton/js/font-awesome-4.2.0/css/font-awesome.min.css" />
+<link type="text/css" rel="stylesheet" href="/~kbarton/css/subpages.css" />
+<link type="text/css" rel="stylesheet" href="/~kbarton/css/plot_utils.css" />
+<script src="/~kbarton/js/google_sheets_utils.js?v=2"></script>
+<script src="/~kbarton/js/plot_utils.js?v=3"></script>
+
+<script>
+
+// Google Sheets spreadsheet identifier for:
+// https://docs.google.com/spreadsheets/d/1rnHJuFUQKyMhHnk2VDZ1NRQ0BvoNj6w1gisLpjb_6oE/edit#gid=791785575
+
+var spreadsheet_id = '1rnHJuFUQKyMhHnk2VDZ1NRQ0BvoNj6w1gisLpjb_6oE';
+
+</script>
+
+</head>
+
+<body onResize="loadChart()">
+
+<div id="header">
+
+<!--#include virtual="/~kbarton/ssi/plot_about_icons.ssi" -->
+
+<select id="island" onChange="updateIsland( this.value ); this.blur();">
+  <option selected disabled>Which island?</option>
+  <option value="all">All</option>
+  <option value="Big Island">Big Island</option>
+  <option value="Maui County">Maui County</option>
+  <option value="Oahu">Oahu</option>
+</select>
+
+<select id="variable" onChange="updateVariable( this.value ); this.blur();">
+  <option selected disabled>Which variable?</option>
+  <option value="Annual Rainfall (mm)">Annual Rainfall (mm)</option>
+  <option value="Annual Rainfall (inches)">Annual Rainfall (inches)</option> 
+  <option value="Elevation (m)">Elevation (m)</option>
+  <option value="Elevation (ft)">Elevation (ft)</option>
+  <option value="Geologic Age (1=young, 14=old)">Geologic Age (1=young, 14=old)</option>
+  <option value="Mean Prickle Density (per cm2)|Mean Prickle Density -1STE|Mean Prickle Density +1STE">Mean Prickle Density (per cm<sup>2</sup>)</option>
+  <option value="# Plants"># of Plants Sampled</option>
+  <option class="highlightedOption" disabled>scatter plots:</option>
+  <option value="Annual Rainfall (mm) vs. Elevation (m)">Annual Rainfall (mm) vs. Elevation (m)</option>
+  <option value="Annual Rainfall (inches) vs. Elevation (ft)">Annual Rainfall (inches) vs. Elevation (ft)</option>
+  <option value="Mean Prickle Density (per cm2) vs. Annual Rainfall (mm)">Mean Prickle Density vs. Annual Rainfall (mm)</option>
+  <option value="Mean Prickle Density (per cm2) vs. Annual Rainfall (inches)">Mean Prickle Density vs. Annual Rainfall (inches)</option>
+  <option value="Mean Prickle Density (per cm2) vs. Elevation (m)">Mean Prickle Density vs. Elevation (m)</option>
+  <option value="Mean Prickle Density (per cm2) vs. Elevation (ft)">Mean Prickle Density vs. Elevation (ft)</option>
+  <option value="Mean Prickle Density (per cm2) vs. Geologic Age (1=young, 14=old)">Mean Prickle Density vs. Geologic Age</option>
+</select>
+
+<select id="orderBy" onChange="updateOrderBy( this.value ); this.blur();">
+  <option selected disabled>Order by?</option>
+  <option value="variable">Data Value</option>
+  <option value="Site">Site Name</option>
+</select>
+
+<select id="orderDir" onChange="updateOrderDir( this.value ); this.blur();">
+  <option selected disabled>Direction?</option>
+  <option value="ASC">Ascending</option>
+  <option value="DESC">Descending</option>
+</select>
+
+<span id="png"></span>
+&nbsp;
+<span>
+  <span style="border: 1px solid lightgray; padding: 4px;"><span style="background-color: #66c2a5; width: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;</span> <b>Big Island</b></span>
+  <!--<span style="border: 1px solid lightgray; padding: 4px;"><span style="background-color: #fc8d62; width: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;</span> <b>Kauai</b></span>-->
+  <span style="border: 1px solid lightgray; padding: 4px;"><span style="background-color: #8da0cb; width: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;</span> <b>Maui County</b></span>
+  <!--<span style="border: 1px solid lightgray; padding: 4px;"><span style="background-color: #a6d854; width: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;</span> <b>Molokai</b></span>-->
+  <span style="border: 1px solid lightgray; padding: 4px;"><span style="background-color: #e78ac3; width: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;</span> <b>Oahu</b></span>
+</span>
+
+</div>
+
+<div id="chart"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+<div id="enterCoordinates" style="display: none; position: absolute; width: 300px; height: 364px; top: 50px; left: 10px; border: 1px solid #AAAAAA; padding: 10px; background-color: white;">
+  <p style="margin-top: 4px;"><b>Enter a location:</b><span style="float: right"><a href="javascript:void(0)" onClick="document.getElementById( 'enterCoordinates' ).style.display = 'none'"><i class="fa fa-times fa-2x" aria-hidden="true"></i></a></span></p>
+  <table>
+    <tr><td colspan="2"><i>UTM Zone 5:</i></td></tr>
+    <tr><td>Easting:</td><td><input type="text" id="easting" /> m</td></tr>
+    <tr><td>Northing:</td><td><input type="text" id="northing" /> m</td></tr>
+    <tr><td colspan="2"><input id="utmButton" type="button" value="submit" onClick="showLocation()" style="margin-bottom: 10px;"/></td></tr>
+    <tr><td colspan="2"><i>Decimal Degrees:</i></td></tr>
+    <tr><td>Latitude:</td><td><input type="text" id="lat" /> &deg;</td>
+    <tr><td>Longitude:</td><td><input type="text" id="lon" /> &deg;</td>
+    <tr><td colspan="2"><input id="ddButton" type="button" value="submit" onClick="showLocation()" style="margin-bottom: 10px;"/></td></tr>
+    <tr><td colspan="2"><i>Degrees, Minutes, Seconds:</i></td></tr>
+    <tr><td>Latitude:</td><td><input type="text" id="latd" size="4"/> &deg; <input type="text" id="latm" size="4"/> ' <input type="text" id="lats" size="4"/> "</td>
+    <tr><td>Longitude:</td><td><input type="text" id="lond" size="4"/> &deg; <input type="text" id="lonm" size="4"/> ' <input type="text" id="lons" size="4"/> "</td>
+    <tr><td colspan="2"><input id="dmsButton" type="button" value="submit" onClick="showLocation()"/></td></tr>
+  </table>
+</div> <!-- #enterCoordinates -->

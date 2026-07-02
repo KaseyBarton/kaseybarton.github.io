@@ -1,0 +1,9 @@
+<script language='javascript'>
+      take='<a href="mai'
+      a='lto:kbarton'
+      bight='hawaii.e'
+      out='du">kbarton'
+      of='hawaii.e'
+      spam='du</a>'
+      document.write(take+a+'@'+bight+out+'@'+of+spam);
+        </script>

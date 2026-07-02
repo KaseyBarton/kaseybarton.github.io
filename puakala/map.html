@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+Kasey E. Barton: Pua Kala Project Map 
+Author: John Maurer <jmaurer@hawaii.edu>
+Date: January 31, 2014
+-->
+<html>
+
+<head>
+<title>Pua Kala Project Map</title>
+<link rel="shortcut icon" href="/~kbarton/favicon.ico" >
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<script type="text/javascript" src="/~kbarton/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/~kbarton/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/~kbarton/js/jquery-ui-1.11.1/jquery-ui.min.js"></script>
+<link type="text/css" rel="stylesheet" href="/~kbarton/js/jquery-ui-1.11.1/jquery-ui.min.css"></script>
+<link type="text/css" rel="stylesheet" href="/~kbarton/js/font-awesome-4.2.0/css/font-awesome.min.css" />
+<link type="text/css" rel="stylesheet" href="/~kbarton/css/subpages.css?v=2" />
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAlwWZ8Fk0vhhyiNydkjrgU1HhbuEWPv3k"></script>
+<script type="text/javascript" src="/~kbarton/js/keyDragZoom.js"></script>
+<script type="text/javascript" src="/~kbarton/js/customMapStyles.js"></script>
+<script src="/~kbarton/js/proj4/lib/proj4js-combined.js"></script>
+<script src="/~kbarton/js/proj4/lib/defs/UTM5.js"></script>
+<script src="/~kbarton/js/google_sheets_utils.js?v=2"></script>
+<link type="text/css" rel="stylesheet" href="/~kbarton/css/map_utils.css?v=2" />
+<script src="/~kbarton/js/map_utils.js?v=6"></script>
+
+<script>
+
+jQuery( document ).ready(
+  function () {
+
+    // Initiate map centered on Hawaii: 
+
+    var sw = new google.maps.LatLng( 18.5941, -160.4498 );
+    var ne = new google.maps.LatLng( 22.4364, -154.5996 );
+    var bounds = new google.maps.LatLngBounds( sw, ne );
+    var zoom = 8;
+
+    loadMap( bounds, zoom );
+  }
+); // ready()
+
+</script>
+
+</head>
+
+<body>
+
+<div id="header">
+
+<!--#include virtual="/~kbarton/ssi/map_about_icons.ssi" -->
+
+<select id="overlay" onChange="addOverlayKML( 'http://www2.hawaii.edu/~kbarton/kml/' + this.value + '?v=1' ); this.blur();">
+  <option value="">Which overlay?</option>
+  <option value="">none</option>
+  <option value="" class="highlightedOption" disabled>annual rainfall:</option>
+  <option value="rainfall_atlas_of_hawaii_bigisland.kmz">&nbsp;&nbsp;&nbsp;Big Island (in)</option>
+  <option value="rainfall_atlas_of_hawaii_bigisland_mm.kmz?v=4">&nbsp;&nbsp;&nbsp;Big Island (mm)</option>
+  <option value="rainfall_atlas_of_hawaii_kauai.kmz">&nbsp;&nbsp;&nbsp;Kauai (in)</option>
+  <option value="rainfall_atlas_of_hawaii_kauai_mm.kmz?v=3">&nbsp;&nbsp;&nbsp;Kauai (mm)</option>
+  <option value="rainfall_atlas_of_hawaii_mauinui.kmz">&nbsp;&nbsp;&nbsp;Maui County (in)</option>
+  <option value="rainfall_atlas_of_hawaii_mauinui_mm.kmz?v=3">&nbsp;&nbsp;&nbsp;Maui County (mm)</option>
+  <option value="rainfall_atlas_of_hawaii_oahu.kmz">&nbsp;&nbsp;&nbsp;Oahu (in)</option>
+  <option value="rainfall_atlas_of_hawaii_oahu_mm.kmz?v=4">&nbsp;&nbsp;&nbsp;Oahu (mm)</option>
+  <option value="rainfall_atlas_of_hawaii_statewide.kmz">&nbsp;&nbsp;&nbsp;Statewide (in)</option>
+  <option value="rainfall_atlas_of_hawaii_statewide_mm.kmz?v=3">&nbsp;&nbsp;&nbsp;Statewide (mm)</option>
+  <option value="" class="highlightedOption" disabled>geologic age:</option>
+  <option value="usgs_geologic_age_hawaii_bigisland.kmz">&nbsp;&nbsp;&nbsp;Big Island</option>
+  <option value="usgs_geologic_age_hawaii_kauai2.kmz">&nbsp;&nbsp;&nbsp;Kauai</option>
+  <option value="usgs_geologic_age_hawaii_mauinui2.kmz">&nbsp;&nbsp;&nbsp;Maui County</option>
+  <option value="usgs_geologic_age_hawaii_oahu2.kmz">&nbsp;&nbsp;&nbsp;Oahu</option>
+  <option value="usgs_geologic_age_hawaii_statewide2.kmz">&nbsp;&nbsp;&nbsp;Statewide</option>
+  <option value="" class="highlightedOption" disabled>elevation:</option>
+  <option value="usgs_elevation_hawaii_bigisland2.kmz">&nbsp;&nbsp;&nbsp;Big Island</option>
+  <option value="usgs_elevation_hawaii_kauai2.kmz">&nbsp;&nbsp;&nbsp;Kauai</option>
+  <option value="usgs_elevation_hawaii_lanai2.kmz">&nbsp;&nbsp;&nbsp;Lanai</option>
+  <option value="usgs_elevation_hawaii_maui2.kmz">&nbsp;&nbsp;&nbsp;Maui</option>
+  <option value="usgs_elevation_hawaii_molokai2.kmz">&nbsp;&nbsp;&nbsp;Molokai</option>
+  <option value="usgs_elevation_hawaii_oahu2.kmz">&nbsp;&nbsp;&nbsp;Oahu</option>
+  <option value="usgs_elevation_hawaii_statewide2.kmz">&nbsp;&nbsp;&nbsp;Statewide</option>
+  <option value="" class="highlightedOption" disabled>reserves:</option>
+  <option value="hawaii_reserves.kmz">&nbsp;&nbsp;&nbsp;Statewide</option>
+</select>
+
+<select id="sites" onChange="addSites( this.value, document.getElementById( 'icon' ).value ); this.blur();">
+  <option value="" selected>Which sites?</option>
+  <option value="">none</option>
+  <option value="1rnHJuFUQKyMhHnk2VDZ1NRQ0BvoNj6w1gisLpjb_6oE">pua kala survey</option>
+</select>
+
+<select id="icon" onChange="addSites( document.getElementById( 'sites' ).value, this.value ); this.blur();" style="display: none;">
+  <option value="small" selected>Icon size?</option>
+  <option value="small">small</option>
+  <option value="large">large</option>
+</select>
+
+<input type="button" id="enterCoordinatesButton" value="enter coordinates" onClick="document.getElementById( 'enterCoordinates' ).style.display = 'block'" style="margin-left: 2px;" />
+
+<!--#include virtual="/~kbarton/ssi/jumpto_list_hawaii.ssi" -->
+
+<!--#include virtual="/~kbarton/ssi/jumpto_home_icon.ssi" -->
+
+</div> <!-- #header -->
+
+<div id="map"></div>
+
+<!--#include virtual="/~kbarton/ssi/map_cursor_location.ssi" -->
+
+<!--#include virtual="/~kbarton/ssi/enter_map_coordinates.ssi" -->
+
+</body>
+</html>
