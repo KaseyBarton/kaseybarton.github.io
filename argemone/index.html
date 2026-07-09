@@ -1,104 +1,257 @@
----
----
-<!-- Above lines tell GitHub/Jekyll to find include statements -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<title>Argemone Project Page</title>
-<link rel="icon" href="../favicon.ico" >
-
-<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="../js/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="../js/cluetip/jquery.cluetip.min.js"></script>
-<link type="text/css" rel="stylesheet" href="../js/cluetip/jquery.cluetip.css" />
-<link type="text/css" rel="stylesheet" href="../js/jquery-ui-1.11.1/jquery-ui.min.css"></script>
-<link type="text/css" rel="stylesheet" href="../js/font-awesome-4.2.0/css/font-awesome.min.css" />
-<link type="text/css" rel="stylesheet" href="../css/subpages.css?v=2" />
-
-<script>
-$( document ).ready(
-  function () {
-
-    // ClueTip jQuery inline info pop-ups:
-
-    $( 'a.clue' ).cluetip(
-      {
-        activation: 'click',
-        arrows: false,
-        attribute: 'href',
-        closePosition: 'top',
-        closeText: '<i class="fa fa-close" style="float: right;"></i>',
-        local: false,
-        showTitle: false,
-        sticky: true,
-        titleAttribute: '',
-        waitImage: true,
-        width: 520
-      }
-    );
-  }
-); // ready()
-</script>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The Barton Lab Argemone Project investigates defense across prickly poppy species in Hawaiʻi, Mexico, and the Americas.">
+  <meta name="theme-color" content="#123d2b">
+  <title>Argemone Project | Barton Lab</title>
+  <link rel="icon" href="../favicon.ico?v=3">
+  <link rel="stylesheet" href="../js/font-awesome-4.2.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/research-pages.css?v=2">
+  <style>
+    .research-hero-photo { position: relative; }
+    .argemone-page .research-hero-photo img, .argemone-page .field-image img { transform: none; }
+    .argemone-facts { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 0.8rem; margin-top: 2rem; }
+    .argemone-fact { padding: 1rem; background: rgba(255,255,255,0.58); border: 1px solid rgba(18,61,43,0.12); border-radius: 15px; }
+    .argemone-fact strong { display: block; color: var(--forest-800); font-family: Georgia,"Times New Roman",serif; font-size: 1.65rem; font-weight: 500; line-height: 1; }
+    .argemone-fact span { display: block; margin-top: 0.35rem; color: var(--muted); font-size: 0.8rem; font-weight: 720; }
+    .field-pair { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 1rem; margin-top: 2.2rem; }
+    .field-image { position: relative; min-height: 380px; margin: 0; overflow: hidden; border-radius: 20px; box-shadow: var(--shadow); }
+    .field-image img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.055); }
+    .field-image figcaption { position: absolute; inset: auto 0 0; padding: 3.5rem 1rem 1rem; color: var(--white); background: linear-gradient(transparent,rgba(9,40,29,0.9)); font-size: 0.88rem; }
+    .argemone-field-gallery { padding: clamp(4rem,8vw,7rem) 0; background: linear-gradient(145deg,#e8f0df 0%,#d5e4d0 55%,#e7ecd1 100%); border-block: 1px solid rgba(18,61,43,0.12); }
+    .argemone-gallery-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2rem; }
+    .argemone-gallery-heading h2 { margin: 0; color: var(--forest-950); font-size: clamp(2.3rem,5vw,4.4rem); font-weight: 500; letter-spacing: -0.045em; line-height: 1.02; }
+    .argemone-gallery-heading > p { max-width: 410px; margin: 0; color: var(--muted); }
+    .argemone-gallery-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); grid-auto-rows: 215px; grid-auto-flow: dense; gap: 1rem; }
+    .argemone-gallery-card { position: relative; min-width: 0; margin: 0; overflow: hidden; background: var(--forest-900); border-radius: 18px; box-shadow: 0 12px 32px rgba(9,40,29,0.13); }
+    .argemone-gallery-card.wide { grid-column: span 2; }
+    .argemone-gallery-card.tall { grid-row: span 2; }
+    .argemone-gallery-card a { display: block; width: 100%; height: 100%; }
+    .argemone-gallery-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 600ms cubic-bezier(.2,.7,.2,1),filter 300ms ease; }
+    .argemone-gallery-link[href$="poppy_02.jpg"] img { object-position: 50% 38%; }
+    .argemone-gallery-link[href$="poppy_10.jpg"] img { object-position: 50% 34%; }
+    .argemone-gallery-card figcaption { position: absolute; inset: auto 0 0; padding: 3.5rem 1rem 0.9rem; color: var(--white); background: linear-gradient(transparent,rgba(9,40,29,0.94)); font-size: 0.82rem; line-height: 1.4; opacity: 0; transform: translateY(10px); transition: opacity 220ms ease,transform 220ms ease; pointer-events: none; }
+    .argemone-gallery-card:hover img, .argemone-gallery-card:focus-within img { transform: scale(1.045); filter: saturate(1.08); }
+    .argemone-gallery-card:hover figcaption, .argemone-gallery-card:focus-within figcaption { opacity: 1; transform: translateY(0); }
+    .argemone-gallery-card a::after { content: "\f00e"; position: absolute; top: 0.85rem; right: 0.85rem; width: 38px; aspect-ratio: 1; display: grid; place-items: center; color: var(--forest-950); background: rgba(248,245,235,0.92); border-radius: 50%; font-family: FontAwesome; opacity: 0; transform: scale(0.8); transition: opacity 180ms ease,transform 180ms ease; }
+    .argemone-gallery-card:hover a::after, .argemone-gallery-card:focus-within a::after { opacity: 1; transform: scale(1); }
+    .argemone-lightbox { width: min(1100px,calc(100% - 2rem)); max-width: none; height: min(88vh,850px); padding: 0; overflow: hidden; color: var(--white); background: var(--forest-950); border: 1px solid rgba(255,255,255,0.16); border-radius: 20px; box-shadow: 0 30px 100px rgba(0,0,0,0.6); }
+    .argemone-lightbox::backdrop { background: rgba(3,18,12,0.88); backdrop-filter: blur(5px); }
+    .argemone-lightbox-inner { height: 100%; display: grid; grid-template-rows: minmax(0,1fr) auto; }
+    .argemone-lightbox-image-wrap { min-height: 0; display: grid; place-items: center; padding: 3rem 4.5rem 1rem; }
+    .argemone-lightbox-image { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+    .argemone-lightbox-caption { margin: 0; padding: 1rem 5rem 1.3rem; color: rgba(255,255,255,0.76); text-align: center; }
+    .argemone-lightbox-button { position: absolute; z-index: 2; width: 44px; aspect-ratio: 1; display: grid; place-items: center; color: var(--white); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 50%; cursor: pointer; }
+    .argemone-lightbox-close { top: 1rem; right: 1rem; }
+    .argemone-lightbox-prev, .argemone-lightbox-next { top: 50%; transform: translateY(-50%); }
+    .argemone-lightbox-prev { left: 1rem; }
+    .argemone-lightbox-next { right: 1rem; }
+    .argemone-references { position: relative; overflow: hidden; color: var(--white); background: linear-gradient(135deg,#183f2e 0%,#2d6544 62%,#456f3d 100%); }
+    .argemone-references::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.13; background: radial-gradient(circle at 85% 10%,#e8c968 0,transparent 32%), radial-gradient(circle at 5% 95%,#a8c98e 0,transparent 30%); }
+    .argemone-references .research-shell { position: relative; }
+    .argemone-references .research-kicker { color: #d9e9b5; }
+    .argemone-references h2 { color: var(--white); }
+    .argemone-references .reference-list p { color: #2d4639; background: rgba(248,245,235,0.96); border-color: rgba(232,201,104,0.38); box-shadow: 0 12px 32px rgba(9,40,29,0.2); }
+    .argemone-references .reference-pdf { color: var(--forest-950); background: var(--gold); }
+    .argemone-references .reference-pdf:hover { color: var(--forest-950); background: #f2da87; }
+    .argemone-references .research-top { color: var(--forest-950); background: var(--gold); }
+    .argemone-references .research-top:hover { color: var(--forest-950); background: #f2da87; }
+    @media (max-width:700px) {
+      .argemone-facts { grid-template-columns: 1fr; }
+      .field-pair { grid-template-columns: 1fr; }
+      .field-image { min-height: 300px; }
+      .argemone-gallery-heading { align-items: flex-start; flex-direction: column; }
+      .argemone-gallery-grid { grid-template-columns: repeat(2,minmax(0,1fr)); grid-auto-rows: 190px; gap: 0.75rem; }
+      .argemone-gallery-card.tall { grid-row: span 1; }
+      .argemone-gallery-card figcaption { opacity: 1; transform: none; }
+      .argemone-lightbox-image-wrap { padding: 3.5rem 1rem 1rem; }
+      .argemone-lightbox-caption { padding-inline: 3.5rem; font-size: 0.86rem; }
+      .argemone-lightbox-prev { left: 0.5rem; }
+      .argemone-lightbox-next { right: 0.5rem; }
+    }
+    @media (max-width:430px) {
+      .argemone-gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 270px; }
+      .argemone-gallery-card.wide { grid-column: span 1; }
+    }
+  </style>
 </head>
+<body id="top" class="research-page argemone-page">
+  <a class="research-skip" href="#main-content">Skip to main content</a>
 
-<body>
+  <header class="research-header">
+    <div class="research-shell research-nav-shell">
+      <a class="research-brand" href="../index.html" aria-label="Kasey E. Barton home">
+        <span class="research-brand-mark" aria-hidden="true"><i class="fa fa-pagelines"></i></span>
+        <span>Barton Lab</span>
+      </a>
+      <nav class="research-nav" aria-label="Primary navigation">
+        <a href="../publications.html">Publications</a>
+        <a href="../research.html">Research</a>
+        <a href="../drought/">Drought Index</a>
+        <a class="research-nav-cta" href="../join.html">Join the Lab</a>
+      </nav>
+    </div>
+  </header>
 
-<div id="content">
+  <main id="main-content">
+    <section class="research-hero" aria-labelledby="page-title">
+      <div class="research-shell research-hero-grid">
+        <div>
+          <p class="research-eyebrow">Comparative research · Hawaiʻi & Mexico</p>
+          <h1 id="page-title">The Argemone Project</h1>
+          <p class="research-hero-copy">What can prickly poppies teach us about the evolution of plant defense across continents and islands?</p>
+          <div class="research-actions">
+            <a class="research-button research-button-primary" href="#summary">Explore the project <span aria-hidden="true">↓</span></a>
+            <a class="research-button" href="#data">View research data</a>
+          </div>
+        </div>
+        <aside class="research-hero-visual research-hero-photo">
+          <img src="../images/research/poppy_03.jpg" alt="A flowering prickly poppy growing in an experimental setting" width="867" height="667">
+          <p class="research-photo-note">A genus built to defend itself</p>
+        </aside>
+      </div>
+    </section>
 
-<!--#include virtual="../ssi/links.ssi" -->{% include links.ssi %}
+    <section class="research-content-section" id="summary" aria-labelledby="summary-title">
+      <div class="research-shell research-content-grid">
+        <div class="sticky-heading">
+          <p class="research-kicker">Project summary</p>
+          <h2 id="summary-title">Defense across a remarkable genus</h2>
+        </div>
+        <article class="research-prose">
+          <p>This project examines defense in an apparently well-defended—but understudied—group of plants: the prickly poppies of the genus <i>Argemone</i>.</p>
+          <p>Approximately 32 <i>Argemone</i> species are native to the Americas. Their center of diversity lies in Mexico, while Hawaiʻi is home to a single endemic species. This unusual distribution creates a powerful natural comparison for investigating how plant defenses evolve across continental and island environments.</p>
+          <div class="argemone-facts" aria-label="Argemone project facts">
+            <div class="argemone-fact"><strong>≈32</strong><span>species in the genus</span></div>
+            <div class="argemone-fact"><strong>Mexico</strong><span>center of diversity</span></div>
+            <div class="argemone-fact"><strong>1</strong><span>Hawaiian endemic species</span></div>
+          </div>
+          <div class="field-pair">
+            <figure class="field-image">
+              <img src="../images/research/poppy_01.jpg" alt="Prickly poppies growing among red volcanic rocks in Hawaiʻi" width="867" height="667" loading="lazy">
+              <figcaption>Prickly poppies in a Hawaiian landscape</figcaption>
+            </figure>
+            <figure class="field-image">
+              <img src="../images/research/poppy_14.jpg" alt="Researchers measuring prickly poppies in a field site in Mexico" width="579" height="890" loading="lazy">
+              <figcaption>Field research in Mexico</figcaption>
+            </figure>
+          </div>
+        </article>
+      </div>
+    </section>
 
-<p><a href="/">Home</a> <i class="fa fa-caret-right" aria-hidden="true"></i>
-  <a href="../research.html">Research</a> <i class="fa fa-caret-right" aria-hidden="true"></i> Argemone Project</p>
+    <section class="research-data-section" id="data" aria-labelledby="data-title">
+      <div class="research-shell">
+        <p class="research-kicker">Open research resources</p>
+        <h2 id="data-title">Explore the data</h2>
+        <div class="research-data-grid">
+          <a class="research-data-card" href="map.html">
+            <span class="research-data-icon" aria-hidden="true"><i class="fa fa-globe"></i></span>
+            <div><h3>Interactive map <span class="research-data-arrow" aria-hidden="true">↗</span></h3><p>Explore Argemone observations geographically.</p></div>
+          </a>
+          <a class="research-data-card" href="https://docs.google.com/spreadsheets/d/1Dp8swlS1hdyugjDAO2WMNbmxo6Ze-e2v1y0SHZts0-E/edit?usp=sharing" target="_blank" rel="noopener">
+            <span class="research-data-icon" aria-hidden="true"><i class="fa fa-table"></i></span>
+            <div><h3>Mexico dataset <span class="research-data-arrow" aria-hidden="true">↗</span></h3><p>Open the project’s Mexico spreadsheet.</p></div>
+          </a>
+          <a class="research-data-card" href="https://docs.google.com/spreadsheets/d/1a8Rlm4E_yGrSAp14G8EhwixK3mRKLQSeJIXU174Urww/edit?usp=sharing" target="_blank" rel="noopener">
+            <span class="research-data-icon" aria-hidden="true"><i class="fa fa-table"></i></span>
+            <div><h3>U.S. dataset <span class="research-data-arrow" aria-hidden="true">↗</span></h3><p>Open the project’s United States spreadsheet.</p></div>
+          </a>
+        </div>
+      </div>
+    </section>
 
-<h1 class="header1"><i class="fa fa-pagelines" aria-hidden="true"></i> Argemone Project Page</h1>
+    <section class="argemone-field-gallery" id="field-gallery" aria-labelledby="field-gallery-title">
+      <div class="research-shell">
+        <div class="argemone-gallery-heading">
+          <div><p class="research-kicker">Field gallery</p><h2 id="field-gallery-title">Inside the Poppy Project</h2></div>
+          <p>Experiments, flowers, fieldwork, and the people tracing prickly-poppy defenses across Hawaiʻi and Mexico.</p>
+        </div>
+        <div class="argemone-gallery-grid">
+          <figure class="argemone-gallery-card wide"><a class="argemone-gallery-link" href="../images/research/poppy_02.jpg" data-caption="Measuring photosynthesis of pua kala using PAM fluorometry, 2012."><img src="../images/research/poppy_02.jpg" alt="Pua kala plant being measured with a PAM fluorometer" loading="lazy"></a><figcaption>Measuring photosynthesis · 2012</figcaption></figure>
+          <figure class="argemone-gallery-card"><a class="argemone-gallery-link" href="../images/research/poppy_04.jpg" data-caption="Pua kala seedlings."><img src="../images/research/poppy_04.jpg" alt="Young pua kala seedling growing in soil" loading="lazy"></a><figcaption>Pua kala seedlings</figcaption></figure>
+          <figure class="argemone-gallery-card"><a class="argemone-gallery-link" href="../images/research/poppy_05.jpg" data-caption="Pua kala in an herbivory tolerance experiment, 2011."><img src="../images/research/poppy_05.jpg" alt="Rows of potted pua kala plants in a greenhouse experiment" loading="lazy"></a><figcaption>Herbivory tolerance experiment · 2011</figcaption></figure>
+          <figure class="argemone-gallery-card tall"><a class="argemone-gallery-link" href="../images/research/poppy_06.jpg" data-caption="Bright orange latex of a pua kala stem."><img src="../images/research/poppy_06.jpg" alt="Orange latex emerging from a cut pua kala stem" loading="lazy"></a><figcaption>Orange latex of pua kala</figcaption></figure>
+          <figure class="argemone-gallery-card"><a class="argemone-gallery-link" href="../images/research/poppy_07.jpg" data-caption="Mexican poppy flower (Argemone mexicana), the sister species to pua kala, now naturalized in Hawaiʻi."><img src="../images/research/poppy_07.jpg" alt="Yellow flower of the Mexican poppy Argemone mexicana" loading="lazy"></a><figcaption>Mexican poppy · <i>Argemone mexicana</i></figcaption></figure>
+          <figure class="argemone-gallery-card tall"><a class="argemone-gallery-link" href="../images/research/poppy_08.jpg" data-caption="Pua kala flower."><img src="../images/research/poppy_08.jpg" alt="White pua kala flower viewed from above" loading="lazy"></a><figcaption>Pua kala flower</figcaption></figure>
+          <figure class="argemone-gallery-card"><a class="argemone-gallery-link" href="../images/research/poppy_09.jpg" data-caption="Pua kala seedling growing in the Waimānalo poppy garden experiment, 2014. This nearly prickle-free plant comes from a leeward Hawaiʻi Island population that lacks prickles."><img src="../images/research/poppy_09.jpg" alt="Nearly prickle-free pua kala seedling in a field experiment" loading="lazy"></a><figcaption>Poppy garden experiment · Waimānalo, 2014</figcaption></figure>
+          <figure class="argemone-gallery-card wide"><a class="argemone-gallery-link" href="../images/research/poppy_10.jpg" data-caption="Extracting data from Argemone specimens at the Universidad Nacional Autónoma de México Herbarium, March 2015. Lauren Finley-Jacob and Brady Evarts."><img src="../images/research/poppy_10.jpg" alt="Researchers examining Argemone herbarium specimens at UNAM" loading="lazy"></a><figcaption>Herbarium research at UNAM · 2015</figcaption></figure>
+          <figure class="argemone-gallery-card"><a class="argemone-gallery-link" href="../images/research/poppy_11.jpg" data-caption="Poppy Project team in Mexico: Brady Evarts, Aleta Corpuz, Reko Libby, and Lauren Finley-Jacob, March 2015."><img src="../images/research/poppy_11.jpg" alt="Four Poppy Project team members in a Mexican botanical garden" loading="lazy"></a><figcaption>Poppy Project team · Mexico, 2015</figcaption></figure>
+          <figure class="argemone-gallery-card wide"><a class="argemone-gallery-link" href="../images/research/poppy_12.jpg" data-caption="Transplanting pua kala at the Waimānalo field site, spring 2015. Lalasia Bialic-Murphy, Lauren Finley-Jacob, Lindsey Watanabe, Aleta Corpuz, and Nicholas Nguyen."><img src="../images/research/poppy_12.jpg" alt="Poppy Project field team at the Waimānalo research site" loading="lazy"></a><figcaption>Transplanting pua kala · Waimānalo, 2015</figcaption></figure>
+          <figure class="argemone-gallery-card wide"><a class="argemone-gallery-link" href="../images/research/poppy_13.jpg" data-caption="Visiting ruins in Mexico, 2015. Brady Evarts, Reko Libby, Karina Boege, and Lauren Finley-Jacob."><img src="../images/research/poppy_13.jpg" alt="Four members of the Poppy Project visiting ruins in Mexico" loading="lazy"></a><figcaption>Poppy Project field trip · Mexico, 2015</figcaption></figure>
+        </div>
+      </div>
+    </section>
 
-<h3 class="header3">Project Summary</h3>
+    <section class="research-references argemone-references" aria-labelledby="references-title">
+      <div class="research-shell">
+        <p class="research-kicker">Further reading</p>
+        <h2 id="references-title">References</h2>
+        <div class="reference-list">
+          <p class="reference-item"><span>Suissa, J. and <b>K. E. Barton</b>. 2018. Intraspecific and interspecific variation in prickly poppy resistance to non-native generalist caterpillars. <u>Botanical Sciences</u> 96(2): 168-179.</span> <a class="reference-pdf" href="../pubs/Suissa_and_Barton_2018.pdf" target="_blank" rel="noopener"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a></p>
 
-<p>This project examines defense in an apparently well-defended (but
-  understudied) group of plants, the prickly poppies (genus <i>Argemone
-  </i>). There are approximately 32 <i>Argemone</i> species, all of which are native to the Americas (center of diversity in Mexico) with a single endemic species in Hawai&#699;i. <a href="../research.html#poppy">More...</a></p>
+          <p class="reference-item"><span><b>Barton, K. E.</b> 2014. Prickles, latex and tolerance in the endemic Hawaiian prickly poppy (<i>Argemone glauca</i>): variation between populations, across ontogeny and in response to abiotic factors. <u>Oecologia</u> 174: 1273-1281.</span> <a class="reference-pdf" href="../pubs/Barton_2014_Oecologia.pdf" target="_blank" rel="noopener"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a></p>
 
-<h3 class="header3">View Data</h3>
+          <p class="reference-item"><span>Hoan, R. P., R. A. Ormond, and <b>K. E. Barton</b>. 2014. Prickly poppies can get pricklier: ontogenetic patterns in the induction of physical defense traits. <u>PLoS ONE</u> 9(5): e96796.</span> <a class="reference-pdf" href="../pubs/Hoan_etal_2014.pdf" target="_blank" rel="noopener"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a></p>
+        </div>
+        <div class="research-top-wrap"><a class="research-top" href="#top"><i class="fa fa-arrow-up" aria-hidden="true"></i> Top</a></div>
+      </div>
+    </section>
+  </main>
 
-<table cellpadding="2" style="margin-top: 12px;">
-  <tr>
-    <td style="text-align: center;"><font color="lightgray"><i class="fa fa-globe fa-2x" aria-hidden="true"></i></font></td>
-    <td><a href="map.html">interactive map</a></td>
-  </tr>
-  <!--
-  <tr>
-    <td style="text-align: center;"><font color="lightgray"><i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i></font></td>
-    <td><a href="plot.html">interactive plots</a></td>
-  </tr>
-  -->
-  <tr>
-    <td style="text-align: center;"><font color="lightgray"><i class="fa fa-table fa-2x" aria-hidden="true"></i></font></td>
-    <!--
-    Google Fusion Tables discontinued December 2019:
-    <td><a href="https://www.google.com/fusiontables/DataSource?docid=10X336ZFZH4__0LqGz0TiBWSsDmffXDH0x43BG1ta">Mexico spreadsheet</a></td>
-    -->
-    <td><a href="https://docs.google.com/spreadsheets/d/1Dp8swlS1hdyugjDAO2WMNbmxo6Ze-e2v1y0SHZts0-E/edit?usp=sharing">Mexico spreadsheet</a></td>
-  </tr>
-  <tr>
-    <td style="text-align: center;"><font color="lightgray"><i class="fa fa-table fa-2x" aria-hidden="true"></i></font></td>
-    <!--
-    Google Fusion Tables discontinued December 2019:
-    <td><a href="https://www.google.com/fusiontables/DataSource?docid=1f8QBN6OSUktvUKNrYr18CXgqxbik-o5A3PvPfKEZ">USA spreadsheet</a></td>
-    -->
-    <td><a href="https://docs.google.com/spreadsheets/d/1a8Rlm4E_yGrSAp14G8EhwixK3mRKLQSeJIXU174Urww/edit?usp=sharing">USA spreadsheet</a></td>
-  </tr>
-</table>
+  <footer class="research-footer">
+    <div class="research-shell research-footer-grid">
+      <p>© <span id="year">2026</span> Kasey E. Barton, Ph.D. · Honolulu, Hawaiʻi</p>
+      <p><a href="https://manoa.hawaii.edu">University of Hawaiʻi at Mānoa</a></p>
+    </div>
+  </footer>
 
-<hr/>
+  <dialog class="argemone-lightbox" id="argemone-lightbox" aria-label="Expanded Poppy Project gallery image">
+    <div class="argemone-lightbox-inner">
+      <div class="argemone-lightbox-image-wrap"><img class="argemone-lightbox-image" id="argemone-lightbox-image" src="" alt=""></div>
+      <p class="argemone-lightbox-caption" id="argemone-lightbox-caption"></p>
+    </div>
+    <button class="argemone-lightbox-button argemone-lightbox-close" type="button" aria-label="Close image"><i class="fa fa-times" aria-hidden="true"></i></button>
+    <button class="argemone-lightbox-button argemone-lightbox-prev" type="button" aria-label="Previous image"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+    <button class="argemone-lightbox-button argemone-lightbox-next" type="button" aria-label="Next image"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+  </dialog>
 
-<!--#include virtual="../ssi/links.ssi" -->{% include links.ssi %}
-<!--#include virtual="../ssi/footer.ssi" -->{% include footer.ssi %}
-<!--#include virtual="../ssi/google_analytics.ssi" -->{% include google_analytics.ssi %}
+  <script>
+    const argemoneGalleryLinks = Array.from(document.querySelectorAll('.argemone-gallery-link'));
+    const argemoneLightbox = document.getElementById('argemone-lightbox');
+    const argemoneLightboxImage = document.getElementById('argemone-lightbox-image');
+    const argemoneLightboxCaption = document.getElementById('argemone-lightbox-caption');
+    let argemoneCurrentImage = 0;
 
-<!--
-<p>Last Updated: <script>document.write( new Date( document.lastModified ) );</script></p>
--->
+    function showArgemoneImage(index) {
+      argemoneCurrentImage = (index + argemoneGalleryLinks.length) % argemoneGalleryLinks.length;
+      const link = argemoneGalleryLinks[argemoneCurrentImage];
+      const thumbnail = link.querySelector('img');
+      argemoneLightboxImage.src = link.href;
+      argemoneLightboxImage.alt = thumbnail.alt;
+      argemoneLightboxCaption.textContent = link.dataset.caption;
+    }
 
-</div> <!-- #content -->
+    argemoneGalleryLinks.forEach((link,index) => {
+      link.addEventListener('click',event => {
+        event.preventDefault();
+        showArgemoneImage(index);
+        argemoneLightbox.showModal();
+      });
+    });
+    argemoneLightbox.querySelector('.argemone-lightbox-close').addEventListener('click',() => argemoneLightbox.close());
+    argemoneLightbox.querySelector('.argemone-lightbox-prev').addEventListener('click',() => showArgemoneImage(argemoneCurrentImage - 1));
+    argemoneLightbox.querySelector('.argemone-lightbox-next').addEventListener('click',() => showArgemoneImage(argemoneCurrentImage + 1));
+    argemoneLightbox.addEventListener('click',event => { if (event.target === argemoneLightbox) argemoneLightbox.close(); });
+    argemoneLightbox.addEventListener('keydown',event => {
+      if (event.key === 'ArrowLeft') showArgemoneImage(argemoneCurrentImage - 1);
+      if (event.key === 'ArrowRight') showArgemoneImage(argemoneCurrentImage + 1);
+    });
+    document.getElementById('year').textContent=new Date().getFullYear();
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H7Z28QQN5R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-H7Z28QQN5R');</script>
 </body>
+</html>

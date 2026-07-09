@@ -1,228 +1,311 @@
----
----
-<!-- Above lines tell GitHub/Jekyll to find include statements -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<title>&#699;&#332;hi&#699;a Project Page</title>
-<link rel="icon" href="../favicon.ico" >
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The Barton Lab ʻŌhiʻa Project investigates recruitment, population dynamics, and environmental stress in Hawaiʻi’s dominant native tree.">
+  <meta name="theme-color" content="#123d2b">
+  <title>ʻŌhiʻa Project | Barton Lab</title>
+  <link rel="icon" href="../favicon.ico?v=3">
+  <link rel="stylesheet" href="../js/font-awesome-4.2.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/research-pages.css?v=2">
+  <style>
+    .ohia-page { --ohia-red: #c94b3c; --ohia-coral: #e38268; --ohia-blush: #f1ddd3; --ohia-mist: #dce8d9; }
+    .ohia-page .research-hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 78% 28%,rgba(201,75,60,0.2),transparent 25rem); }
+    .ohia-page .research-button-primary { color: var(--white); background: var(--ohia-red); border-color: var(--ohia-red); }
+    .ohia-page .research-hero-photo { position: relative; }
+    .ohia-page .research-hero-photo img { transform: none; object-position: 50% 45%; }
+    .ohia-page .research-photo-note { border-left: 4px solid var(--ohia-red); }
+    .ohia-facts { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 0.8rem; margin-top: 2rem; }
+    .ohia-fact { padding: 1rem; background: rgba(255,255,255,0.62); border: 1px solid rgba(18,61,43,0.12); border-radius: 15px; }
+    .ohia-fact strong { display: block; color: var(--ohia-red); font-family: Georgia,"Times New Roman",serif; font-size: 1.65rem; font-weight: 500; line-height: 1; }
+    .ohia-fact span { display: block; margin-top: 0.35rem; color: var(--muted); font-size: 0.8rem; font-weight: 720; }
+    .ohia-page .research-data-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
+    .ohia-page .research-data-icon { color: #8f3028; background: var(--ohia-blush); }
+    .ohia-page .research-data-card:hover { border-color: rgba(201,75,60,0.35); }
 
-<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="../js/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="../js/cluetip/jquery.cluetip.min.js"></script>
-<link type="text/css" rel="stylesheet" href="../js/cluetip/jquery.cluetip.css" />
-<link type="text/css" rel="stylesheet" href="../js/jquery-ui-1.11.1/jquery-ui.min.css"></script>
-<link type="text/css" rel="stylesheet" href="../js/font-awesome-4.2.0/css/font-awesome.min.css" />
-<link type="text/css" rel="stylesheet" href="../css/subpages.css?v=2" />
+    .ohia-gallery-section { padding: clamp(4rem,8vw,7rem) 0; background: linear-gradient(145deg,#f4e8df 0%,#e9ddd1 52%,#e1e8d5 100%); border-block: 1px solid rgba(18,61,43,0.12); }
+    .ohia-gallery-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2rem; }
+    .ohia-gallery-heading h2 { margin: 0; color: var(--forest-950); font-size: clamp(2.3rem,5vw,4.4rem); font-weight: 500; letter-spacing: -0.045em; line-height: 1.02; }
+    .ohia-gallery-heading > p { max-width: 420px; margin: 0; color: var(--muted); }
+    .ohia-gallery-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); grid-auto-rows: 215px; grid-auto-flow: dense; gap: 1rem; }
+    .ohia-gallery-card { position: relative; min-width: 0; margin: 0; overflow: hidden; background: var(--forest-900); border-radius: 18px; box-shadow: 0 12px 32px rgba(9,40,29,0.13); }
+    .ohia-gallery-card.wide { grid-column: span 2; }
+    .ohia-gallery-card.tall { grid-row: span 2; }
+    .ohia-gallery-card a { display: block; width: 100%; height: 100%; }
+    .ohia-gallery-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 600ms cubic-bezier(.2,.7,.2,1),filter 300ms ease; }
+    .ohia-gallery-link[href$="recruitment_01.jpg"] img { object-position: 50% 34%; }
+    .ohia-gallery-link[href$="recruitment_05.jpg"] img { object-position: 50% 74%; }
+    .ohia-gallery-link[href$="recruitment_10.jpg"] img { object-position: 50% 56%; }
+    .ohia-gallery-card figcaption { position: absolute; inset: auto 0 0; padding: 3.5rem 1rem 0.9rem; color: var(--white); background: linear-gradient(transparent,rgba(9,40,29,0.94)); font-size: 0.82rem; line-height: 1.4; opacity: 0; transform: translateY(10px); transition: opacity 220ms ease,transform 220ms ease; pointer-events: none; }
+    .ohia-gallery-card:hover img, .ohia-gallery-card:focus-within img { transform: scale(1.045); filter: saturate(1.08); }
+    .ohia-gallery-card:hover figcaption, .ohia-gallery-card:focus-within figcaption { opacity: 1; transform: translateY(0); }
+    .ohia-gallery-card a::after { content: "\f00e"; position: absolute; top: 0.85rem; right: 0.85rem; width: 38px; aspect-ratio: 1; display: grid; place-items: center; color: var(--forest-950); background: rgba(248,245,235,0.92); border-radius: 50%; font-family: FontAwesome; opacity: 0; transform: scale(0.8); transition: opacity 180ms ease,transform 180ms ease; }
+    .ohia-gallery-card:hover a::after, .ohia-gallery-card:focus-within a::after { opacity: 1; transform: scale(1); }
 
-<script>
-$( document ).ready(
-  function () {
+    .ohia-sources { position: relative; overflow: hidden; padding: clamp(4rem,8vw,7rem) 0 2.25rem; color: var(--white); background: linear-gradient(135deg,#102f24 0%,#1f5038 62%,#365f38 100%); }
+    .ohia-sources::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.18; background: radial-gradient(circle at 88% 8%,var(--ohia-red),transparent 28%),radial-gradient(circle at 8% 94%,var(--leaf-300),transparent 28%); }
+    .ohia-sources .research-shell { position: relative; }
+    .ohia-sources .research-kicker { color: #f0b3a4; }
+    .ohia-sources h2 { margin: 0; color: var(--white); font-size: clamp(2.3rem,5vw,4.4rem); font-weight: 500; letter-spacing: -0.045em; line-height: 1.02; }
+    .ohia-sources-intro { max-width: 720px; color: rgba(255,255,255,0.72); }
+    .ohia-source-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; margin-top: 2rem; }
+    .ohia-source-card { padding: 1.35rem; color: #334b3f; background: rgba(248,245,235,0.96); border: 1px solid rgba(227,130,104,0.35); border-radius: 18px; box-shadow: 0 14px 36px rgba(5,24,17,0.22); }
+    .ohia-source-card:last-child { grid-column: 1 / -1; }
+    .ohia-source-card h3 { margin: 0 0 0.65rem; color: var(--forest-950); font-size: 1.35rem; font-weight: 500; }
+    .ohia-source-card p { margin: 0 0 0.8rem; font-size: 0.9rem; }
+    .ohia-source-links { display: flex; gap: 0.55rem; flex-wrap: wrap; margin-top: 1rem; }
+    .ohia-source-links a { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.52rem 0.7rem; color: var(--forest-950); background: var(--ohia-blush); border-radius: 999px; text-decoration: none; font-size: 0.78rem; font-weight: 800; }
+    .ohia-sources .research-top { color: var(--white); background: var(--ohia-red); }
+    .ohia-sources .research-top:hover { color: var(--white); background: #a83930; }
+    .ohia-references { background: linear-gradient(145deg,#f5e9e2 0%,#f0ddd5 52%,#e8e5d5 100%); border-top: 1px solid rgba(201,75,60,0.2); }
+    .ohia-references .research-kicker { color: #9b372f; }
+    .ohia-references .reference-list p { background: rgba(255,255,255,0.88); border-color: rgba(201,75,60,0.2); box-shadow: 0 10px 28px rgba(83,38,28,0.08); }
+    .ohia-references .reference-pdf { color: var(--white); background: var(--ohia-red); }
+    .ohia-references .reference-pdf:hover { color: var(--white); background: #a83930; }
+    .ohia-references .research-top { color: var(--white); background: var(--ohia-red); }
+    .ohia-references .research-top:hover { color: var(--white); background: #a83930; }
 
-    // ClueTip jQuery inline info pop-ups:
+    .ohia-lightbox { width: min(1100px,calc(100% - 2rem)); max-width: none; height: min(88vh,850px); padding: 0; overflow: hidden; color: var(--white); background: var(--forest-950); border: 1px solid rgba(255,255,255,0.16); border-radius: 20px; box-shadow: 0 30px 100px rgba(0,0,0,0.6); }
+    .ohia-lightbox::backdrop { background: rgba(3,18,12,0.88); backdrop-filter: blur(5px); }
+    .ohia-lightbox-inner { height: 100%; display: grid; grid-template-rows: minmax(0,1fr) auto; }
+    .ohia-lightbox-image-wrap { min-height: 0; display: grid; place-items: center; padding: 3rem 4.5rem 1rem; }
+    .ohia-lightbox-image { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+    .ohia-lightbox-caption { margin: 0; padding: 1rem 5rem 1.3rem; color: rgba(255,255,255,0.76); text-align: center; }
+    .ohia-lightbox-button { position: absolute; z-index: 2; width: 44px; aspect-ratio: 1; display: grid; place-items: center; color: var(--white); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 50%; cursor: pointer; }
+    .ohia-lightbox-close { top: 1rem; right: 1rem; }
+    .ohia-lightbox-prev, .ohia-lightbox-next { top: 50%; transform: translateY(-50%); }
+    .ohia-lightbox-prev { left: 1rem; }
+    .ohia-lightbox-next { right: 1rem; }
 
-    $( 'a.clue' ).cluetip(
-      {
-        activation: 'click',
-        arrows: false,
-        attribute: 'href',
-        closePosition: 'top',
-        closeText: '<i class="fa fa-close" style="float: right;"></i>',
-        local: false,
-        showTitle: false,
-        sticky: true,
-        titleAttribute: '',
-        waitImage: true,
-        width: 520
-      }
-    );
-  }
-); // ready()
-</script>
-
+    @media (max-width:850px) {
+      .ohia-page .research-data-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .ohia-gallery-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+      .ohia-gallery-card.wide { grid-column: span 1; }
+    }
+    @media (max-width:700px) {
+      .ohia-page .research-data-grid { grid-template-columns: 1fr; }
+      .ohia-facts, .ohia-source-grid { grid-template-columns: 1fr; }
+      .ohia-source-card:last-child { grid-column: auto; }
+      .ohia-gallery-heading { align-items: flex-start; flex-direction: column; }
+      .ohia-gallery-grid { grid-template-columns: repeat(2,minmax(0,1fr)); grid-auto-rows: 190px; gap: 0.75rem; }
+      .ohia-gallery-card.tall { grid-row: span 1; }
+      .ohia-gallery-card figcaption { opacity: 1; transform: none; }
+      .ohia-lightbox-image-wrap { padding: 3.5rem 1rem 1rem; }
+      .ohia-lightbox-caption { padding-inline: 3.5rem; font-size: 0.86rem; }
+      .ohia-lightbox-prev { left: 0.5rem; }
+      .ohia-lightbox-next { right: 0.5rem; }
+    }
+    @media (max-width:430px) {
+      .ohia-gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 270px; }
+    }
+  </style>
 </head>
+<body id="top" class="research-page ohia-page">
+  <a class="research-skip" href="#main-content">Skip to main content</a>
 
-<body>
+  <header class="research-header">
+    <div class="research-shell research-nav-shell">
+      <a class="research-brand" href="../index.html" aria-label="Kasey E. Barton home">
+        <span class="research-brand-mark" aria-hidden="true"><i class="fa fa-pagelines"></i></span>
+        <span>Barton Lab</span>
+      </a>
+      <nav class="research-nav" aria-label="Primary navigation">
+        <a href="../publications.html">Publications</a>
+        <a href="../research.html">Research</a>
+        <a href="../drought/">Drought Index</a>
+        <a class="research-nav-cta" href="../join.html">Join the Lab</a>
+      </nav>
+    </div>
+  </header>
 
-<div id="content">
+  <main id="main-content">
+    <section class="research-hero" aria-labelledby="page-title">
+      <div class="research-shell research-hero-grid">
+        <div>
+          <p class="research-eyebrow">Foundation species · Hawaiian forests</p>
+          <h1 id="page-title">The ʻŌhiʻa Project</h1>
+          <p class="research-hero-copy">What does the future hold for Hawaiʻi’s dominant native tree—and the forests built around it?</p>
+          <div class="research-actions">
+            <a class="research-button research-button-primary" href="#summary">Explore the project <span aria-hidden="true">↓</span></a>
+            <a class="research-button" href="#data">View research data</a>
+          </div>
+        </div>
+        <aside class="research-hero-visual research-hero-photo">
+          <img src="../images/research/recruitment_15.jpg" alt="Red lehua blossoms on an ʻōhiʻa tree in a Hawaiian forest" width="768" height="576">
+          <p class="research-photo-note">ʻŌhiʻa lehua · <i>Metrosideros polymorpha</i></p>
+        </aside>
+      </div>
+    </section>
 
-<!--#include virtual="../ssi/links.ssi" -->{% include links.ssi %}
+    <section class="research-content-section" id="summary" aria-labelledby="summary-title">
+      <div class="research-shell research-content-grid">
+        <div class="sticky-heading">
+          <p class="research-kicker">Project summary</p>
+          <h2 id="summary-title">A forest depends on its foundation</h2>
+        </div>
+        <article class="research-prose">
+          <p>Common species shape environments, support webs of interaction, and contribute disproportionately to ecosystem function. Their decline can therefore reverberate far beyond a single species—even when they are not themselves rare.</p>
+          <p>ʻŌhiʻa lehua (<i>Metrosideros polymorpha</i>) is the dominant tree on each of Hawaiʻi’s six largest islands. We are investigating its demography across those islands to understand population dynamics and the factors associated with widespread decline. Preliminary results indicate very low seedling recruitment across most islands, while current experiments test whether drought and competition from invasive plants further limit recruitment.</p>
+          <div class="ohia-facts" aria-label="ʻŌhiʻa Project facts">
+            <div class="ohia-fact"><strong>6</strong><span>largest Hawaiian Islands surveyed</span></div>
+            <div class="ohia-fact"><strong>Low</strong><span>seedling recruitment across most islands</span></div>
+            <div class="ohia-fact"><strong>1</strong><span>foundation tree supporting entire forests</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
 
-<p><a href="/">Home</a> <i class="fa fa-caret-right" aria-hidden="true"></i> <a href="../research.html">Research</a> <i class="fa fa-caret-right" aria-hidden="true"></i> &#699;&#332;hi&#699;a Project</p>
+    <section class="research-data-section" id="data" aria-labelledby="data-title">
+      <div class="research-shell">
+        <p class="research-kicker">Open research resources</p>
+        <h2 id="data-title">Explore the data</h2>
+        <div class="research-data-grid">
+          <a class="research-data-card" href="map.html">
+            <span class="research-data-icon" aria-hidden="true"><i class="fa fa-globe"></i></span>
+            <div><h3>Interactive map <span class="research-data-arrow" aria-hidden="true">↗</span></h3><p>Explore ʻōhiʻa sampling locations across Hawaiʻi.</p></div>
+          </a>
+          <a class="research-data-card" href="plot.html">
+            <span class="research-data-icon" aria-hidden="true"><i class="fa fa-bar-chart"></i></span>
+            <div><h3>Interactive plots <span class="research-data-arrow" aria-hidden="true">↗</span></h3><p>Compare recruitment and environmental patterns.</p></div>
+          </a>
+          <a class="research-data-card" href="https://docs.google.com/spreadsheets/d/1VSh2w7MbsVhr80Cv3uEaJa7SWjHh1op0xTQqECaCxYY/edit?usp=sharing" target="_blank" rel="noopener">
+            <span class="research-data-icon" aria-hidden="true"><i class="fa fa-table"></i></span>
+            <div><h3>Sampling sites <span class="research-data-arrow" aria-hidden="true">↗</span></h3><p>Open the project’s site-level spreadsheet.</p></div>
+          </a>
+          <a class="research-data-card" href="https://docs.google.com/spreadsheets/d/1YUlLK-67lwqI521Am3MxBE-oufp-P9Uba4dGUUmP8F8/edit?usp=sharing" target="_blank" rel="noopener">
+            <span class="research-data-icon" aria-hidden="true"><i class="fa fa-table"></i></span>
+            <div><h3>Field experiment <span class="research-data-arrow" aria-hidden="true">↗</span></h3><p>Open the field experiment dataset.</p></div>
+          </a>
+        </div>
+      </div>
+    </section>
 
+    <section class="ohia-gallery-section" id="field-gallery" aria-labelledby="gallery-title">
+      <div class="research-shell">
+        <div class="ohia-gallery-heading">
+          <div><p class="research-kicker">Field gallery</p><h2 id="gallery-title">Across the islands</h2></div>
+          <p>From newly emerged seedlings to mature forests, a closer look at ʻōhiʻa recruitment, variation, and fieldwork.</p>
+        </div>
+        <div class="ohia-gallery-grid">
+          <figure class="ohia-gallery-card tall"><a class="ohia-gallery-link" href="../images/research/recruitment_01.jpg" data-caption="ʻŌhiʻa survey team: Casey Jones, Tiffany Knight, and Kasey Barton. Hawaiʻi Volcanoes National Park, 2014."><img src="../images/research/recruitment_01.jpg" alt="ʻŌhiʻa survey team in a native Hawaiian forest" loading="lazy"></a><figcaption>Survey team · Hawaiʻi Volcanoes, 2014</figcaption></figure>
+          <figure class="ohia-gallery-card"><a class="ohia-gallery-link" href="../images/research/recruitment_02.jpg" data-caption="Young ʻōhiʻa leaves showing delayed greening."><img src="../images/research/recruitment_02.jpg" alt="Young orange and green ʻōhiʻa leaves" loading="lazy"></a><figcaption>Young leaves showing delayed greening</figcaption></figure>
+          <figure class="ohia-gallery-card"><a class="ohia-gallery-link" href="../images/research/recruitment_03.jpg" data-caption="ʻŌhiʻa seedlings growing on sparse moss cover."><img src="../images/research/recruitment_03.jpg" alt="Tiny ʻōhiʻa seedlings growing across mossy ground" loading="lazy"></a><figcaption>Seedlings on sparse moss</figcaption></figure>
+          <figure class="ohia-gallery-card tall"><a class="ohia-gallery-link" href="../images/research/recruitment_04.jpg" data-caption="Native Hawaiian forest across a steep island landscape."><img src="../images/research/recruitment_04.jpg" alt="Dense native Hawaiian forest on a steep slope" loading="lazy"></a><figcaption>Hawaiian forest landscape</figcaption></figure>
+          <figure class="ohia-gallery-card wide"><a class="ohia-gallery-link" href="../images/research/recruitment_05.jpg" data-caption="Casey measuring the basal diameter of a tree in Hilo Watershed Forest Reserve, 2014."><img src="../images/research/recruitment_05.jpg" alt="Researcher measuring the basal diameter of a forest tree" loading="lazy"></a><figcaption>Measuring basal diameter · Hilo, 2014</figcaption></figure>
+          <figure class="ohia-gallery-card"><a class="ohia-gallery-link" href="../images/research/recruitment_06.jpg" data-caption="A young ʻōhiʻa seedling emerging from the forest floor."><img src="../images/research/recruitment_06.jpg" alt="Small green ʻōhiʻa seedling on the forest floor" loading="lazy"></a><figcaption>A young ʻōhiʻa seedling</figcaption></figure>
+          <figure class="ohia-gallery-card"><a class="ohia-gallery-link" href="../images/research/recruitment_07.jpg" data-caption="ʻŌhiʻa seedlings growing among wet forest litter."><img src="../images/research/recruitment_07.jpg" alt="Tiny ʻōhiʻa seedlings among wet forest litter" loading="lazy"></a><figcaption>Seedlings in wet forest litter</figcaption></figure>
+          <figure class="ohia-gallery-card"><a class="ohia-gallery-link" href="../images/research/recruitment_08.jpg" data-caption="Glabrous ʻōhiʻa with dark red delayed greening."><img src="../images/research/recruitment_08.jpg" alt="Red new growth on a glabrous ʻōhiʻa plant" loading="lazy"></a><figcaption>Dark red delayed greening</figcaption></figure>
+          <figure class="ohia-gallery-card wide"><a class="ohia-gallery-link" href="../images/research/recruitment_09.jpg" data-caption="A transect running over young lava stands in Hawaiʻi Volcanoes National Park, 2014."><img src="../images/research/recruitment_09.jpg" alt="Research transect crossing a young lava landscape with ʻōhiʻa" loading="lazy"></a><figcaption>Transect across young lava · 2014</figcaption></figure>
+          <figure class="ohia-gallery-card wide"><a class="ohia-gallery-link" href="../images/research/recruitment_10.jpg" data-caption="Casey and Tiffany collecting transect data in Hilo Watershed Forest Reserve, 2014."><img src="../images/research/recruitment_10.jpg" alt="Two researchers collecting transect data in a fern forest" loading="lazy"></a><figcaption>Collecting transect data · Hilo, 2014</figcaption></figure>
+          <figure class="ohia-gallery-card wide"><a class="ohia-gallery-link" href="../images/research/recruitment_11.jpg" data-caption="Blooming ʻōhiʻa in Waikamoi Preserve, Maui, 2014."><img src="../images/research/recruitment_11.jpg" alt="Red flowering ʻōhiʻa trees in a misty Maui forest" loading="lazy"></a><figcaption>Blooming ʻōhiʻa · Waikamoi, 2014</figcaption></figure>
+          <figure class="ohia-gallery-card"><a class="ohia-gallery-link" href="../images/research/recruitment_12.jpg" data-caption="Yellow-flowered ʻōhiʻa lehua in Lower Kona Forest Reserve, 2014."><img src="../images/research/recruitment_12.jpg" alt="Yellow ʻōhiʻa lehua flower in a native forest" loading="lazy"></a><figcaption>Yellow lehua · Lower Kona, 2014</figcaption></figure>
+          <figure class="ohia-gallery-card wide"><a class="ohia-gallery-link" href="../images/research/recruitment_13.jpg" data-caption="A broad view across a Hawaiian montane forest landscape."><img src="../images/research/recruitment_13.jpg" alt="Hawaiian mountain ridges covered in native forest" loading="lazy"></a><figcaption>Hawaiian montane forest</figcaption></figure>
+          <figure class="ohia-gallery-card wide"><a class="ohia-gallery-link" href="../images/research/recruitment_14.jpg" data-caption="ʻŌhiʻa lehua with sparse psyllid gall damage."><img src="../images/research/recruitment_14.jpg" alt="ʻŌhiʻa foliage with sparse psyllid gall damage above a mountain valley" loading="lazy"></a><figcaption>ʻŌhiʻa with sparse psyllid gall damage</figcaption></figure>
+        </div>
+      </div>
+    </section>
 
-<h1 class="header1"><i class="fa fa-pagelines" aria-hidden="true"></i>&#699;&#332;hi&#699;a Project Page</h1>
+    <section class="ohia-sources" aria-labelledby="sources-title">
+      <div class="research-shell">
+        <p class="research-kicker">Environmental context</p>
+        <h2 id="sources-title">External data sources</h2>
+        <p class="ohia-sources-intro">The project combines field observations with statewide environmental layers to place ʻōhiʻa recruitment in its climatic, geologic, and conservation context.</p>
+        <div class="ohia-source-grid">
+          <article class="ohia-source-card">
+            <h3><i class="fa fa-tint" aria-hidden="true"></i> Annual rainfall</h3>
+            <p>Giambelluca, T. W., et al. 2013. Online Rainfall Atlas of Hawaii. <i>Bulletin of the American Meteorological Society</i> 94: 313–316.</p>
+            <div class="ohia-source-links"><a href="https://doi.org/10.1175/BAMS-D-11-00228.1" target="_blank" rel="noopener"><i class="fa fa-external-link" aria-hidden="true"></i> Citation</a><a href="../kml/rainfall_atlas_of_hawaii.kmz"><i class="fa fa-globe" aria-hidden="true"></i> KML</a></div>
+          </article>
+          <article class="ohia-source-card">
+            <h3><i class="fa fa-map-marker" aria-hidden="true"></i> Geologic age</h3>
+            <p>Sherrod, D. R., J. M. Sinton, S. E. Watkins, and K. M. Brunt. 2007. Geologic map of the State of Hawaii. USGS Open-File Report 2007-1089.</p>
+            <div class="ohia-source-links"><a href="https://pubs.usgs.gov/of/2007/1089/" target="_blank" rel="noopener"><i class="fa fa-external-link" aria-hidden="true"></i> Source</a><a href="../kml/usgs_geologic_age_hawaii.kmz"><i class="fa fa-globe" aria-hidden="true"></i> KML</a></div>
+          </article>
+          <article class="ohia-source-card">
+            <h3><i class="fa fa-area-chart" aria-hidden="true"></i> Elevation</h3>
+            <p>1983 USGS Digital Elevation Models obtained through the Hawaiʻi Statewide GIS Program.</p>
+            <div class="ohia-source-links"><a href="https://planning.hawaii.gov/gis/download-gis-data/" target="_blank" rel="noopener"><i class="fa fa-external-link" aria-hidden="true"></i> Source</a><a href="../kml/usgs_elevation_hawaii.kmz"><i class="fa fa-globe" aria-hidden="true"></i> KML</a></div>
+          </article>
+          <article class="ohia-source-card">
+            <h3><i class="fa fa-cloud" aria-hidden="true"></i> Rain gauges</h3>
+            <p>Rain summary locations supplied by the National Weather Service in Honolulu.</p>
+            <div class="ohia-source-links"><a href="https://www.weather.gov/hfo/" target="_blank" rel="noopener"><i class="fa fa-external-link" aria-hidden="true"></i> Source</a><a href="../kml/rain_gauges.kmz"><i class="fa fa-globe" aria-hidden="true"></i> KML</a></div>
+          </article>
+          <article class="ohia-source-card">
+            <h3><i class="fa fa-tree" aria-hidden="true"></i> Reserves and protected lands</h3>
+            <p>Reserve, preserve, and park boundaries obtained through the Hawaiʻi Statewide GIS Program.</p>
+            <div class="ohia-source-links"><a href="https://planning.hawaii.gov/gis/download-gis-data/" target="_blank" rel="noopener"><i class="fa fa-external-link" aria-hidden="true"></i> Source</a><a href="../kml/hawaii_reserves.kmz"><i class="fa fa-globe" aria-hidden="true"></i> KML</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<h3 class="header3">Project Summary</h3>
+    <section class="research-references ohia-references" aria-labelledby="references-title">
+      <div class="research-shell">
+        <p class="research-kicker">Further reading</p>
+        <h2 id="references-title">References</h2>
+        <div class="reference-list">
+          <p class="reference-item"><span>Craven, D., T. M. Knight, <b>K. E. Barton</b>, L. Bialic-Murphy, and J. M. Chase. 2019. Dissecting macro-ecological and macro-evolutionary patterns of forest biodiversity across the Hawaiian archipelago. <u>Proceedings of the National Academy of Sciences</u> 116: 16436–16441.</span> <a class="reference-pdf" href="../pubs/Craven_etal_2019.pdf" target="_blank" rel="noopener"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a></p>
 
-<p>On each of the six largest Hawaiian Islands, the dominant tree species
-  is<a href="../tooltips/ohia_lehua.html" class="clue"
-       onClick="return false">&#699;&#333;hi&#699;a lehua</a> (<i>Metrosideros polymorpha</i>), which has experienced a dramatic shift in its abundance over the past several decades. We are investigating the demography of &#699;&#333;hi&#699;a across the six largest islands to assess population dynamics and to identify factors associated with the widespread decline. Current experimental work is testing whether drought and invasive species competition lead to lower seedling recruitment in &#699;&#333;hi&#699;a lehua. <a href="../research.html#metrosideros">More...</a></p>
+          <p class="reference-item"><span>Craven, D., T. M. Knight, <b>K. E. Barton</b>, L. Bialic-Murphy, S. Cordell, C. P. Giardina, T. W. Gillespie, R. Ostertag, L. Sack, and J. M. Chase. 2018. OpenNahele: the open Hawaiian forest plot database. <u>Biodiversity Data Journal</u> 6: e28406.</span> <a class="reference-pdf" href="../pubs/Craven_etal_2018.pdf" target="_blank" rel="noopener"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a></p>
+        </div>
+        <div class="research-top-wrap"><a class="research-top" href="#top"><i class="fa fa-arrow-up" aria-hidden="true"></i> Top</a></div>
+      </div>
+    </section>
+  </main>
 
-<h3 class="header3">View Data</h3>
+  <footer class="research-footer">
+    <div class="research-shell research-footer-grid">
+      <p>© <span id="year">2026</span> Kasey E. Barton, Ph.D. · Honolulu, Hawaiʻi</p>
+      <p><a href="https://manoa.hawaii.edu">University of Hawaiʻi at Mānoa</a></p>
+    </div>
+  </footer>
 
-<!--
-<p><a href="map.html"><i class="fa fa-globe" aria-hidden="true"></i> interactive map</a></p>
+  <dialog class="ohia-lightbox" id="ohia-lightbox" aria-label="Expanded ʻŌhiʻa Project gallery image">
+    <div class="ohia-lightbox-inner">
+      <div class="ohia-lightbox-image-wrap"><img class="ohia-lightbox-image" id="ohia-lightbox-image" src="" alt=""></div>
+      <p class="ohia-lightbox-caption" id="ohia-lightbox-caption"></p>
+    </div>
+    <button class="ohia-lightbox-button ohia-lightbox-close" type="button" aria-label="Close image"><i class="fa fa-times" aria-hidden="true"></i></button>
+    <button class="ohia-lightbox-button ohia-lightbox-prev" type="button" aria-label="Previous image"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+    <button class="ohia-lightbox-button ohia-lightbox-next" type="button" aria-label="Next image"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+  </dialog>
 
-<p><a href="plot.html"><i class="fa fa-bar-chart" aria-hidden="true"></i> interactive plots</a></p>
--->
-<!--<p><a href="ohia_sites.xlsx">sampling sites spreadsheet</a></p>-->
-<!--
-<p><a href="https://www.google.com/fusiontables/DataSource?docid=1lxM6xrGdagrp9Ea3P340G2bNV31z9CuF5rQz_K-D" target="_blank"><i class="fa fa-table" aria-hidden="true"></i> sampling sites spreadsheet</a></p>
+  <script>
+    const ohiaGalleryLinks = Array.from(document.querySelectorAll('.ohia-gallery-link'));
+    const ohiaLightbox = document.getElementById('ohia-lightbox');
+    const ohiaLightboxImage = document.getElementById('ohia-lightbox-image');
+    const ohiaLightboxCaption = document.getElementById('ohia-lightbox-caption');
+    let ohiaCurrentImage = 0;
 
-<p><a href="https://www.google.com/fusiontables/DataSource?docid=1ePyg46L73J4TxD3UVHUmlLpeCAo-mMZMW3Lyj_R0" target="_blank"><i class="fa fa-table" aria-hidden="true"></i> field experiment spreadsheet</a></p> 
--->
+    function showOhiaImage(index) {
+      ohiaCurrentImage = (index + ohiaGalleryLinks.length) % ohiaGalleryLinks.length;
+      const link = ohiaGalleryLinks[ohiaCurrentImage];
+      const thumbnail = link.querySelector('img');
+      ohiaLightboxImage.src = link.href;
+      ohiaLightboxImage.alt = thumbnail.alt;
+      ohiaLightboxCaption.textContent = link.dataset.caption;
+    }
 
-<table cellpadding="2" style="margin-top: 12px;">
-  <tr>
-    <td style="text-align: center;"><font color="lightgray"><i class="fa fa-globe fa-2x" aria-hidden="true"></i></font></td>
-    <td><a href="map.html">interactive map</a></td>
-  </tr>
-  <tr>
-    <td style="text-align: center;"><font color="lightgray"><i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i></font></td>
-    <td><a href="plot.html">interactive plots</a></td>
-  </tr>
-  <tr>
-    <td style="text-align: center;"><font color="lightgray"><i class="fa fa-table fa-2x" aria-hidden="true"></i></font></td>
-    <!--
-    Google Fusion Tables discontinued December 2019:
-    <td><a href="https://www.google.com/fusiontables/DataSource?docid=1lxM6xrGdagrp9Ea3P340G2bNV31z9CuF5rQz_K-D">sampling sites spreadsheet</a></td>
-    -->
-    <td><a href="https://docs.google.com/spreadsheets/d/1VSh2w7MbsVhr80Cv3uEaJa7SWjHh1op0xTQqECaCxYY/edit?usp=sharing">sampling sites spreadsheet</a></td>
-  </tr>
-  <tr>
-    <td style="text-align: center;"><font color="lightgray"><i class="fa fa-table fa-2x" aria-hidden="true"></i></font></td>
-    <!--
-    Google Fusion Tables discontinued December 2019:
-    <td><a href="https://www.google.com/fusiontables/DataSource?docid=1ePyg46L73J4TxD3UVHUmlLpeCAo-mMZMW3Lyj_R0">field experiment spreadsheet</a></td>
-    -->
-    <td><a href="https://docs.google.com/spreadsheets/d/1YUlLK-67lwqI521Am3MxBE-oufp-P9Uba4dGUUmP8F8/edit?usp=sharing">field experiment spreadsheet</a></td>
-  </tr>
-</table>
-
-<!--
-<h3 class="header3">KML Files</h3>
-
-<ul>
--->
-  <!--<li><a href="ohia_sites.kmz?v=2">sampling sites</a></li>-->
-<!--
-  <li><a href="../kml/rainfall_atlas_of_hawaii.kmz">annual rainfall</a></li>
-  <li><a href="../kml/usgs_geologic_age_hawaii.kmz">geologic age</a></li>
-  <li><a href="../kml/usgs_elevation_hawaii.kmz">elevation</a></li>
-  <li><a href="../kml/hawaii_reserves.kmz">reserves</a></li>
-  <li><a href="../kml/rain_gauges.kmz">rain gauges</a></li>
-</ul>
--->
-
-<!--
-<h2>Big Island:</h2>
-
-<ul>
-  <li>annual rainfall: <a href="annual_rainfall_bigisland.jpg?v=2">map</a>, <a href="annual_rainfall_bigisland_plot.jpg?v=2">plot</a></li>
-  <li>geologic age: <a href="bigisland_geologic_age.jpg?v=2">map</a>, <a href="bigisland_geologic_age_plot.jpg?v=2">plot</a></li>
-  <li>elevation: <a href="bigisland_elevation.jpg?v=2">map</a>, <a href="bigisland_elevation_plot.jpg?v=2">plot</a></li>
-</ul>
-
-<h2>Kaua&#699;i:</h2>
-
-<ul>
-  <li>annual rainfall: <a href="annual_rainfall_kauai.jpg?v=2">map</a>, <a href="annual_rainfall_kauai_plot.jpg?v=2">plot</a></li>
-  <li>geologic age: <a href="kauai_geologic_age.jpg?v=2">map</a>, <a href="kauai_geologic_age_plot.jpg?v=2">plot</a></li>
-  <li>elevation: <a href="kauai_elevation.jpg?v=2">map</a>, <a href="kauai_elevation_plot.jpg?v=2">plot</a></li>
-</ul>
-
-<h2>Maui County:</h2>
-
-<ul>
-  <li>annual rainfall: <a href="annual_rainfall_mauinui.jpg?v=2">map</a></li>
-    <ul>
-      <li>Maui: <a href="annual_rainfall_maui.jpg?v=2">map</a>, <a href="annual_rainfall_maui_plot.jpg?v=2">plot</a></li>
-    </ul>
-  <li>geologic age: <a href="mauinui_geologic_age.jpg?v=2">map</a></li>
-    <ul>
-      <li>Maui: <a href="maui_geologic_age.jpg?v=2">map</a>, <a href="maui_geologic_age_plot.jpg?v=2">plot</a></li>
-    </ul>
-  <li>elevation:
-    <ul> 
-      <li>L&#257;na&#699;i: <a href="lanai_elevation.jpg?v=2">map</a></li>
-      <li>Maui: <a href="maui_elevation.jpg?v=2">map</a>, <a href="maui_elevation_plot.jpg?v=2">plot</a></li>
-      <li>Moloka&#699;i: <a href="molokai_elevation.jpg?v=2">map</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h2>O&#699;ahu:</h2>
-
-<ul>
-  <li>annual rainfall: <a href="annual_rainfall_oahu.jpg?v=6">map</a>, <a href="annual_rainfall_oahu_plot.jpg?v=5">plot</a>, <a href="annual_rainfall_oahu_plot_experiment.jpg">plot (experiment)</a></li>
-  <li>geologic age: <a href="oahu_geologic_age.jpg?v=6">map</a>, <a href="oahu_geologic_age_plot.jpg?v=4">plot</a></li>
-  <li>elevation: <a href="oahu_elevation.jpg?v=6">map</a>, <a href="oahu_elevation_plot.jpg?v=5">plot</a></li>
-</ul>
-
-<h2>Statewide:</h2>
-
-<ul>
-  <li>annual rainfall: <a href="annual_rainfall_statewide.jpg?v=6">map</a>, <a href="annual_rainfall_statewide_plot.jpg?v=7">plot</a></li>
-  <li>geologic age: <a href="statewide_geologic_age.jpg?v=6">map</a>, <a href="statewide_geologic_age_plot.jpg?v=6">plot</a></li>
-  <li>elevation: <a href="statewide_elevation.jpg?v=6">map</a>, <a href="statewide_elevation_plot.jpg?v=7">plot</a></li>
-</ul>
--->
-
-<h3 class="header3">External Data Sources</h3>
-
-<h3>annual rainfall:</h3>
-
-<p>Rainfall Atlas of Hawai&#699;i: <a href="http://rainfall.geography.hawaii.edu">http://rainfall.geography.hawaii.edu</a></p>
-
-<p><i>citation:</i></p>
-<p>Giambelluca, T.W., Q. Chen, A.G. Frazier, J.P. Price, Y.-L. Chen, P.-S. Chu, J.K. Eischeid, and D.M. Delparte, 2013: Online Rainfall Atlas of Hawaii. <i>Bull. Amer. Meteor. Soc.</i> 94, 313-316, doi: 10.1175/BAMS-D-11-00228.1.</p>
-
-<p><a href="../kml/rainfall_atlas_of_hawaii.kmz"
-      title="Google Earth Keyhole Markup Language (KML)"><i class="fa fa-globe" aria-hidden="true"></i> KML file</a></p>
-
-<h3>geologic age:</h3>
-
-<p>Geologic Map of the State of Hawai&#699;i: <a href="http://pubs.usgs.gov/of/2007/1089/">http://pubs.usgs.gov/of/2007/1089/</a></p>
-
-<p><i>citation:</i></p>
-<p>Sherrod, David R., Sinton, John M., Watkins, Sarah E., and Brunt, Kelly M., 2007, Geologic map of the State of Hawaii:  U.S. Geological Survey Open-File Report 2007-1089 [<a href="http://pubs.usgs.gov/of/2007/1089/">http://pubs.usgs.gov/of/2007/1089/</a>].</p>
-
-<p><a href="../kml/usgs_geologic_age_hawaii.kmz"
-      title="Google Earth Keyhole Markup Language (KML)"><i class="fa fa-globe" aria-hidden="true"></i> KML file</a></p>
-
-<h3>elevation:</h3>
-
-<p>1983 U.S. Geological Survey (USGS) Digital Elevation Models (DEMs)</p>
-
-<p>Shapefile obtained from Hawai&#699;i Statewide GIS Program: <a href="http://planning.hawaii.gov/gis/download-gis-data/">http://planning.hawaii.gov/gis/download-gis-data/</a>. <i>See:</i> "006 - Elevation And Derived Products" &gt; "USGS Elevation Ranges".
-
-<p><a href="../kml/usgs_elevation_hawaii.kmz"
-      title="Google Earth Keyhole Markup Language (KML)"><i class="fa fa-globe" aria-hidden="true"></i> KML file</a></p>
-
-<h3>rain gauges:</h3>
-
-<p>"Rain summary locations" KML file obtained for Hawai&#699;i from the National Weather Service (NWS): <a href="http://www.prh.noaa.gov/hnl/pages/rain_summary.php">http://www.prh.noaa.gov/hnl/pages/rain_summary.php</a>. <i>See:</i> "Download in KML", which points to: <a href="http://www.prh.noaa.gov/hnl/kml/openkml.php?kmlfile=RainSummary.kml">http://www.prh.noaa.gov/hnl/kml/openkml.php?kmlfile=RainSummary.kml</a>.
-
-<p><a href="../kml/rain_gauges.kmz"
-      title="Google Earth Keyhole Markup Language (KML)"><i class="fa fa-globe" aria-hidden="true"></i> KML file</a></p>
-
-<h3>reserves:</h3>
-
-<p>Various reserves, preserves, parks, etc. Shapefile obtained from Hawai&#699;i Statewide GIS Program: <a href="http://planning.hawaii.gov/gis/download-gis-data/">http://planning.hawaii.gov/gis/download-gis-data/</a>. <i>See:</i> "003 - Administrative And Political Boundaries" &gt; "Reserves".</p>
-
-<p><a href="../kml/hawaii_reserves.kmz"
-      title="Google Earth Keyhole Markup Language (KML)"><i class="fa fa-globe" aria-hidden="true"></i> KML file</a></p>
-
-<hr/>
-
-<!--#include virtual="../ssi/links.ssi" -->{% include links.ssi %}
-<!--#include virtual="../ssi/footer.ssi" -->{% include footer.ssi %}
-<!--#include virtual="../ssi/google_analytics.ssi" -->{% include google_analytics.ssi %}
-
-<!--
-<p>Last Updated: <script>document.write( new Date( document.lastModified ) );</script></p>
--->
-
-</div> <!-- #content -->
+    ohiaGalleryLinks.forEach((link,index) => {
+      link.addEventListener('click',event => {
+        event.preventDefault();
+        showOhiaImage(index);
+        ohiaLightbox.showModal();
+      });
+    });
+    ohiaLightbox.querySelector('.ohia-lightbox-close').addEventListener('click',() => ohiaLightbox.close());
+    ohiaLightbox.querySelector('.ohia-lightbox-prev').addEventListener('click',() => showOhiaImage(ohiaCurrentImage - 1));
+    ohiaLightbox.querySelector('.ohia-lightbox-next').addEventListener('click',() => showOhiaImage(ohiaCurrentImage + 1));
+    ohiaLightbox.addEventListener('click',event => { if (event.target === ohiaLightbox) ohiaLightbox.close(); });
+    ohiaLightbox.addEventListener('keydown',event => {
+      if (event.key === 'ArrowLeft') showOhiaImage(ohiaCurrentImage - 1);
+      if (event.key === 'ArrowRight') showOhiaImage(ohiaCurrentImage + 1);
+    });
+    document.getElementById('year').textContent=new Date().getFullYear();
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H7Z28QQN5R"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-H7Z28QQN5R');</script>
 </body>
+</html>

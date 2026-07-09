@@ -1,132 +1,388 @@
----
----
-<!-- Above lines tell GitHub/Jekyll to find include statements -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html>
-
+<!doctype html>
+<html lang="en">
 <head>
-<link rel="icon" href="favicon.ico" >
-<title>Kasey E. Barton, Ph.D.: Gallery</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Fieldwork, plants, people, and research moments from the Barton Lab at the University of Hawaiʻi at Mānoa.">
+  <meta name="theme-color" content="#123d2b">
+  <title>Field Gallery | Kasey E. Barton</title>
+  <link rel="icon" href="favicon.ico?v=3">
+  <link rel="stylesheet" href="js/font-awesome-4.2.0/css/font-awesome.min.css">
+  <style>
+    :root {
+      --forest-950: #09281d;
+      --forest-900: #123d2b;
+      --forest-800: #1b5339;
+      --forest-700: #286847;
+      --leaf-500: #5c9d55;
+      --leaf-300: #a8c98e;
+      --fern-100: #e4efdc;
+      --cream: #f8f5eb;
+      --white: #ffffff;
+      --ink: #173025;
+      --muted: #52665c;
+      --gold: #e8c968;
+      --line: rgba(18, 61, 43, 0.15);
+      --shadow: 0 18px 50px rgba(9, 40, 29, 0.12);
+    }
 
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="js/fancybox/source/jquery.fancybox.pack.js"></script>
-<link type="text/css" rel="stylesheet" href="js/fancybox/source/jquery.fancybox.css" />
-<link type="text/css" rel="stylesheet" href="js/font-awesome-4.2.0/css/font-awesome.min.css" />
-<link type="text/css" rel="stylesheet" href="css/subpages.css?v=2" />
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 4% 18%, rgba(168,201,142,0.25), transparent 24rem),
+        linear-gradient(180deg, #eef5e9 0%, var(--cream) 34rem, #eef5e9 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
 
-<script>
-$( document ).ready(
-  function () {
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.28;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90'%3E%3Cpath d='M5 80C18 59 30 37 44 9M24 50c-9 1-15-2-19-9 9-2 16 1 19 9Zm9-18c9-1 15-5 18-13-9-1-16 4-18 13Z' fill='none' stroke='%2392b57c' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E");
+      mask-image: linear-gradient(to bottom, black, transparent 78%);
+    }
 
-    // FancyBox jQuery inline image pop-ups:
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; }
 
-    $( 'body' ).on(
-      'mouseenter',
-      'a.browse',
-      function(){
-        $( '.fancybox' )
-        .attr( 'rel', 'gallery' )
-        .fancybox(
-          {
-            'loop': false,
-            'openSpeed': 100,
-            'closeSpeed': 100,
-            'padding': 0,
-            'helpers': {
-              'overlay': null
-              //'title': {
-              //  'type': 'inside'
-              //}
-              //'overlay': {
-              //  'locked': false
-              //}
-            }
-          }
-        );
-      }
-    );
+    .skip-link {
+      position: fixed;
+      top: 0;
+      left: 1rem;
+      z-index: 100;
+      padding: 0.7rem 1rem;
+      color: var(--white);
+      background: var(--forest-950);
+      transform: translateY(-120%);
+    }
+    .skip-link:focus { transform: translateY(0); }
 
-  }
-);
-</script>
+    .shell { width: min(1180px, calc(100% - 2rem)); margin-inline: auto; }
+    .site-header { color: var(--white); background: var(--forest-950); border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .nav-shell { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
 
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: var(--white);
+      text-decoration: none;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .brand-mark {
+      width: 38px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      font-size: 1.15rem;
+    }
+
+    .primary-nav { display: flex; align-items: center; justify-content: flex-end; gap: 0.25rem; flex-wrap: wrap; }
+    .primary-nav a { padding: 0.62rem 0.82rem; color: rgba(255,255,255,0.8); border-radius: 999px; text-decoration: none; font-size: 0.92rem; font-weight: 650; }
+    .primary-nav a:hover, .primary-nav a:focus-visible, .primary-nav a[aria-current="page"] { color: var(--white); background: rgba(255,255,255,0.11); }
+    .primary-nav .nav-cta { margin-left: 0.35rem; color: var(--forest-950); background: var(--gold); }
+    .primary-nav .nav-cta:hover, .primary-nav .nav-cta:focus-visible { color: var(--forest-950); background: #f2da87; }
+
+    .page-hero { position: relative; overflow: hidden; color: var(--white); background: var(--forest-950); }
+    .hero-grid { min-height: 590px; display: grid; grid-template-columns: minmax(0,0.9fr) minmax(440px,1.1fr); gap: clamp(2rem,5vw,5rem); align-items: center; padding: clamp(2.5rem,5vw,5rem) 0; }
+    .hero-copy-wrap { position: relative; z-index: 2; }
+    .eyebrow { margin: 0 0 1rem; color: var(--leaf-300); font-size: 0.76rem; font-weight: 850; letter-spacing: 0.18em; text-transform: uppercase; }
+    h1 { margin: 0; max-width: 8ch; font-size: clamp(3.5rem,8vw,7rem); font-weight: 500; letter-spacing: -0.055em; line-height: 0.94; }
+    .hero-copy { max-width: 570px; margin: 1.5rem 0 0; color: rgba(255,255,255,0.76); font-size: clamp(1rem,1.7vw,1.2rem); }
+    .hero-links { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 2rem; }
+    .hero-links a { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 46px; padding: 0.68rem 1rem; border: 1px solid rgba(255,255,255,0.23); border-radius: 999px; color: var(--white); text-decoration: none; font-weight: 760; }
+    .hero-links a:first-child { color: var(--forest-950); background: var(--gold); border-color: var(--gold); }
+
+    .hero-collage { position: relative; height: 470px; }
+    .hero-photo { position: absolute; overflow: hidden; box-shadow: 0 26px 65px rgba(0,0,0,0.34); }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-photo.two img { object-position: 66% 50%; }
+    .hero-photo.one { inset: 1rem 4.5rem 2rem 1rem; border-radius: 45% 45% 18px 18px; }
+    .hero-photo.two { right: 0; bottom: 0; width: 38%; height: 48%; border-radius: 20px; transform: rotate(3deg); }
+    .hero-photo.three { top: 0; right: 0.8rem; width: 31%; height: 35%; border-radius: 50%; transform: rotate(-3deg); }
+
+    .gallery-section { padding: clamp(4rem,8vw,7rem) 0; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2rem; }
+    .section-kicker { margin: 0 0 0.65rem; color: var(--forest-700); font-size: 0.76rem; font-weight: 850; letter-spacing: 0.16em; text-transform: uppercase; }
+    h2 { margin: 0; color: var(--forest-950); font-size: clamp(2.3rem,5vw,4.7rem); font-weight: 500; letter-spacing: -0.045em; line-height: 1; }
+    .section-heading > p { max-width: 390px; margin: 0; color: var(--muted); }
+
+    .gallery-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); grid-auto-rows: 220px; gap: 1rem; }
+    .gallery-card { position: relative; min-width: 0; margin: 0; overflow: hidden; background: var(--forest-900); border-radius: 18px; box-shadow: 0 10px 30px rgba(9,40,29,0.1); }
+    .gallery-card.wide { grid-column: span 2; }
+    .gallery-card.tall { grid-row: span 2; }
+    .gallery-card a { display: block; width: 100%; height: 100%; }
+    .gallery-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 600ms cubic-bezier(.2,.7,.2,1), filter 300ms ease; }
+    .gallery-link[href$="gallery_04.jpg"] img { object-position: 50% 36%; }
+    .gallery-link[href$="gallery_08.jpg"] img { object-position: 78% 50%; }
+    .gallery-link[href$="gallery_11.jpg"] img { object-position: 50% 22%; }
+    .gallery-link[href$="gallery_0g.jpg"] img { object-position: 50% 12%; }
+    .gallery-link[href$="gallery_0e.jpg"] img { object-position: 50% 24%; }
+    .gallery-link[href$="gallery_0a.jpg"] img { object-position: 50% 19%; }
+    .gallery-card figcaption { position: absolute; inset: auto 0 0; padding: 3.5rem 1rem 0.9rem; color: var(--white); background: linear-gradient(transparent,rgba(9,40,29,0.94)); font-size: 0.82rem; line-height: 1.4; opacity: 0; transform: translateY(10px); transition: opacity 220ms ease, transform 220ms ease; pointer-events: none; }
+    .gallery-card:hover img, .gallery-card:focus-within img { transform: scale(1.045); filter: saturate(1.08); }
+    .gallery-card:hover figcaption, .gallery-card:focus-within figcaption { opacity: 1; transform: translateY(0); }
+    .gallery-card a::after { content: "\f00e"; position: absolute; top: 0.85rem; right: 0.85rem; width: 38px; aspect-ratio: 1; display: grid; place-items: center; color: var(--forest-950); background: rgba(248,245,235,0.92); border-radius: 50%; font-family: FontAwesome; opacity: 0; transform: scale(0.8); transition: opacity 180ms ease, transform 180ms ease; }
+    .gallery-card:hover a::after, .gallery-card:focus-within a::after { opacity: 1; transform: scale(1); }
+
+    .video-section { padding: clamp(4rem,8vw,7rem) 0 2.25rem; color: var(--white); background: var(--forest-900); }
+    .video-section .section-kicker { color: var(--leaf-300); }
+    .video-section h2 { color: var(--white); }
+    .video-section .section-heading > p { color: rgba(255,255,255,0.68); }
+    .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .video-card { margin: 0; overflow: hidden; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); border-radius: 20px; }
+    .video-frame { aspect-ratio: 16/9; background: var(--forest-950); }
+    .video-frame iframe { width: 100%; height: 100%; border: 0; }
+    .video-card figcaption { padding: 1.2rem 1.3rem 1.4rem; color: rgba(255,255,255,0.7); }
+    .video-card h3 { margin: 0 0 0.35rem; color: var(--white); font-size: 1.35rem; font-weight: 500; }
+    .video-card p { margin: 0; font-size: 0.9rem; }
+
+    .top-link-wrap { margin-top: 2rem; text-align: center; }
+    .top-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1rem;
+      color: var(--forest-950);
+      background: var(--gold);
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 750;
+      transition: transform 160ms ease, background 160ms ease;
+    }
+    .top-link:hover { background: #f2da87; transform: translateY(-2px); }
+
+    .site-footer { padding: 2rem 0; color: rgba(255,255,255,0.68); background: var(--forest-950); }
+    .footer-grid { display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-size: 0.88rem; }
+    .footer-grid p { margin: 0; }
+    .footer-grid a { color: var(--white); text-underline-offset: 0.2em; }
+
+    .lightbox { width: min(1100px,calc(100% - 2rem)); max-width: none; height: min(88vh,850px); padding: 0; overflow: hidden; color: var(--white); background: var(--forest-950); border: 1px solid rgba(255,255,255,0.16); border-radius: 20px; box-shadow: 0 30px 100px rgba(0,0,0,0.6); }
+    .lightbox::backdrop { background: rgba(3,18,12,0.88); backdrop-filter: blur(5px); }
+    .lightbox-inner { height: 100%; display: grid; grid-template-rows: minmax(0,1fr) auto; }
+    .lightbox-image-wrap { min-height: 0; display: grid; place-items: center; padding: 3rem 4.5rem 1rem; }
+    .lightbox-image { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+    .lightbox-caption { margin: 0; padding: 1rem 5rem 1.3rem; color: rgba(255,255,255,0.76); text-align: center; }
+    .lightbox-button { position: absolute; z-index: 2; width: 44px; aspect-ratio: 1; display: grid; place-items: center; color: var(--white); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 50%; cursor: pointer; }
+    .lightbox-close { top: 1rem; right: 1rem; }
+    .lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); }
+    .lightbox-prev { left: 1rem; }
+    .lightbox-next { right: 1rem; }
+
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+    @media (max-width: 900px) {
+      .nav-shell { padding-block: 0.9rem; align-items: flex-start; }
+      .hero-grid { grid-template-columns: 1fr 0.8fr; min-height: 520px; }
+      .hero-collage { height: 390px; }
+      .gallery-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+      .gallery-card.wide { grid-column: span 1; }
+    }
+
+    @media (max-width: 680px) {
+      .nav-shell { display: block; }
+      .brand { margin-bottom: 0.8rem; }
+      .primary-nav { justify-content: flex-start; gap: 0.2rem; }
+      .primary-nav a { padding: 0.48rem 0.62rem; font-size: 0.82rem; }
+      .primary-nav .nav-cta { margin-left: 0; }
+      .hero-grid { grid-template-columns: 1fr; padding-top: 2.5rem; }
+      .hero-collage { height: 360px; }
+      .section-heading { align-items: flex-start; flex-direction: column; }
+      .gallery-grid { grid-template-columns: repeat(2,minmax(0,1fr)); grid-auto-rows: 190px; gap: 0.75rem; }
+      .gallery-card.tall { grid-row: span 1; }
+      .gallery-card figcaption { opacity: 1; transform: none; }
+      .video-grid { grid-template-columns: 1fr; }
+      .footer-grid { align-items: flex-start; flex-direction: column; }
+      .lightbox-image-wrap { padding: 3.5rem 1rem 1rem; }
+      .lightbox-caption { padding-inline: 3.5rem; font-size: 0.86rem; }
+      .lightbox-prev { left: 0.5rem; }
+      .lightbox-next { right: 0.5rem; }
+    }
+
+    @media (max-width: 430px) {
+      .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 270px; }
+      .gallery-card.wide { grid-column: span 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+  </style>
 </head>
+<body id="top">
+  <a class="skip-link" href="#main-content">Skip to gallery</a>
 
-<body>
+  <header class="site-header">
+    <div class="shell nav-shell">
+      <a class="brand" href="index.html" aria-label="Kasey E. Barton home">
+        <span class="brand-mark" aria-hidden="true"><i class="fa fa-pagelines"></i></span>
+        <span>Barton Lab</span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <a href="publications.html">Publications</a>
+        <a href="research.html">Research</a>
+        <a href="drought/">Drought Index</a>
+        <a class="nav-cta" href="join.html">Join the Lab</a>
+      </nav>
+    </div>
+  </header>
 
-<div id="content">
+  <main id="main-content">
+    <section class="page-hero" aria-labelledby="page-title">
+      <div class="shell hero-grid">
+        <div class="hero-copy-wrap">
+          <p class="eyebrow">Field notes · People · Plants</p>
+          <h1 id="page-title">Field Gallery</h1>
+          <p class="hero-copy">A visual archive of research, discovery, and botanical life—from Hawaiʻi to Costa Rica, Mexico, Finland, and beyond.</p>
+          <div class="hero-links">
+            <a href="#photographs">Explore photographs <span aria-hidden="true">↓</span></a>
+            <a href="#videos">Watch field stories <span aria-hidden="true">▶</span></a>
+          </div>
+        </div>
+        <div class="hero-collage" aria-hidden="true">
+          <div class="hero-photo one"><img src="images/gallery/gallery_13.jpg" alt=""></div>
+          <div class="hero-photo two"><img src="images/gallery/gallery_08.jpg" alt=""></div>
+          <div class="hero-photo three"><img src="images/gallery/gallery_0j.jpg" alt=""></div>
+        </div>
+      </div>
+    </section>
 
-<!--#include virtual="ssi/links.ssi" -->{% include links.ssi %}
+    <section class="gallery-section" id="photographs" aria-labelledby="photo-heading">
+      <div class="shell">
+        <div class="section-heading">
+          <div><p class="section-kicker">23 moments</p><h2 id="photo-heading">Through the years</h2></div>
+          <p>Select any photograph to view it in full and read its field note.</p>
+        </div>
 
-<h1 class="header1"><i class="fa fa-image"></i> Gallery</h1>
+        <div class="gallery-grid">
+          <figure class="gallery-card wide tall"><a class="gallery-link" href="images/gallery/gallery_13.jpg" data-caption="Organization for Tropical Studies Summer Course at Palo Verde, Costa Rica, 2015. Kasey Barton (left)."><img src="images/gallery/gallery_13.jpg" alt="Kasey Barton at an Organization for Tropical Studies summer course in Costa Rica" loading="lazy"></a><figcaption>Organization for Tropical Studies · Costa Rica, 2015</figcaption></figure>
+          <figure class="gallery-card"><a class="gallery-link" href="images/gallery/gallery_01.jpg" data-caption="Carolina Quintero, Kasey Barton, and Mary Jamieson at the New Phytologist Symposium, November 2013, Buenos Aires, Argentina."><img src="images/gallery/gallery_01.jpg" alt="Carolina Quintero, Kasey Barton, and Mary Jamieson in Buenos Aires" loading="lazy"></a><figcaption>New Phytologist Symposium · Argentina, 2013</figcaption></figure>
+          <figure class="gallery-card"><a class="gallery-link" href="images/gallery/gallery_02.jpg" data-caption="Waimea Canyon, Kauaʻi. Photo: Kasey E. Barton."><img src="images/gallery/gallery_02.jpg" alt="Waimea Canyon on Kauaʻi" loading="lazy"></a><figcaption>Waimea Canyon · Kauaʻi</figcaption></figure>
+          <figure class="gallery-card tall"><a class="gallery-link" href="images/gallery/gallery_03.jpg" data-caption="Desmond celebrating his first botanical success—a homegrown carrot!"><img src="images/gallery/gallery_03.jpg" alt="Desmond holding a homegrown carrot" loading="lazy"></a><figcaption>A first botanical success</figcaption></figure>
+          <figure class="gallery-card wide"><a class="gallery-link" href="images/gallery/gallery_04.jpg" data-caption="Jsl and Desmond posing with a coffee plant while on a research trip to Hawaiʻi Island, June 2010."><img src="images/gallery/gallery_04.jpg" alt="Jsl and Desmond with a coffee plant on Hawaiʻi Island" loading="lazy"></a><figcaption>Coffee plant research trip · Hawaiʻi Island, 2010</figcaption></figure>
+          <figure class="gallery-card"><a class="gallery-link" href="images/gallery/gallery_05.jpg" data-caption="Student alumni Veronica Gibson and Ryan Hoan hiking the Koʻolau Mountains, Oʻahu."><img src="images/gallery/gallery_05.jpg" alt="Veronica Gibson and Ryan Hoan hiking in the Koʻolau Mountains" loading="lazy"></a><figcaption>Lab alumni in the Koʻolau Mountains</figcaption></figure>
+          <figure class="gallery-card"><a class="gallery-link" href="images/gallery/gallery_06.jpg" data-caption="Rooftop experiment with the assistance of Desmond."><img src="images/gallery/gallery_06.jpg" alt="Desmond assisting with a rooftop plant experiment" loading="lazy"></a><figcaption>Rooftop experiment</figcaption></figure>
+          <figure class="gallery-card"><a class="gallery-link" href="images/gallery/gallery_07.jpg" data-caption="Not a botanist yet, but at least Zora is posing with plants behind her. January 2013."><img src="images/gallery/gallery_07.jpg" alt="Zora posing in front of plants" loading="lazy"></a><figcaption>Zora among the plants · 2013</figcaption></figure>
+          <figure class="gallery-card tall"><a class="gallery-link" href="images/gallery/gallery_08.jpg" data-caption="Collecting pua kala seeds on Molokaʻi while eight months pregnant with Zora, August 2011."><img src="images/gallery/gallery_08.jpg" alt="Kasey collecting pua kala seeds on Molokaʻi" loading="lazy"></a><figcaption>Collecting pua kala seeds · Molokaʻi, 2011</figcaption></figure>
+          <figure class="gallery-card wide"><a class="gallery-link" href="images/gallery/gallery_09.jpg" data-caption="Improving in his botanical research skills, Desmond helps collect data at Waimānalo Research Station during a poppy garden experiment, July 2014."><img src="images/gallery/gallery_09.jpg" alt="Desmond collecting data at Waimānalo Research Station" loading="lazy"></a><figcaption>Poppy garden experiment · Waimānalo, 2014</figcaption></figure>
+          <figure class="gallery-card"><a class="gallery-link" href="images/gallery/gallery_10.jpg" data-caption="Zora flies a kite while Desmond and Kasey collect data in Waimānalo, July 2014."><img src="images/gallery/gallery_10.jpg" alt="Zora flying a kite during field data collection in Waimānalo" loading="lazy"></a><figcaption>Field day in Waimānalo · 2014</figcaption></figure>
+          <figure class="gallery-card"><a class="gallery-link" href="images/gallery/gallery_12.jpg" data-caption="Silversword research on Haleakalā, October 2009."><img src="images/gallery/gallery_12.jpg" alt="Silversword research on Haleakalā" loading="lazy"></a><figcaption>Silversword research · Haleakalā, 2009</figcaption></figure>
+          <figure class="gallery-card"><a class="gallery-link" href="images/gallery/gallery_11.jpg" data-caption="Silver birch community genetics experiment, Finland, June 2009."><img src="images/gallery/gallery_11.jpg" alt="Silver birch community genetics experiment in Finland" loading="lazy"></a><figcaption>Silver birch experiment · Finland, 2009</figcaption></figure>
+          <figure class="gallery-card tall"><a class="gallery-link" href="images/gallery/gallery_0j.jpg" data-caption="Pentaclethra macroloba at La Selva, Costa Rica, during Ph.D. research, summer 2001."><img src="images/gallery/gallery_0j.jpg" alt="Pentaclethra macroloba at La Selva, Costa Rica" loading="lazy"></a><figcaption>Ph.D. research at La Selva · 2001</figcaption></figure>
+          <figure class="gallery-card"><a class="gallery-link" href="images/gallery/gallery_0i.jpg" data-caption="Plantago lanceolata inflorescence, Boulder, Colorado, 2005."><img src="images/gallery/gallery_0i.jpg" alt="Plantago lanceolata inflorescence" loading="lazy"></a><figcaption>Plantago lanceolata · Colorado, 2005</figcaption></figure>
+          <figure class="gallery-card"><a class="gallery-link" href="images/gallery/gallery_0h.jpg" data-caption="Buckeye caterpillar eating a Plantago lanceolata leaf during Ph.D. research in Boulder, Colorado, 2006."><img src="images/gallery/gallery_0h.jpg" alt="Buckeye caterpillar eating a Plantago lanceolata leaf" loading="lazy"></a><figcaption>Buckeye caterpillar and Plantago</figcaption></figure>
+          <figure class="gallery-card"><a class="gallery-link" href="images/gallery/gallery_0g.jpg" data-caption="Rototilling the plot for the Plantago farm experiment, summer 2007."><img src="images/gallery/gallery_0g.jpg" alt="Preparing a plot for a Plantago farm experiment" loading="lazy"></a><figcaption>Preparing the Plantago experiment · 2007</figcaption></figure>
+          <figure class="gallery-card"><a class="gallery-link" href="images/gallery/gallery_0f.jpg" data-caption="Plantago lanceolata greenhouse experiment during Ph.D. research in Boulder, Colorado, 2004."><img src="images/gallery/gallery_0f.jpg" alt="Plantago lanceolata greenhouse experiment" loading="lazy"></a><figcaption>Greenhouse experiment · Colorado, 2004</figcaption></figure>
+          <figure class="gallery-card"><a class="gallery-link" href="images/gallery/gallery_0e.jpg" data-caption="Missouri Botanical Garden, 1999."><img src="images/gallery/gallery_0e.jpg" alt="At Missouri Botanical Garden" loading="lazy"></a><figcaption>Missouri Botanical Garden · 1999</figcaption></figure>
+          <figure class="gallery-card tall"><a class="gallery-link" href="images/gallery/gallery_0d.jpg" data-caption="Woolly bear caterpillar eating a Plantago major leaf during Ph.D. research in Boulder, Colorado, 2006."><img src="images/gallery/gallery_0d.jpg" alt="Woolly bear caterpillar eating a Plantago major leaf" loading="lazy"></a><figcaption>Woolly bear caterpillar and Plantago</figcaption></figure>
+          <figure class="gallery-card"><a class="gallery-link" href="images/gallery/gallery_0c.jpg" data-caption="Plantago lanceolata greenhouse experiment during Ph.D. research in Boulder, Colorado, 2004."><img src="images/gallery/gallery_0c.jpg" alt="Plantago lanceolata plants in a greenhouse experiment" loading="lazy"></a><figcaption>Plantago greenhouse study · 2004</figcaption></figure>
+          <figure class="gallery-card"><a class="gallery-link" href="images/gallery/gallery_0b.jpg" data-caption="Plantago patagonica inflorescence, Boulder, Colorado, 2003."><img src="images/gallery/gallery_0b.jpg" alt="Plantago patagonica inflorescence" loading="lazy"></a><figcaption>Plantago patagonica · Colorado, 2003</figcaption></figure>
+          <figure class="gallery-card"><a class="gallery-link" href="images/gallery/gallery_0a.jpg" data-caption="Boulder Open Space Plantago survey, summer 2006."><img src="images/gallery/gallery_0a.jpg" alt="Surveying Plantago in Boulder Open Space" loading="lazy"></a><figcaption>Boulder Open Space Plantago survey · 2006</figcaption></figure>
+        </div>
+      </div>
+    </section>
 
-<!--
-<table>
-  <tr valign="top">
-    <td><i class="fa fa-image fa-4x" style="color: #006600; font-size: 52px; margin-top: 9px;"></i></td>
-    <td><img src="images/titles/title_gallery.png" style="margin-left: 0px;" /></td>
-  </tr>
-</table>
--->
+    <section class="video-section" id="videos" aria-labelledby="video-heading">
+      <div class="shell">
+        <div class="section-heading">
+          <div><p class="section-kicker">Field stories</p><h2 id="video-heading">Watch the work</h2></div>
+          <p>Two short glimpses into poppy research and life in the field.</p>
+        </div>
+        <div class="video-grid">
+          <figure class="video-card">
+            <div class="video-frame"><iframe src="https://player.vimeo.com/video/108856133" title="The Poppy Project: Joyce Auau, Summer 2014" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+            <figcaption><h3>The Poppy Project</h3><p>Joyce Auau · Summer 2014</p></figcaption>
+          </figure>
+          <figure class="video-card">
+            <div class="video-frame"><iframe src="https://player.vimeo.com/video/108880895" title="Kasey's field assistant: Desmond Barton Maurer, Summer 2011" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+            <figcaption><h3>Kasey’s field assistant</h3><p>Desmond “Dezi” Barton Maurer · Summer 2011</p></figcaption>
+          </figure>
+        </div>
+        <div class="top-link-wrap">
+          <a class="top-link" href="#top"><i class="fa fa-arrow-up" aria-hidden="true"></i> Top</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<ul>
-  <li><a href="#images">images</a></li>
-  <li><a href="#videos">videos</a></li>
-</ul>
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <p>© <span id="year">2026</span> Kasey E. Barton, Ph.D. · Honolulu, Hawaiʻi</p>
+      <p><a href="https://manoa.hawaii.edu">University of Hawaiʻi at Mānoa</a></p>
+    </div>
+  </footer>
 
-<hr/>
+  <dialog class="lightbox" id="lightbox" aria-label="Expanded gallery image">
+    <div class="lightbox-inner">
+      <div class="lightbox-image-wrap"><img class="lightbox-image" id="lightbox-image" src="" alt=""></div>
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+    <button class="lightbox-button lightbox-close" type="button" aria-label="Close image"><i class="fa fa-times" aria-hidden="true"></i></button>
+    <button class="lightbox-button lightbox-prev" type="button" aria-label="Previous image"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+    <button class="lightbox-button lightbox-next" type="button" aria-label="Next image"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+  </dialog>
 
-<a name="images"></a>
-<h3 class="header3" style="margin-bottom: 12px;">Images</h3>
+  <script>
+    const galleryLinks = Array.from(document.querySelectorAll('.gallery-link'));
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const closeButton = lightbox.querySelector('.lightbox-close');
+    const previousButton = lightbox.querySelector('.lightbox-prev');
+    const nextButton = lightbox.querySelector('.lightbox-next');
+    let currentImage = 0;
 
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_13.jpg" title="Organization for Tropical Studies (OTS) Summer Course at Palo Verde, Costa Rica, 2015. Kasey Barton (left)."><img src="images/gallery/thumbs/gallery_13.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_01.jpg" title="Carolina Quintero, Kasey Barton, and Mary Jamieson at New Phytologist Symposium, November 2013. Buenos Aires, Argentina."><img src="images/gallery/thumbs/gallery_01.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_02.jpg" title="Waimea Canyon, Kaua&#699;i. Photo: Kasey E. Barton"><img src="images/gallery/thumbs/gallery_02.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_03.jpg" title="Desmond celebrating his first botanical success - a homegrown carrot!"><img src="images/gallery/thumbs/gallery_03.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_04.jpg" title="Jsl and Desmond posing with a coffee plant while on a research trip to Big Island, June 2010."><img src="images/gallery/thumbs/gallery_04.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_05.jpg" title="Student alumni: Veronica Gibson and Ryan Hoan hiking Ko&#699;olau Mountains, O&#699;ahu."><img src="images/gallery/thumbs/gallery_05.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_06.jpg" title="Rooftop experiment with the assistance of Desmond."><img src="images/gallery/thumbs/gallery_06.jpg" height="120" /></a> 
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_07.jpg" title="Not a botanist yet, but at least Zora is posing with plants behind her. January 2013."><img src="images/gallery/thumbs/gallery_07.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_08.jpg" title="Collecting pua kala seeds on Molokai while 8 months pregnant with Zora, August 2011."><img src="images/gallery/thumbs/gallery_08.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_09.jpg" title="Improving in his botanical research skills, Desmond now helps collect data at Waimanalo Research Station, poppy garden experiment July 2014."><img src="images/gallery/thumbs/gallery_09.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_10.jpg" title="Still not a botanist, Zora is flying a kite while Desmond and I collect data in Waimanalo, July 2014."><img src="images/gallery/thumbs/gallery_10.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_12.jpg" title="Silversword research on Haleakala, October 2009."><img src="images/gallery/thumbs/gallery_12.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_11.jpg" title="Silver birch community genetics experiment, Finland June 2009."><img src="images/gallery/thumbs/gallery_11.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_0j.jpg" title="Pentaclethra macroloba at La Selva, Costa Rica, during PhD research. Summer 2001."><img src="images/gallery/thumbs/gallery_0j.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_0i.jpg" title="Plantago lanceolata inflorescence, Boulder, CO. 2005."><img src="images/gallery/thumbs/gallery_0i.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_0h.jpg" title="Buckeye caterpillar eating a Plantago lanceolata leaf. PhD research, Boulder, CO 2006."><img src="images/gallery/thumbs/gallery_0h.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_0g.jpg" title="Rototilling the plot for the Plantago farm experiment (for about 5 minutes before Jsl took over). Summer 2007."><img src="images/gallery/thumbs/gallery_0g.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_0f.jpg" title="Plantago lanceolata greenhouse experiment. PhD research, Boulder, CO 2004."><img src="images/gallery/thumbs/gallery_0f.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_0e.jpg" title="Missouri Botanical Garden, 1999."><img src="images/gallery/thumbs/gallery_0e.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_0d.jpg" title="Wooly bear caterpillar eating Plantago major leaf. PhD research, Boulder, CO 2006."><img src="images/gallery/thumbs/gallery_0d.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_0c.jpg" title="Plantago lanceolata greenhouse experiment. PhD research, Boulder, CO 2004."><img src="images/gallery/thumbs/gallery_0c.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_0b.jpg" title="Plantago patagonica inflorescence.  Boulder, CO 2003."><img src="images/gallery/thumbs/gallery_0b.jpg" height="120" /></a>
-<a class="browse fancybox fancybox.image" href="images/gallery/gallery_0a.jpg" title="Boulder Open Space Plantago survey, Summer 2006."><img src="images/gallery/thumbs/gallery_0a.jpg" height="120" /></a>
+    function showImage(index) {
+      currentImage = (index + galleryLinks.length) % galleryLinks.length;
+      const link = galleryLinks[currentImage];
+      const thumbnail = link.querySelector('img');
+      lightboxImage.src = link.href;
+      lightboxImage.alt = thumbnail.alt;
+      lightboxCaption.textContent = link.dataset.caption;
+    }
 
-<hr class="middivider" />
+    galleryLinks.forEach((link, index) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        showImage(index);
+        lightbox.showModal();
+      });
+    });
 
-<a name="videos"></a>
-<h3 class="header3" style="margin-bottom: 12px;">Videos</h3>
+    closeButton.addEventListener('click', () => lightbox.close());
+    previousButton.addEventListener('click', () => showImage(currentImage - 1));
+    nextButton.addEventListener('click', () => showImage(currentImage + 1));
+    lightbox.addEventListener('click', (event) => { if (event.target === lightbox) lightbox.close(); });
+    lightbox.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') showImage(currentImage - 1);
+      if (event.key === 'ArrowRight') showImage(currentImage + 1);
+    });
 
-<table>
-<tr>
-<td style="width: 540px;">
-<iframe src="//player.vimeo.com/video/108856133" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/108856133">The Poppy Project: Joyce Auau, Summer 2014</a> from <a href="http://vimeo.com/user33310666">Kasey Barton</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
-</td>
-<td>
-<iframe src="//player.vimeo.com/video/108880895" width="375" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/108880895">Kasey's field assistant: Desmond (Dezi) Barton Maurer, Summer 2011</a> from <a href="http://vimeo.com/user33310666">Kasey Barton</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
-</td>
-</tr>
-</table>
-
-<hr/>
-<!--#include virtual="ssi/links.ssi" -->{% include links.ssi %}
-<!--#include virtual="ssi/footer.ssi" -->{% include footer.ssi %}
-<!--#include virtual="ssi/google_analytics.ssi" -->{% include google_analytics.ssi %}
-</div> <!-- #content -->
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H7Z28QQN5R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-H7Z28QQN5R');
+  </script>
 </body>
-
 </html>

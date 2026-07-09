@@ -11,6 +11,8 @@
 jQuery( document ).ready(
   function () {
 
+    console.info( 'just testing' );
+
     // Set zoom to default:
     
     document.getElementById( 'zoom' ).selectedIndex = 0;
