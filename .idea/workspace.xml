@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="30d59372-727a-4444-b7f3-7c8da7c04a43" name="Changes" comment="Modernize Kasey Barton website">
+      <change beforePath="$PROJECT_DIR$/argemone/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/argemone/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/drought/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/drought/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gallery.html" beforeDir="false" afterPath="$PROJECT_DIR$/gallery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_01.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_02.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_03.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_03.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_04.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_04.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_05.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_05.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_06.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_06.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_07.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_07.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_08.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_08.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_09.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_09.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_0a.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_0a.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_0b.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_0b.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_0c.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_0c.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_0d.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_0d.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_0e.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_0e.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_0f.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_0f.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_0g.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_0g.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_0h.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_0h.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_0i.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_0i.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_0j.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_0j.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_10.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_10.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_11.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_11.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_12.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_12.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/gallery_13.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/gallery_13.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_01.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_02.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_03.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_03.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_04.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_04.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_05.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_05.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_06.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_06.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_07.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_07.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_08.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_08.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_09.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_09.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0a.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0a.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0b.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0b.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0c.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0c.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0d.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0d.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0e.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0e.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0f.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0f.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0g.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0g.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0h.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0h.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0i.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0i.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0j.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_0j.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_10.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_10.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_11.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_11.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_12.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_12.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/gallery/thumbs/gallery_13.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/gallery/thumbs/gallery_13.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hawaii_island_chain.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/hawaii_island_chain.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/people/alumni_undergraduates_03.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/people/alumni_undergraduates_03.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/defense_01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/defense_01.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/ontogeny_00.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/ontogeny_00.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/ontogeny_03.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/ontogeny_03.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/poppy_01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/poppy_01.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/poppy_02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/poppy_02.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/poppy_03.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/poppy_03.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/poppy_04.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/poppy_04.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/poppy_05.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/poppy_05.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/poppy_06.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/poppy_06.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/poppy_07.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/poppy_07.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/poppy_08.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/poppy_08.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/poppy_09.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/poppy_09.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/poppy_10.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/poppy_10.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/poppy_11.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/poppy_11.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/poppy_12.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/poppy_12.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/poppy_13.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/poppy_13.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/poppy_14.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/poppy_14.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/recruitment_01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/recruitment_01.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/recruitment_02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/recruitment_02.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/recruitment_03.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/recruitment_03.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/recruitment_04.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/recruitment_04.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/recruitment_05.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/recruitment_05.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/recruitment_06.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/recruitment_06.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/recruitment_07.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/recruitment_07.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/recruitment_08.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/recruitment_08.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/recruitment_09.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/recruitment_09.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/recruitment_10.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/recruitment_10.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/recruitment_11.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/recruitment_11.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/recruitment_12.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/recruitment_12.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/recruitment_13.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/recruitment_13.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/recruitment_14.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/recruitment_14.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/research/recruitment_15.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/research/recruitment_15.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/join.html" beforeDir="false" afterPath="$PROJECT_DIR$/join.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/drought_tolerance_index.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/drought_tolerance_index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ohia/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ohia/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/puakala/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/puakala/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/publications.html" beforeDir="false" afterPath="$PROJECT_DIR$/publications.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/research.html" beforeDir="false" afterPath="$PROJECT_DIR$/research.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;johnolulu&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/KaseyBarton/kaseybarton.github.io.git&quot;,
+    &quot;accountId&quot;: &quot;2b5a2bea-c5b0-4231-a5dc-092bc48ad0c5&quot;
+  }
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="3FFiAQKeoBUD9Tv0GzDg18UzEkB" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jamiv/Documents/personal/websites/kbarton_public_html&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.30387.173" />
+        <option value="bundled-python-sdk-4762d8aabb82-6d6dccd035ac-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.30387.173" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="30d59372-727a-4444-b7f3-7c8da7c04a43" name="Changes" comment="" />
+      <created>1781677073815</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1781677073815</updated>
+      <workItem from="1781677074851" duration="488000" />
+      <workItem from="1781677570632" duration="5000" />
+      <workItem from="1781677599919" duration="784000" />
+      <workItem from="1781678393146" duration="3748000" />
+      <workItem from="1783017562367" duration="17598000" />
+      <workItem from="1783557453997" duration="379000" />
+    </task>
+    <task id="LOCAL-00001" summary="Initial website migration. The University of Hawaii is retiring their UHUnix hosting service for faculty and staff in August 3, 2026, so I'm moving it here to GitHub Pages.">
+      <option name="closed" value="true" />
+      <created>1781677489464</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1781677489465</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Initial website migration. The University of Hawaii is retiring their UHUnix hosting service for faculty and staff websites in August 3, 2026, so I'm moving mine here to GitHub Pages.">
+      <option name="closed" value="true" />
+      <created>1783021978182</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1783021978182</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Swap Apache-style SSI includes for GitHub Jekyll includes now that pages are migrated to GitHub.">
+      <option name="closed" value="true" />
+      <created>1783027440889</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1783027440889</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Page title">
+      <option name="closed" value="true" />
+      <created>1783028392167</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1783028392167</updated>
+    </task>
+    <task id="LOCAL-00005" summary="For Jekyll includes to work, had to rename &quot;ssi&quot; sub-directory to &quot;_includes&quot;.">
+      <option name="closed" value="true" />
+      <created>1783028618785</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1783028618785</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Needed to include top two lines (---) for Jekyll includes to work.">
+      <option name="closed" value="true" />
+      <created>1783029380129</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1783029380129</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Changed all links relative to new home directory compared to uhunix.">
+      <option name="closed" value="true" />
+      <created>1783031579747</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1783031579747</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Mis-spelled analytics as anlaytics.">
+      <option name="closed" value="true" />
+      <created>1783031953708</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1783031953708</updated>
+    </task>
+    <task id="LOCAL-00009" summary="jumpto_home_icons should have been jumpto_home_icon">
+      <option name="closed" value="true" />
+      <created>1783032441143</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1783032441143</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Fix absolute links in ssi includes.">
+      <option name="closed" value="true" />
+      <created>1783032755984</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1783032755984</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Remove references to old ~kbarton homepage.">
+      <option name="closed" value="true" />
+      <created>1783033251599</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1783033251599</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added space.">
+      <option name="closed" value="true" />
+      <created>1783033438625</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1783033438625</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Removed reference to old ~kbarton homepage.">
+      <option name="closed" value="true" />
+      <created>1783033534244</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1783033534244</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added space.">
+      <option name="closed" value="true" />
+      <created>1783035511986</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1783035511986</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Remove reference to ~kbarton old homepage.">
+      <option name="closed" value="true" />
+      <created>1783035622961</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1783035622961</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Adding first six missing pubs PDFs.">
+      <option name="closed" value="true" />
+      <created>1783553528391</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1783553528391</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="Initial website migration. The University of Hawaii is retiring their UHUnix hosting service for faculty and staff in August 3, 2026, so I'm moving it here to GitHub Pages." />
+    <MESSAGE value="Initial website migration. The University of Hawaii is retiring their UHUnix hosting service for faculty and staff websites in August 3, 2026, so I'm moving mine here to GitHub Pages." />
+    <MESSAGE value="Swap Apache-style SSI includes for GitHub Jekyll includes now that pages are migrated to GitHub." />
+    <MESSAGE value="Page title" />
+    <MESSAGE value="For Jekyll includes to work, had to rename &quot;ssi&quot; sub-directory to &quot;_includes&quot;." />
+    <MESSAGE value="Needed to include top two lines (---) for Jekyll includes to work." />
+    <MESSAGE value="Changed all links relative to new home directory compared to uhunix." />
+    <MESSAGE value="Mis-spelled analytics as anlaytics." />
+    <MESSAGE value="jumpto_home_icons should have been jumpto_home_icon" />
+    <MESSAGE value="Fix absolute links in ssi includes." />
+    <MESSAGE value="Remove references to old ~kbarton homepage." />
+    <MESSAGE value="Removed reference to old ~kbarton homepage." />
+    <MESSAGE value="Added space." />
+    <MESSAGE value="Remove reference to ~kbarton old homepage." />
+    <MESSAGE value="Adding first six missing pubs PDFs." />
+    <MESSAGE value="Modernize Kasey Barton website" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modernize Kasey Barton website" />
+  </component>
+</project>

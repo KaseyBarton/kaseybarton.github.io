@@ -1,0 +1,530 @@
+---
+---
+<!-- Above lines tell GitHub/Jekyll to find include statements -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+
+<head>
+<link rel="icon" href="favicon.ico" >
+<title>Kasey E. Barton, Ph.D.: Research</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.11.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/fancybox/source/jquery.fancybox.pack.js"></script>
+<script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="js/cluetip/jquery.cluetip.min.js"></script>
+<link type="text/css" rel="stylesheet" href="js/jquery-ui-1.11.1/jquery-ui.min.css"></script>
+<link type="text/css" rel="stylesheet" href="js/fancybox/source/jquery.fancybox.css" />
+<link type="text/css" rel="stylesheet" href="js/cluetip/jquery.cluetip.css" />
+<link type="text/css" rel="stylesheet" href="js/font-awesome-4.2.0/css/font-awesome.min.css" />
+<link type="text/css" rel="stylesheet" href="css/subpages.css?v=2" />
+
+<style>
+.pdf {
+  white-space: nowrap;
+  padding-right: 8px;
+}
+/* For thumbnail image jQuery UI sliders: */
+.scroll-pane { overflow: auto; width: 99%; float:left; margin-bottom: 20px; }
+.scroll-content { float: left; }
+.scroll-content-item { height: 120px; float: left; margin: 10px; }
+.scroll-bar-wrap { clear: left; padding: 0 4px 0 2px; margin: 0 -1px -1px -1px; }
+.scroll-bar-wrap .ui-slider { background: none; border:0; height: 1.5em; margin: 0 auto; }
+.scroll-bar-wrap .ui-handle-helper-parent { position: relative; width: 100%; height: 100%; margin: 0 auto; }
+.scroll-bar-wrap .ui-slider-handle { top:.2em; height: 1.0em; }
+.scroll-bar-wrap .ui-slider-handle .ui-icon { margin: -8px auto 0; position: relative; top: 50%; }
+</style>
+
+<script>
+$( document ).ready(
+  function () {
+
+    // ClueTip jQuery inline info pop-ups:
+
+    $( 'a.clue' ).cluetip(
+      {
+        activation: 'click',
+        arrows: false,
+        attribute: 'href',
+        closePosition: 'top',
+        closeText: '<i class="fa fa-close" style="float: right;"></i>',
+        local: false,
+        showTitle: false,
+        sticky: true,
+        titleAttribute: '',
+        waitImage: true,
+        width: 520
+      }
+    );
+
+    // FancyBox jQuery inline image pop-ups:
+
+    $( 'body' ).on(
+      'mouseenter',
+      'a.browse',
+      function(){
+        $( '.fancybox' )
+        .attr( 'rel', 'gallery' )
+        .fancybox(
+          {
+            'loop': false,
+            // Provide gallery nav buttons only for current section of related images: 
+            'afterLoad': function( current, previous ) {
+              if ( previous ) {
+                current.href.match( /\/(.*)_.+?\.jpg/ );
+                var current_basename = RegExp.$1;
+                previous.href.match( /\/(.*)_.+?\.jpg/ );
+                var previous_basename = RegExp.$1;
+                if ( current_basename != previous_basename ) {
+                  return false;
+                }
+              }
+              return true;
+            },
+            'openSpeed': 100,
+            'closeSpeed': 100,
+            'padding': 0,
+            'helpers': {
+              'overlay': true 
+              //'title': {
+              //  'type': 'inside'
+              //}
+              //'overlay': {
+              //  'locked': false
+              //}
+            }
+          }
+        );
+      }
+    );
+
+    //////////////////////
+    //                  //
+    //  BEGIN SLIDERS:  //
+    //                  //
+    ////////////////////// 
+
+    // For jQuery UI image sliders; code adapted from:
+    // http://jqueryui.com/slider/#side-scroll
+    // Modified to accommodate multiple image sliders.
+
+    $( '.scroll-pane' ).each(
+      function () {
+
+        // scrollpane parts:
+
+        var scrollPane = $( this );
+        var scrollContent = $( this ).find( '.scroll-content' );
+
+        // Build slider:
+
+        var scrollbar = $( this ).find( '.scroll-bar' ).slider(
+          {
+            slide: function( event, ui ) {
+              if ( scrollContent.width() > scrollPane.width() ) {
+                scrollContent.css( 'margin-left', Math.round( ui.value / 100 * ( scrollPane.width() - scrollContent.width() ) ) + 'px' );
+              }
+              else {
+                scrollContent.css( 'margin-left', 0 );
+              }
+            }
+          }
+        );
+
+        // Append icon to handle:
+
+        var handleHelper = scrollbar.find( '.ui-slider-handle' )
+        .mousedown(
+          function() {
+            scrollbar.width( handleHelper.width() );
+          }
+        )
+        .mouseup(
+          function() {
+            scrollbar.width( '100%' );
+          }
+        )
+        .append( "<span class='ui-icon ui-icon-grip-dotted-vertical'></span>" )
+        .wrap( "<div class='ui-handle-helper-parent'></div>" ).parent();
+
+        // Change overflow to hidden now that slider handles the scrolling:
+
+        scrollPane.css( 'overflow', 'hidden' );
+
+        // Size scrollbar and handle proportionally to scroll distance:
+
+        function sizeScrollbar () {
+          var remainder = scrollContent.width() - scrollPane.width();
+          var proportion = remainder / scrollContent.width();
+          var handleSize = scrollPane.width() - ( proportion * scrollPane.width() );
+          scrollbar.find( '.ui-slider-handle' ).css(
+            {
+              width: handleSize,
+              'margin-left': -handleSize / 2
+            }
+          );
+          handleHelper.width( '' ).width( scrollbar.width() - handleSize );
+        }
+
+        // Reset slider value based on scroll content position:
+
+        function resetValue () {
+          var remainder = scrollPane.width() - scrollContent.width();
+          var leftVal = scrollContent.css( 'margin-left' ) === 'auto' ? 0 : parseInt( scrollContent.css( 'margin-left' ) );
+          var percentage = Math.round( leftVal / remainder * 100 );
+          scrollbar.slider( 'value', percentage );
+        }
+
+        // If the slider is 100% and window gets larger, reveal content:
+
+        function reflowContent () {
+          var showing = scrollContent.width() + parseInt( scrollContent.css( 'margin-left' ), 10 );
+          var gap = scrollPane.width() - showing;
+          if ( gap > 0 ) {
+            scrollContent.css( 'margin-left', parseInt( scrollContent.css( 'margin-left' ), 10 ) + gap );
+          }
+        }
+
+        // Change handle position on window resize:
+
+        $( window ).resize(
+          function() {
+            resetValue();
+            sizeScrollbar();
+            reflowContent();
+          }
+        );
+
+        // Init scrollbar size:
+
+        setTimeout( sizeScrollbar, 10 ); // Safari wants a timeout
+      }
+    ); // $( '.scroll-pane' ).each()
+
+    ///////////////////
+    //               //
+    //  END SLIDERS  //
+    //               //
+    ///////////////////
+  }
+);
+</script>
+
+</head>
+
+<body>
+
+<div id="content">
+
+<!--#include virtual="ssi/links.ssi" -->{% include links.ssi %}
+
+<h1 class="header1"><i class="fa fa-line-chart"></i> Research</h1>
+
+<!--
+<table>
+  <tr valign="top">
+    <td><i class="fa fa-line-chart fa-4x" style="color: #006600; font-size: 50px; margin-top: 10px; padding-right: 2px;"></i></td>
+    <td><img src="images/titles/title_research.png" style="margin-left: 0px;" /></td>
+  </tr>
+</table>
+-->
+
+<ul>
+  <li><a href="#ontogeny">ontogeny of plant defense and seedling defense</a></li>
+  <li><a href="#defense">island plant defense</a></li>
+  <li><a href="#poppy">the poppy project</a></li>
+  <li><a href="#metrosideros">recruitment and population dynamics of a tropical foundation species</a></li>
+</ul>
+
+<hr/>
+
+<a name="ontogeny"></a>
+<h4 class="header4">Ontogeny of plant defense and seedling defense</h4>
+
+<img src="images/plants/latex.jpg" style="float: left; margin-right: 12px;" title="Pua kala (Argemone glauca) yellow latex and prickles. &copy; Kasey E. Barton" />
+
+<p>Ontogeny has emerged as a central factor underlying variation in plant defense and herbivory. Plant resistance traits, including secondary chemicals, spines, thorns and trichomes, can increase and decrease by orders of magnitude as plants develop from the seedling to juvenile to mature ontogenetic stages, and these developmental trajectories in resistance usually coincide with dramatic shifts in levels of herbivory, together driving dynamic temporal interactions between plants and their herbivore communities. Tolerance can also vary across ontogeny.</p>
+
+<p>Since 2000, ontogeny has been a central focus of our research, including greenhouse, field, and meta-analytical studies. Some of our key findings include a general model for how resistance and tolerance vary across ontogeny, that ontogenetic trajectories are genetically variable within species, and that suites of defense traits vary independently across ontogeny.</p>
+
+<p>As part of this research, it has become clear that very little is known about seedling defense, precluding us from understanding how defense varies across all of plant ontogeny. Thus, we have explicitly focused on the seedling stage in order to understand how seedlings deal with herbivory, and how seedling defense differs from that of older plants. The ultimate goals are to determine whether the evolution of plant defense is driven by selection imposed on seedlings, and whether defense is constrained by other priorities during this important life history stage.</p>
+
+<p>Furthermore, because seedlings are simultaneously stressed by abiotic factors, such as water availability, we are looking at how drought interacts with herbivory to affect seedling performance. We are currently testing seedling tolerance of herbivory and drought in a suite of native Hawaiian plants, with particular focus on dry forest trees because dry forests are projected to experience the most severe droughts under climate change.</p>
+
+<div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
+  <div class="scroll-content" style="width: 2050px;">
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/ontogeny_00.jpg" title="Joyce Auau and Jemkar Jemkar collecting latex from pua kala in poppy garden experiment, Waimanalo Research Station, 2014."><img src="images/research/thumbs/ontogeny_00.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/ontogeny_01.jpg" title="Plantago seedlings in ontogeny of secondary chemistry experiment. PhD research, Boulder, CO 2004."><img src="images/research/thumbs/ontogeny_01.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/ontogeny_02.jpg" title="Plantago seedlings in experiment looking at mechanisms of tolerance across ontogeny. University of Hawaii rooftop garden, 2011."><img src="images/research/thumbs/ontogeny_02.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/ontogeny_03.jpg" title="Pua kala juvenile in poppy garden experiment, 2014."><img src="images/research/thumbs/ontogeny_03.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/ontogeny_04.jpg" title="Lobeliad seedling in tolerance experiment, 2013."><img src="images/research/thumbs/ontogeny_04.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/ontogeny_05.jpg" title="Lobeliad seedling up close in tolerance experiment, 2013."><img src="images/research/thumbs/ontogeny_05.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/ontogeny_06.jpg" title="Eragrostis grandis plants in seedling tolerance experiment, 2013."><img src="images/research/thumbs/ontogeny_06.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/ontogeny_07.jpg" title="Pepperomia leptostachya in seedling tolerance experiment, 2013."><img src="images/research/thumbs/ontogeny_07.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/ontogeny_08.jpg" title="Acacia koa seedling in experiment testing seedling tolerance of invasive snail herbivory."><img src="images/research/thumbs/ontogeny_08.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/ontogeny_09.jpg" title="Eragrostis grandis exposed to two kinds of drought (left and center) or watered daily (right)."><img src="images/research/thumbs/ontogeny_09.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/ontogeny_10.jpg" title="Jacquemontia sandwicense in seedling tolerance experiment."><img src="images/research/thumbs/ontogeny_10.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/ontogeny_11.jpg" title="Acacia koa seedling transitions to mature stage with phyllodes faster when in experimental drought."><img src="images/research/thumbs/ontogeny_11.jpg" height="120" /></a></div>
+
+  </div>
+  <div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
+    <div class="scroll-bar"></div>
+  </div>
+</div>
+
+<p><i class="fa fa-users"></i> <b>Collaborators:</b> <a href="https://pure.royalholloway.ac.uk/portal/en/persons/julia-koricheva%28ab83b389-7258-48fd-8560-0c8de7b6c94a%29.html" title="Royal Holloway University of London (RHUL)">Julia Koricheva</a>, <a href="http://web.ecologia.unam.mx/personal/personal_perfil.php?var1=Dra.&var2=Karina&var3=Boege&var4=Par%C3%A9" title="Universidad Nacional Autonoma de Mexico (UNAM)">Karina Boege</a>, <a href="http://ebio.colorado.edu/index.php/people-faculty?view=employee&id=2" title="University of Colorado at Boulder (CU)">Deane Bowers</a>, <a href="https://sites.google.com/site/quinterocarolina/home" title="Universidad Nacional del Comahue, Argentina">Carolina Quintero</a>, <a href="http://www.aphis.usda.gov/wps/portal/aphis/home?1dmy&urile=wcm%3Apath%3A/aphis_content_library/sa_our_focus/sa_wildlife_damage/sa_programs/sa_nwrc/sa_research/sa_scientists/ct_shiels" title="USDA National Wildlife Research Center (NWRC): Hilo, Hawaii">Aaron Shiels</a>, <a href="http://www5.plymouth.ac.uk/staff/mick-hanley" title="Plymouth University, England">Mick Hanley</a>, <a href="http://www.botany.hawaii.edu/faculty/daehler/" title="University of Hawaii at Manoa: Department of Botany">Curt Daehler</a>, <a href="http://www2.hawaii.edu/~lurie/" title="University of Hawaii at Manoa: Department of Botany: Ph.D. Candidate">Matt Lurie</a></p>
+
+<p><i class="fa fa-money"></i> <b>Funding:</b> <a href="http://www.nerc.ac.uk" title="United Kingdom Natural Environment Research Council">UK NERC</a>, <a href="http://www.nsf.gov" title="National Science Foundation">NSF</a>, <a href="http://www.aphis.usda.gov" title="United States Department of Agriculture: Animal and Plant Health Inspection Service">USDA APHIS</a></p>
+
+<p><i class="fa fa-file-pdf-o"></i> <b>Publications:</b></p>
+
+<table>
+
+  <tr>
+    <td class="pdf"><a href="pubs/Hoan_etal_2014.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></td> 
+    <td>Hoan, R. P., R. A. Ormond, and <strong>K. E. Barton</strong>. 2014. Prickly poppies can get pricklier: ontogenetic patterns in the induction of physical defense traits. <u>PLoS ONE</u> 9(5): e96796.</td>
+  </tr>
+
+  <tr>
+    <td class="pdf"><a href="pubs/Barton_2014_Oecologia.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></td>
+    <td><strong>Barton, K. E.</strong>. 2014. Prickles, latex and tolerance in the endemic Hawaiian prickly poppy (<a href="tooltips/pua_kala.html" class="clue" onClick="return false;"><i>Argemone glauca</i></a>): variation between populations, across ontogeny and in response to abiotic factors. <u>Oecologia</u> 174: 1273-1281.</td>
+  </tr>
+
+  <tr>
+    <td class="pdf"><a href="pubs/Barton_and_Haines_2013.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></td>
+    <td><strong>Barton, K. E.</strong> and W. P. Haines. 2013. Koa looper caterpillars (<a href="tooltips/koa_moth.html" class="clue" onClick="return false"><i>Scotorythra paludicola</i></a>, Geometridae) have lower fitness on koa (<a href="tooltips/acacia_koa.html" class="clue" onClick="return false"><i>Acacia koa</i></a>, Fabaceae) true leaves than on phyllodes. <u>Proceedings of the Hawaiian Entomological Society</u> 45: 141-147.</td>
+  </tr>
+
+  <tr>
+    <td class="pdf"><a href="pubs/Quintero_etal_2013.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></td>
+    <td>Quintero, C., <strong>K. E. Barton</strong>, and K. Boege. 2013. The ontogeny of plant indirect defenses. <u>Perspectives in Plant Ecology, Evolution and Systematics</u> 15: 245-254.</td>
+  </tr>
+
+  <tr>
+    <td class="pdf"><a href="pubs/Barton_2013.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></td>
+    <td><strong>Barton, K. E.</strong>. 2013. Ontogenetic patterns in the mechanisms of tolerance to herbivory in <i>Plantago</i>. <u>Annals of Botany</u> 112: 711-720.</td>
+  </tr>
+
+  <tr>
+    <td class="pdf"><a href="pubs/Barton_and_Hanley_2013.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></td>
+    <td><strong>Barton, K. E.</strong> and M. E. Hanley. 2013. Seedling-herbivore interactions: insights into plant defence and regeneration patterns. <u>Annals of Botany</u> 112: 643-650.</td>
+  </tr>
+
+  <tr>
+    <td class="pdf"><a href="pubs/Barton_and_Hanley_eds_2013.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></td>
+    <td><strong>Barton, K. E.</strong> and M. E. Hanley, editors. 2013.  Special Issue: Seedling Herbivory. <u>Annals of Botany</u> 112: 643-765.</td>
+  </tr>
+
+  <tr>
+    <td class="pdf"></td>
+    <td>Koricheva, J. and <strong>K. E. Barton</strong>. 2012. Temporal changes in plant secondary metabolite production: patterns, causes and consequences. In <a href="http://www.cambridge.org/aus/catalogue/catalogue.asp?isbn=9780521193269">The Ecology of Plant Secondary Metabolites: From Genes to Global Processes</a>. Eds. G. R. Iason, M. Dicke and S. E. Hartley. Cambridge University Press.</td>
+  </tr>
+
+  <tr>
+    <td class="pdf"><a href="pubs/Boege_etal_2011.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></td>
+    <td>Boege, K., <strong>K. E. Barton</strong>, and R. Dirzo. 2011. Influence of tree ontogeny on plant-herbivore interactions. In Size and Age-Related Changes in Tree Structure and Function, <u>Tree Physiology 4</u>. Eds. F. C. Meinzer, B. Lachenbruch and T. E. Dawson. Springer, New York.</td>
+  </tr>
+
+  <tr>
+    <td class="pdf"><a href="pubs/Barton_and_Koricheva_2010.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></td>
+    <td><strong>Barton, K. E.</strong> and J. Koricheva. 2010. The ontogeny of plant defense and herbivory: characterizing general patterns using meta-analysis. <u>American Naturalist</u> 175(4): 481-493.</td>
+  </tr>
+
+  <tr>
+    <td class="pdf"><a href="pubs/Barton_2008.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></td>
+    <td><strong>Barton, K. E. </strong>2008. Phenotypic plasticity in seedling defense strategies: compensatory growth and chemical induction.  <u>Oikos</u> 117: 917-925.</td>
+  </tr>
+
+  <tr>
+    <td class="pdf"><a href="pubs/Barton_2007.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></td>
+    <td><strong>Barton, K. E.</strong> 2007. Early ontogenetic patterns in chemical defense in <em>Plantago</em> (Plantaginaceae): Genetic variation and trade-offs. <u>American Journal of Botany</u> 94: 56-66.</td>
+  </tr>
+
+</table>
+
+<p><a href="javascript:void(0)" onClick="window.scrollTo( 0, 0 ); this.blur();"><i class="fa fa-arrow-up"></i> Back to Top</a></p>
+
+<hr class="middivider" />
+
+<a name="defense"></a>
+<h4 class="header4">Island plant defense</h4>
+
+<table>
+  <tr valign="top">
+    <td style="margin-right: 12px;"><img src="images/plants/galls.jpg" title="&#699;&#332;hi&#699;a lehua (Metrosideros polymorpha) psyllid galls. &copy; Kasey E. Barton" /></td>
+    <td>
+      <p>One of the paradigms of island biology is that island plants are defenseless against herbivores. This idea is mainly supported by anecdotal evidence that island plants are often decimated by introduced mammalian browsers and grazers. Yet, the few experimental or trait-based tests of this idea provide scant evidence to support it. Furthermore, many island plants express putative defense traits and have long-lasting interactions with native insect, bird, and reptilian herbivores. Since 2010, I have started new research to investigate defense in endemic island plants in order to gain new insights into this paradigm and more generally, into how defense evolves isolated islands.</p>
+      <p>This research involves four main projects:</p>
+      <ol>
+        <li>Examination of the functional ecology of the endemic Hawaiian prickly poppy <a href="tooltips/pua_kala.html" class="clue" onClick="return false">pua kala</a> (<i>Argemone glauca</i>), which expresses several putative defense traits, including prickles, latex, and epicuticular waxes (see <a href="#poppy">The Poppy Project</a> for more on this).</li>
+        <li>Examinations of the <a href="tooltips/acacia_koa.html" class="clue" onClick="return false">koa</a> (<i>Acacia koa</i>) - <a href="tooltips/koa_moth.html" class="clue" onClick="return false">koa moth</a> (<i>Scotorythra paludicola</i>) interaction.</li>
+        <li>Investigations into leaf defense traits associated with deterrence of native <a href="tooltips/galls.html" class="clue" onClick="return false">psyllid galls</a> in <a href="tooltips/ohia_lehua.html" class="clue" onClick="return false">&#699;&#333;hi&#699;a lehua</a> (<i>Metrosideros polymorpha</i>).
+        <li>Tests of seedling tolerance across a range of common/rare, herbaceous/woody native Hawaiian plant species. We are currently testing how drought affects seedling tolerance of herbivory.</li>
+      </ol>
+    </td>
+  </tr>
+</table>
+
+<div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
+  <div class="scroll-content" style="width: 2370px;">
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/defense_01.jpg" title="Pua kala, the endemic Hawaiian prickly poppy (Argemone glauca) on Molokai, 2013."><img src="images/research/thumbs/defense_01.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/defense_02.jpg" title="Feeding koa moth caterpillars in lab bioassay with Desmond and Robert Guerrero, 2013."><img src="images/research/thumbs/defense_02.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/defense_03.jpg" title="Koa moth caterpillar in rearing dish, 2013."><img src="images/research/thumbs/defense_03.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/defense_04.jpg" title="Koa trees showing heteroblasty: juvenile true leaves and mature phyllodes. Waimea Preserve, Oahu, 2013."><img src="images/research/thumbs/defense_04.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/defense_05.jpg" title="Koa with juvenile foliage, Waimea Preserve, Oahu, 2013."><img src="images/research/thumbs/defense_05.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/defense_06.jpg" title="Pubescent ohia lehua (Metrosideros polymorpha) with endemic psyllid galls. Hawaii Volcanoes National Park, 2014."><img src="images/research/thumbs/defense_06.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/defense_07.jpg" title="Glabrous ohia lehua with endemic psyllid galls. Aiea Ridge, Oahu, 2012."><img src="images/research/thumbs/defense_07.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/defense_08.jpg" title="Koa seedling (Acacia koa) in drought x herbivory tolerance experiment, 2014."><img src="images/research/thumbs/defense_08.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/defense_09.jpg" title="Koa seedling (Acacia koa) in drought x herbivory tolerance experiment, 2014."><img src="images/research/thumbs/defense_09.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/defense_10.jpg" title="Mamane seedling (Sophora chrysophylla) in drought x herbivory tolerance experiment, 2014."><img src="images/research/thumbs/defense_10.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/defense_11.jpg" title="Kelsey Coleman applying jasmonic acid to simulate herbivory in seedling tolerance experiment, 2013."><img src="images/research/thumbs/defense_11.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/defense_12.jpg" title="Greenhouse experiment, 2011."><img src="images/research/thumbs/defense_12.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/defense_13.jpg" title="Tayler Pave removing leaf tissue from mamaki plant (Pipturus albidus) to simulate herbivory in seedling tolerance experiment, 2013."><img src="images/research/thumbs/defense_13.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/defense_14.jpg" title="Seedling tolerance team Spring 2015 posing with seedling flats. Kasey Barton, Christine Flauta, Victor Rogers-Phillips, Nicholas Nguyen, and Lindsey Watanabe."><img src="images/research/thumbs/defense_14.jpg" height="120" /></a></div>
+  </div>
+  <div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
+    <div class="scroll-bar"></div>
+  </div>
+</div>
+<br/>
+
+<p style="margin-top: -8px;"><i class="fa fa-users"></i> <b>Collaborators:</b> <a href="http://web.ecologia.unam.mx/personal/personal_perfil.php?var1=Dra.&var2=Karina&var3=Boege&var4=Par%C3%A9" title="Universidad Nacional Autonoma de Mexico (UNAM)">Karina Boege</a>, <a href="people.html#hoan" title="University of Hawaii at Manoa: Department of Botany: Barton Lab: M.S. 2012">Ryan Hoan</a>, <a href="http://www.ctahr.hawaii.edu/rubinoffd/rubinoff_lab/students_researcher_pics/will_haines/will.htm" title="University of Hawaii at Manoa: College of Tropical Agriculture and Human Resources (CTAHR)">William Haines</a>, <a href="http://www.aphis.usda.gov/wps/portal/aphis/home?1dmy&urile=wcm%3Apath%3A/aphis_content_library/sa_our_focus/sa_wildlife_damage/sa_programs/sa_nwrc/sa_research/sa_scientists/ct_shiels" title="USDA National Wildlife Research Center (NWRC): Hilo, Hawaii">Aaron Shiels</a></p>
+
+<p><i class="fa fa-money"></i> <b>Funding:</b> <a href="http://www.nsf.gov" title="National Science Foundation">NSF</a>, <a href="http://www.aphis.usda.gov" title="United States Department of Agriculture: Animal and Plant Health Inspection Service">USDA APHIS</a></p>
+
+<p><i class="fa fa-file-pdf-o"></i> <b>Publications:</b></p>
+
+<table>
+
+  <tr>
+    <td class="pdf"><a href="pubs/Hoan_etal_2014.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></td> 
+    <td>Hoan, R. P., R. A. Ormond, and <strong>K. E. Barton</strong>. 2014. Prickly poppies can get pricklier: ontogenetic patterns in the induction of physical defense traits. <u>PLoS ONE</u> 9(5): e96796.</td>
+  </tr>
+
+  <tr>
+    <td class="pdf"><a href="pubs/Barton_2014_Oecologia.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></td>
+    <td><strong>Barton, K. E.</strong>. 2014. Prickles, latex and tolerance in the endemic Hawaiian prickly poppy (<a href="tooltips/pua_kala.html" class="clue" onClick="return false;"><i>Argemone glauca</i></a>): variation between populations, across ontogeny and in response to abiotic factors. <u>Oecologia</u> 174: 1273-1281.</td>
+  </tr>
+
+  <tr>
+    <td class="pdf"><a href="pubs/Barton_and_Haines_2013.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></td>
+    <td><strong>Barton, K. E.</strong> and W. P. Haines. 2013. Koa looper caterpillars (<a href="tooltips/koa_moth.html" class="clue" onClick="return false"><i>Scotorythra paludicola</i></a>, Geometridae) have lower fitness on koa (<a href="tooltips/acacia_koa.html" class="clue" onClick="return false"><i>Acacia koa</i></a>, Fabaceae) true leaves than on phyllodes. <u>Proceedings of the Hawaiian Entomological Society</u> 45: 141-147.</td>
+  </tr>
+
+  <tr>
+    <td class="pdf"><a href="pubs/Haines_etal_2013.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></td>
+    <td>Haines, W. P., <strong>K. E. Barton</strong>, and P. Conant. 2013. Defoliation of the invasive tree <i>Falcataria moluccana</i> on Hawaii Island by the native koa looper moth (Geometridae: <a href="tooltips/koa_moth.html" class="clue" onClick="return false"><i>Scotorythra paludicola</a></i>), and evaluation of five fabaceous trees as larval hostplants. <u>Proceedings of the Hawaiian Entomological Society</u> 45: 129-139.</td>
+  </tr>
+
+</table>
+
+<p><a href="javascript:void(0)" onClick="window.scrollTo( 0, 0 ); this.blur();"><i class="fa fa-arrow-up"></i> Back to Top</a></p>
+
+<hr class="middivider" />
+
+<a name="poppy"></a>
+<h4 class="header4">The poppy project</h4>
+
+<img src="images/plants/pua_kala.jpg" style="float: left; margin-right: 12px;" title="Pua kala (Argemone glauca). &copy; Kasey E. Barton" />
+
+<p>The Poppy Project examines defense in an apparently well-defended (but understudied) group of plants, the prickly poppies (genus <i>Argemone</i>). There are approximately 32 <i>Argemone</i> species, all of which are native to the Americas (center of diversity in Mexico) with a single endemic species in Hawai&#699;i. Since 2010, we have been characterizing the defenses of the Hawaiian prickle poppy, <a href="tooltips/pua_kala.html" class="clue" onClick="return false">pua kala</a> (<i>Argemone glauca</i>).  We have found that prickles, latex, and tolerance are highly variable across populations on different islands, in response to herbivory, and as plasticity with respect to light and water availability. All of these traits also vary across plant ontogeny. Our current work compares pua kala defense with that of its sister species, the <a href="tooltips/mexican_poppy.html" class="clue" onClick="return false">Mexican poppy</a> (<i>Argemone mexicana</i>), in an effort to test the island plant defense hypothesis, which predicts that island plants have weak defenses due to low herbivore selection pressure on islands.</p>
+
+<p style="margin-bottom: 36px;">In collaboration with <a href="http://web.ecologia.unam.mx/personal/personal_perfil.php?var1=Dra.&var2=Karina&var3=Boege&var4=Par%C3%A9">Karina Boege</a> (<a href="http://www.unam.mx" title="Universidad Nacional Autonoma de Mexico (UNAM)">UNAM</a>), we are using prickly poppies as a model system for testing whether defense traits show synchronous ontogenetic trajectories and whether the multi-functionality of defense traits can inform us about their ontogenetic patterns.</p>
+
+<div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
+  <div class="scroll-content" style="width: 2300px;">
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/poppy_01.jpg" title="Pua kala growing on Molokai, 2013."><img src="images/research/thumbs/poppy_01.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/poppy_02.jpg" title="Measuring photosynthesis of pua kala using PAM fluorometry, 2012."><img src="images/research/thumbs/poppy_02.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/poppy_03.jpg" title="Flowering pua kala in herbivory tolerance experiment, 2011."><img src="images/research/thumbs/poppy_03.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/poppy_04.jpg" title="Pua kala seedlings."><img src="images/research/thumbs/poppy_04.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/poppy_05.jpg" title="Pua kala in herbivory tolerance experiment, 2011."><img src="images/research/thumbs/poppy_05.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/poppy_06.jpg" title="Bright orange latex of pua kala stem."><img src="images/research/thumbs/poppy_06.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/poppy_07.jpg" title="Mexican poppy flower (Argemone mexicana), the sister species to pua kala, now naturalized in Hawaii."><img src="images/research/thumbs/poppy_07.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/poppy_08.jpg" title="Pua kala flower."><img src="images/research/thumbs/poppy_08.jpg" height="120" /></a></div>  
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/poppy_09.jpg" title="Pua kala seedling growing in poppy garden experiment, Waimanalo 2014. Almost no prickles on this plant, which comes from a population on leeward side of Big Island that lacks prickles."><img src="images/research/thumbs/poppy_09.jpg" height="120" /></a></div>  
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/poppy_10.jpg" title="Extracting data from Argemone specimens at Universidad Nacional Autonoma de Mexico (UNAM) Herbarium, March 2015. Lauren Finley-Jacob and Brady Evarts. "><img src="images/research/thumbs/poppy_10.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/poppy_11.jpg" title="Poppy Project Team in Mexico! Brady Evarts, Aleta Corpuz, Reko Libby, and Lauren Finley-Jacob, March 2015."><img src="images/research/thumbs/poppy_11.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/poppy_12.jpg" title="Transplanting pua kala in Waimanalo field site, Spring 2015. Lalasia Bialic-Murphy, Lauren Finley-Jacob, Lindsey Watanabe, Aleta Corpuz, and Nicholas Nguyen."><img src="images/research/thumbs/poppy_12.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/poppy_13.jpg" title="Visiting ruins in Mexico 2015. Brady Evarts, Reko Libby, Karina Boege, and Lauren Finley-Jacob."><img src="images/research/thumbs/poppy_13.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/poppy_14.jpg" title="Lauren Finley-Jacob (left) and Reko Libby (right) collect morphological data on prickly poppies in Mexico, May 2015."><img src="images/research/thumbs/poppy_14.jpg" height="120" /></a></div>
+  </div>
+  <div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
+    <div class="scroll-bar"></div>
+  </div>
+</div>
+
+<p><i class="fa fa-users"></i> <b>Collaborators:</b> <a href="http://web.ecologia.unam.mx/personal/personal_perfil.php?var1=Dra.&var2=Karina&var3=Boege&var4=Par%C3%A9" title="Universidad Nacional Autonoma de Mexico (UNAM)">Karina Boege</a>, <a href="people.html#hoan" title="University of Hawaii at Manoa: Department of Botany: Barton Lab: M.S. 2012">Ryan Hoan</a></p>
+
+<p><i class="fa fa-money"></i> <b>Funding:</b> <a href="http://www.nsf.gov" title="National Science Foundation">NSF</a></p>
+
+<p><i class="fa fa-file-pdf-o"></i> <b>Publications:</b></p>
+
+<table>
+
+  <tr>
+    <td class="pdf"><a href="pubs/Hoan_etal_2014.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></td>
+    <td>Hoan, R. P., R. A. Ormond, and <strong>K. E. Barton</strong>. 2014. Prickly poppies can get pricklier: ontogenetic patterns in the induction of physical defense traits. <u>PLoS ONE</u> 9(5): e96796.</td>
+  </tr>
+
+  <tr>
+    <td class="pdf"><a href="pubs/Barton_2014_Oecologia.pdf" target="_blank" onClick="this.blur();"><i class="fa fa-file-pdf-o"></i> PDF</a></td>
+    <td><strong>Barton, K. E.</strong>. 2014. Prickles, latex and tolerance in the endemic Hawaiian prickly poppy (<a href="tooltips/pua_kala.html" class="clue" onClick="return false;"><i>Argemone glauca</i></a>): variation between populations, across ontogeny and in response to abiotic factors. <u>Oecologia</u> 174: 1273-1281.</td>
+  </tr>
+
+</table>
+
+<p><a href="javascript:void(0)" onClick="window.scrollTo( 0, 0 ); this.blur();"><i class="fa fa-arrow-up"></i> Back to Top</a></p>
+
+<hr class="middivider" />
+
+<a name="metrosideros"></a>
+<h4 class="header4">Recruitment and population dynamics of a tropical foundation species</h4>
+
+<img src="images/plants/ohia_lehua.jpg" style="float: left; margin-right: 12px;" title="&#699;&#332;hi&#699;a lehua (Metrosideros polymorpha). &copy; Kasey E. Barton" />
+
+<p>As anthropogenic alterations threaten natural ecosystems, much of the focus of conservation biology is on minimizing effects for the rarest species. Yet, the majority of individual plants in natural ecosystems come from a few common species. While common species might be at lower risk of extinction, they engineer environments, are involved in many biotic interactions, and contribute disproportionately to ecosystem function. Thus, declines in their abundance and distribution have broad ramifications for other species and for ecosystem functioning.</p>
+
+<p>On each of the six largest Hawaiian Islands, the dominant tree species is <a href="tooltips/ohia_lehua.html" class="clue" onClick="return false">&#699;&#333;hi&#699;a lehua</a> (<i>Metrosideros polymorpha</i>), which has experienced a dramatic shift in its abundance over the past several decades. At present, the few studies that have been conducted on the population ecology, growth, and decline of &#699;&#333;hi&#699;a have been limited to a few locations and life stages. We are investigating the demography of &#699;&#333;hi&#699;a across the six largest islands to assess population dynamics and to identify factors associated with the widespread decline. Our preliminary results indicate that seedling recruitment is very low across most of the islands, and this points to a decline in populations over time. Current experimental work is testing whether drought and invasive species competition lead to lower seedling recruitment in &#699;&#333;hi&#699;a lehua.</p>
+
+<div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
+  <div class="scroll-content" style="width: 2520px;">
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/recruitment_01.jpg" title="Ohia survey team:  Casey Jones, Tiffany Knight, Kasey Barton. Hawaii Volcanoes National Park, 2014."><img src="images/research/thumbs/recruitment_01.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/recruitment_02.jpg" title="Young ohia leaves showing delayed greening."><img src="images/research/thumbs/recruitment_02.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/recruitment_03.jpg" title="Ohia seedlings growing on sparse moss cover."><img src="images/research/thumbs/recruitment_03.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/recruitment_04.jpg" title=""><img src="images/research/thumbs/recruitment_04.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/recruitment_05.jpg" title="Casey measuring basal diameter of tree. Hilo Watershed Forest Reserve, 2014."><img src="images/research/thumbs/recruitment_05.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/recruitment_06.jpg" title="Ohia seedling."><img src="images/research/thumbs/recruitment_06.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/recruitment_07.jpg" title="Ohia seedlings."><img src="images/research/thumbs/recruitment_07.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/recruitment_08.jpg" title="Glabrous ohia with dark red delayed greening."><img src="images/research/thumbs/recruitment_08.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/recruitment_09.jpg" title="Transect running over young lava stands. Hawaii Volcanoes National Park, 2014."><img src="images/research/thumbs/recruitment_09.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/recruitment_10.jpg" title="Casey and Tiffany collecting transect data. Hilo Watershed Forest Reserve, 2014."><img src="images/research/thumbs/recruitment_10.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/recruitment_11.jpg" title="Waikamoi Preserve, Maui, 2014."><img src="images/research/thumbs/recruitment_11.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/recruitment_12.jpg" title="Yellow-flowered ohia lehua. Lower Kona Forest Reserve, 2014."><img src="images/research/thumbs/recruitment_12.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/recruitment_13.jpg" title=""><img src="images/research/thumbs/recruitment_13.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/recruitment_14.jpg" title="Ohia lehua with sparse psyllid gall damage. "><img src="images/research/thumbs/recruitment_14.jpg" height="120" /></a></div>
+    <div class="scroll-content-item ui-widget-header"><a class="browse fancybox fancybox.image" href="images/research/recruitment_15.jpg" title="Ohia lehua flowers."><img src="images/research/thumbs/recruitment_15.jpg" height="120" /></a></div>
+  </div>
+  <div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
+    <div class="scroll-bar"></div>
+  </div>
+</div>
+
+<p><i class="fa fa-users"></i> <b>Collaborators:</b> <a href="https://www.ufz.de/index.php?en=33878" title="Helmholtz Centre for Environmental Research (UFZ), Leipzig, Germany">Tiffany Knight</a></p>
+
+<p><i class="fa fa-money"></i> <b>Funding:</b> National Geographic Society (<a href="http://www.nationalgeographic.com/about/">NGS</a>), Pacific Islands Climate Science Center (<a href="http://www.doi.gov/csc/pacific/">PICSC</a>)</p>
+
+<!--<p><i class="fa fa-file-pdf-o"></i> <b>Publications:</b></p>-->
+
+<p><a href="javascript:void(0)" onClick="window.scrollTo( 0, 0 ); this.blur();"><i class="fa fa-arrow-up"></i> Back to Top</a></p>
+
+<hr/>
+<!--#include virtual="ssi/links.ssi" -->{% include links.ssi %}
+<!--#include virtual="ssi/footer.ssi" -->{% include footer.ssi %}
+<!--#include virtual="ssi/google_analytics.ssi" -->{% include google_analytics.ssi %}
+</div> <!-- #content -->
+</body>
+
+</html>
