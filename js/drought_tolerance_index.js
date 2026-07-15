@@ -11,7 +11,7 @@
 jQuery( document ).ready(
   function () {
 
-    console.info( 'just testing' );
+    //console.info( 'just testing' );
 
     // Set zoom to default:
     
