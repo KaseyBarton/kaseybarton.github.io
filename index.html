@@ -929,12 +929,14 @@
         };
       };
 
-      fetch('https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=kaseybarton.bsky.social&limit=3', { cache: 'no-store' })
+      fetch('https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=kaseybarton.bsky.social&limit=10', { cache: 'no-store' })
         .then((response) => response.ok ? response.json() : Promise.reject(new Error('Unable to load Bluesky feed')))
         .then((data) => {
           const posts = (data.feed || [])
+            .filter((item) => !item.reason)
             .map((item) => item.post)
             .filter((post) => post && post.record && post.record.text)
+            .filter((post) => post.author && post.author.handle === 'kaseybarton.bsky.social')
             .slice(0, 3);
 
           if (!posts.length) {
@@ -945,7 +947,7 @@
           container.innerHTML = posts.map((post, index) => {
             const text = post.record.text.length > 210 ? `${post.record.text.slice(0, 210).trim()}…` : post.record.text;
             const postId = post.uri.split('/').pop();
-            const postUrl = `${profileUrl}/post/${postId}`;
+            const postUrl = `https://bsky.app/profile/${post.author.handle}/post/${postId}`;
             const image = index === 0 ? getFirstImage(post) : null;
             const photoMarkup = image ? `<img class="post-photo" src="${escapeHtml(image.src)}" alt="${escapeHtml(image.alt)}" loading="lazy">` : '';
             const cardClass = image ? 'post-card has-photo' : 'post-card';
